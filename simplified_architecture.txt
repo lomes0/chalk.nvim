@@ -1,0 +1,28 @@
+-- ACTUAL simplified colorscheme architecture
+
+BEFORE: 4,592 lines
+AFTER:  2,833 lines
+REDUCTION: 38% (1,759 lines removed)
+
+lua/chalk/
+├── init.lua           (~100 lines - main entry, setup, load)
+├── colors.lua         (~250 lines - color definitions, variants)  
+├── config.lua         (~40 lines - simple config handling)
+└── groups/
+    ├── editor.lua     (~328 lines - UI highlights)
+    ├── syntax.lua     (~387 lines - syntax highlights) 
+    ├── treesitter.lua (~xxx lines - TreeSitter highlights)
+    └── integrations/   (~1,500+ lines total)
+        ├── telescope.lua
+        ├── nvim_cmp.lua  
+        ├── gitsigns.lua
+        ├── lualine.lua
+        └── which_key.lua
+
+REMOVED:
+- lua/chalk/utils/ (entire directory - 800+ lines)
+- Complex error handling, validation, caching
+- Plugin auto-detection system  
+- Legacy vim.g support
+- User commands and autocommands
+- Advanced color manipulation utilities
