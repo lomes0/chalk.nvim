@@ -319,27 +319,27 @@ function M.setup(colors, opts)
 		["@text.diff.add"] = { fg = c.git_add },
 		["@text.diff.delete"] = { fg = c.git_delete },
 
-		-- Additional semantic tokens
-		["@lsp.type.class"] = { fg = c.yellow },
-		["@lsp.type.decorator"] = { fg = c.orange },
-		["@lsp.type.enum"] = { fg = c.yellow },
-		["@lsp.type.enumMember"] = { fg = c.yellow },
-		["@lsp.type.function"] = { fg = c.blue },
-		["@lsp.type.interface"] = { fg = c.yellow },
-		["@lsp.type.macro"] = { fg = c.purple },
-		["@lsp.type.method"] = { fg = c.blue },
-		["@lsp.type.namespace"] = { fg = c.purple },
-		["@lsp.type.parameter"] = { fg = c.red },
-		["@lsp.type.property"] = { fg = c.red },
-		["@lsp.type.struct"] = { fg = c.yellow },
-		["@lsp.type.type"] = { fg = c.yellow },
-		["@lsp.type.typeParameter"] = { fg = c.yellow },
-		["@lsp.type.variable"] = { fg = c.red },
+		-- Additional semantic tokens (disabled to prevent TreeSitter interference)
+		["@lsp.type.class"] = {},
+		["@lsp.type.decorator"] = {},
+		["@lsp.type.enum"] = {},
+		["@lsp.type.enumMember"] = {},
+		["@lsp.type.function"] = {},
+		["@lsp.type.interface"] = {},
+		["@lsp.type.macro"] = {},
+		["@lsp.type.method"] = {},
+		["@lsp.type.namespace"] = {},
+		["@lsp.type.parameter"] = {},
+		["@lsp.type.property"] = {},
+		["@lsp.type.struct"] = {},
+		["@lsp.type.type"] = {},
+		["@lsp.type.typeParameter"] = {},
+		["@lsp.type.variable"] = {},
 
-		-- LSP semantic token modifiers
-		["@lsp.mod.deprecated"] = { strikethrough = true },
-		["@lsp.mod.readonly"] = { italic = true },
-		["@lsp.mod.static"] = { bold = true },
+		-- LSP semantic token modifiers (disabled to prevent TreeSitter interference)
+		["@lsp.mod.deprecated"] = {},
+		["@lsp.mod.readonly"] = {},
+		["@lsp.mod.static"] = {},
 
 		-- Legacy TreeSitter groups (for compatibility)
 		TSAnnotation = { link = "@annotation" },
