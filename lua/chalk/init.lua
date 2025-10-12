@@ -53,23 +53,10 @@ function M.get_colors(variant)
   return require("chalk.theme").get_colors(variant)
 end
 
----Get current highlights for the active or specified variant
----@param variant? string Variant to get highlights for
----@return chalk.Highlights Highlight groups
-function M.get_highlights(variant)
-  return require("chalk.theme").get_highlights(variant)
-end
-
 ---Toggle between light and dark variants
 ---@return chalk.ColorScheme, chalk.Highlights, chalk.Config
 function M.toggle()
   return require("chalk.theme").toggle()
-end
-
----Reload the colorscheme (useful for development)
----@return chalk.ColorScheme, chalk.Highlights, chalk.Config
-function M.reload()
-  return require("chalk.theme").reload()
 end
 
 ---Preview a variant without applying it
@@ -84,14 +71,5 @@ end
 function M.info()
   return require("chalk.theme").info()
 end
-
----Check if chalk is currently loaded
----@return boolean Whether chalk is active
-function M.is_loaded()
-  return require("chalk.theme").is_loaded()
-end
-
--- Backward compatibility aliases
-M.generate_theme = M.get_colors
 
 return M

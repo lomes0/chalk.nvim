@@ -107,17 +107,6 @@ function M.setup(opts)
   return colors, highlights, opts
 end
 
----Load theme with caching support
----@param opts? chalk.Config Configuration options
----@return chalk.ColorScheme, chalk.Highlights, chalk.Config
-function M.load(opts)
-  opts = Config.extend(opts)
-  
-  -- TODO: Add caching mechanism here if opts.cache is true
-  -- For now, just load directly
-  return M.setup(opts)
-end
-
 ---Reload the current theme (useful for development)
 function M.reload()
   -- Clear any cached modules
@@ -195,13 +184,12 @@ end
 ---@return table Theme metadata
 function M.info()
   local config = Config.get()
-  local variants = require("chalk.colors").get_variants()
   
   return {
     name = "chalk.nvim",
     current_variant = config.variant,
     background = vim.o.background,
-    available_variants = variants,
+    available_variants = { "default", "light", "oled" },
     colors_name = vim.g.colors_name,
     terminal_colors = config.terminal_colors,
     transparent = config.transparent,

@@ -120,30 +120,6 @@ function M.setup(opts)
   return colors
 end
 
----Get available color variants
----@return string[] List of available variants
-function M.get_variants()
-  local variants = {}
-  
-  -- Standard variants
-  table.insert(variants, "default")
-  table.insert(variants, "light")
-  table.insert(variants, "oled")
-  
-  -- Check for additional variant files
-  local colors_path = vim.fn.stdpath("data") .. "/site/pack/*/start/*/lua/chalk/colors/"
-  local files = vim.fn.glob(colors_path .. "*.lua", false, true)
-  
-  for _, file in ipairs(files) do
-    local name = vim.fn.fnamemodify(file, ":t:r")
-    if name ~= "init" and not vim.tbl_contains(variants, name) then
-      table.insert(variants, name)
-    end
-  end
-  
-  return variants
-end
-
 ---Preview color scheme without applying it
 ---@param variant? string Variant to preview (defaults to current config)
 ---@return chalk.ColorScheme Color scheme for preview

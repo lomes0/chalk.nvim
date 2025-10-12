@@ -5,9 +5,6 @@ local M = {}
 
 ---Plugin to group mapping for organized plugin support
 M.plugins = {
-  -- Core Neovim features
-  treesitter = "treesitter",
-  
   -- Popular plugins with dedicated support
   ["telescope.nvim"] = "telescope",
   ["nvim-cmp"] = "nvim_cmp", 
@@ -118,46 +115,11 @@ function M.setup(colors, opts)
   return highlights, loaded_groups
 end
 
----Get available group modules
----@return table<string, boolean> Available groups
-function M.get_available_groups()
-  local available = {}
-  
-  -- Check base groups
-  local base_groups = { "base", "treesitter" }
-  for _, group in ipairs(base_groups) do
-    if M.get_group(group) then
-      available[group] = true
-    end
-  end
-  
-  -- Check plugin groups
-  for plugin_name, _ in pairs(M.plugins) do
-    if M.get_group(plugin_name) then
-      available[plugin_name] = true
-    end
-  end
-  
-  return available
-end
-
 ---Check if a group module exists
 ---@param name string Group name to check
 ---@return boolean Whether the group exists
 function M.has_group(name)
   return M.get_group(name) ~= nil
-end
-
----Load a single group (useful for testing)
----@param name string Group name
----@param colors? chalk.ColorScheme Color scheme (optional)
----@param opts? chalk.Config Configuration (optional)
----@return chalk.Highlights|nil Highlight groups
-function M.load_single(name, colors, opts)
-  colors = colors or require("chalk.colors").setup()
-  opts = opts or Config.get()
-  
-  return M.get(name, colors, opts)
 end
 
 ---Preview groups without applying them
