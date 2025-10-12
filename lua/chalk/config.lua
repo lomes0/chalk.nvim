@@ -32,21 +32,11 @@ M.defaults = {
 	-- Dynamic color adjustment
 	enable_dynamic_colors = true, -- Enable real-time color adjustments
 	dynamic_keymaps = true, -- Auto-setup keymaps for dynamic colors
-	dynamic_prefix = "<leader>c", -- Key prefix for dynamic color operations
+	dynamic_prefix = "<lt>c", -- Key prefix for dynamic color operations
 	dynamic_step = 0.1, -- Brightness adjustment step size (0.0-1.0)
 
 	-- Caching for performance
 	cache = true,
-
-	-- Color generator options
-	enable_generator = false, -- Enable TreeSitter color generator
-	generator_keymaps = false, -- Setup generator keymaps
-	generator_config = {
-		harmony_model = "split_complementary", -- "triadic", "analogous"
-		min_contrast = 4.5, -- WCAG contrast ratio
-		auto_apply = true, -- Automatically apply generated colors
-		language_hints = true, -- Use language-specific optimizations
-	},
 
 	-- Plugin integrations with auto-detection
 	plugins = {
@@ -55,34 +45,25 @@ M.defaults = {
 		-- Auto-detect available plugins
 		auto = true,
 
-		-- Individual plugin controls
-		treesitter = true,
+		-- Individual plugin controls (only plugins with dedicated highlight files)
+		treesitter = true, -- Handled separately in groups/treesitter.lua
 		telescope = true,
 		nvim_cmp = true,
 		gitsigns = true,
-		lualine = true,
 		which_key = true,
-		indent_blankline = true,
-		nvim_tree = true,
-		neo_tree = true,
 		bufferline = true,
-		dashboard = true,
-		alpha = true,
-		noice = true,
-		notify = true,
-		mini = true,
-		leap = true,
-		flash = true,
-		navic = true,
-		aerial = true,
+		treesitter_context = true,
+
+		-- Note: Other plugins can still be detected for compatibility but won't have custom highlights
+		-- Available highlight files: bufferline.lua, gitsigns.lua, nvim_cmp.lua, telescope.lua, treesitter_context.lua, which_key.lua
 	},
 
 	-- Callback functions
 	---@type fun(colors: chalk.ColorScheme): nil
-	on_colors = function(colors) end,
+	on_colors = function(_colors) end,
 
 	---@type fun(highlights: chalk.Highlights, colors: chalk.ColorScheme): nil
-	on_highlights = function(highlights, colors) end,
+	on_highlights = function(_highlights, _colors) end,
 
 	-- Legacy support (will be deprecated)
 	integrations = {},
@@ -91,20 +72,24 @@ M.defaults = {
 
 ---Current configuration storage
 ---@type chalk.Config
-M.options = {}
+M.options = vim.deepcopy(M.defaults)
 
 ---Plugin name mappings for auto-detection
 M.plugin_map = {
+	-- Plugins with dedicated highlight support
 	["nvim-treesitter"] = "treesitter",
 	["telescope.nvim"] = "telescope",
 	["nvim-cmp"] = "nvim_cmp",
 	["gitsigns.nvim"] = "gitsigns",
-	["lualine.nvim"] = "lualine",
 	["which-key.nvim"] = "which_key",
+	["bufferline.nvim"] = "bufferline",
+	["nvim-treesitter-context"] = "treesitter_context",
+
+	-- Keep these for compatibility but they won't have custom highlights
+	["lualine.nvim"] = "lualine",
 	["indent-blankline.nvim"] = "indent_blankline",
 	["nvim-tree.lua"] = "nvim_tree",
 	["neo-tree.nvim"] = "neo_tree",
-	["bufferline.nvim"] = "bufferline",
 	["dashboard-nvim"] = "dashboard",
 	["alpha-nvim"] = "alpha",
 	["noice.nvim"] = "noice",

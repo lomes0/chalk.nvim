@@ -1,7 +1,8 @@
 local M = {}
 
 -- Default chalk colors
-M.bg = "#1e2328" -- Default chalk background
+M.bg = "#1e1e2e" -- Default chalk background (main)
+M.bg_3 = "#1e1e2e" -- Default chalk background (main) - alias for compatibility
 M.fg = "#c9c7cd" -- Default chalk foreground
 
 ---Convert hex color to RGB values
@@ -211,6 +212,26 @@ function M.ensure_contrast(color, background, min_contrast)
 	-- Fallback to high contrast color
 	local bg_lum = M.luminance(background)
 	return bg_lum > 0.5 and "#000000" or "#ffffff"
+end
+
+---Cache management for chalk theme system
+M.cache = {}
+
+---Clear all cached data including dynamic overrides
+function M.cache.clear()
+	-- Clear dynamic color system cache
+	local has_dynamic, dynamic = pcall(require, "chalk.utils.dynamic")
+	if has_dynamic then
+		dynamic.clear_overrides()
+		dynamic.clear_change_history()
+	end
+
+	-- Clear module cache for chalk modules
+	for module_name, _ in pairs(package.loaded) do
+		if module_name:match("^chalk%.") then
+			package.loaded[module_name] = nil
+		end
+	end
 end
 
 return M

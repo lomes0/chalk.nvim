@@ -1,11 +1,10 @@
 -- Telescope plugin highlights for chalk.nvim
 local M = {}
 
----Setup Telescope highlight groups
+---Get base Telescope highlight groups
 ---@param colors chalk.ColorScheme Color scheme
----@param opts chalk.Config Configuration
----@return chalk.Highlights Telescope highlight groups
-function M.setup(colors, opts)
+---@return chalk.Highlights Base Telescope highlight groups
+local function get_base_highlights(colors)
 	local c = colors
 
 	return {
@@ -15,10 +14,10 @@ function M.setup(colors, opts)
 		TelescopeTitle = { fg = c.fg, bold = true },
 
 		-- Telescope prompts
-		TelescopePromptNormal = { bg = c.bg_darker },
-		TelescopePromptBorder = { bg = c.bg_darker, fg = c.bg_darker },
-		TelescopePromptTitle = { bg = c.red, fg = c.bg },
-		TelescopePromptPrefix = { bg = c.bg_darker, fg = c.red },
+		TelescopePromptNormal = { bg = c.bg_4 },
+		TelescopePromptBorder = { bg = c.bg_4, fg = c.bg_4 },
+		TelescopePromptTitle = { bg = c.peach_4, fg = c.fg_darker, bold = true },
+		TelescopePromptPrefix = { bg = c.bg_4, fg = c.red },
 		TelescopePromptCounter = { fg = c.comment },
 
 		-- Telescope results
@@ -27,14 +26,14 @@ function M.setup(colors, opts)
 		TelescopeResultsTitle = { bg = c.bg_float, fg = c.fg },
 
 		-- Telescope preview
-		TelescopePreviewNormal = { bg = c.bg_dark, fg = c.fg },
-		TelescopePreviewBorder = { bg = c.bg_dark, fg = c.bg_dark },
-		TelescopePreviewTitle = { bg = c.green, fg = c.bg },
+		TelescopePreviewNormal = { bg = c.bg_4, fg = c.fg },
+		TelescopePreviewBorder = { bg = c.bg_4, fg = c.bg_4 },
+		TelescopePreviewTitle = { bg = c.green, fg = c.fg_darker, bold = true },
 
 		-- Telescope selections
-		TelescopeSelection = { bg = c.bg_light, fg = c.fg },
-		TelescopeSelectionCaret = { bg = c.bg_light, fg = c.red },
-		TelescopeMultiSelection = { bg = c.bg_lighter, fg = c.fg },
+		TelescopeSelection = { bg = c.bg_2, fg = c.fg },
+		TelescopeSelectionCaret = { bg = c.bg_2, fg = c.red },
+		TelescopeMultiSelection = { bg = c.bg_2er, fg = c.fg },
 		TelescopeMultiIcon = { fg = c.blue },
 
 		-- Telescope matching
@@ -60,6 +59,47 @@ function M.setup(colors, opts)
 		TelescopeResultsDiffChange = { fg = c.yellow },
 		TelescopeResultsDiffDelete = { fg = c.red },
 	}
+end
+
+---Apply transparency to Telescope highlight groups
+---@param highlights chalk.Highlights Telescope highlight groups
+---@param colors chalk.ColorScheme Color scheme
+---@return chalk.Highlights Updated highlights with transparency
+local function apply_transparency(highlights, colors)
+	-- Groups that should become transparent for Telescope
+	local transparent_groups = {
+		"TelescopeNormal",
+		"TelescopeBorder",
+		"TelescopePromptNormal",
+		"TelescopePromptBorder",
+		"TelescopeResultsNormal",
+		"TelescopeResultsBorder",
+		"TelescopePreviewNormal",
+		"TelescopePreviewBorder",
+	}
+
+	for _, group in ipairs(transparent_groups) do
+		if highlights[group] then
+			highlights[group].bg = colors.none
+		end
+	end
+
+	return highlights
+end
+
+---Setup Telescope highlight groups
+---@param colors chalk.ColorScheme Color scheme
+---@param opts chalk.Config Configuration
+---@return chalk.Highlights Telescope highlight groups
+function M.setup(colors, opts)
+	local highlights = get_base_highlights(colors)
+
+	-- Apply transparency if enabled
+	if opts.transparent then
+		highlights = apply_transparency(highlights, colors)
+	end
+
+	return highlights
 end
 
 return M

@@ -5,25 +5,13 @@ local M = {}
 
 ---Plugin to group mapping for organized plugin support
 M.plugins = {
-	-- Popular plugins with dedicated support
+	-- Plugins with dedicated highlight support files
 	["telescope.nvim"] = "telescope",
 	["nvim-cmp"] = "nvim_cmp",
 	["gitsigns.nvim"] = "gitsigns",
-	["lualine.nvim"] = "lualine",
 	["which-key.nvim"] = "which_key",
-	["indent-blankline.nvim"] = "indent_blankline",
-	["nvim-tree.lua"] = "nvim_tree",
-	["neo-tree.nvim"] = "neo_tree",
 	["bufferline.nvim"] = "bufferline",
-	["dashboard-nvim"] = "dashboard",
-	["alpha-nvim"] = "alpha",
-	["noice.nvim"] = "noice",
-	["nvim-notify"] = "notify",
-	["mini.nvim"] = "mini",
-	["leap.nvim"] = "leap",
-	["flash.nvim"] = "flash",
-	["nvim-navic"] = "navic",
-	["aerial.nvim"] = "aerial",
+	["nvim-treesitter-context"] = "treesitter_context",
 }
 
 ---Get a highlight group module
@@ -53,17 +41,33 @@ function M.get(name, colors, opts)
 		return nil
 	end
 
+	-- Ensure mod is a table or function
+	if type(mod) ~= "table" and type(mod) ~= "function" then
+		vim.notify(
+			string.format(
+				"chalk.nvim: Invalid module type for '%s': expected table or function, got %s",
+				name,
+				type(mod)
+			),
+			vim.log.levels.ERROR
+		)
+		return nil
+	end
+
 	-- Call the module's setup/get function
-	if type(mod.setup) == "function" then
-		return mod.setup(colors, opts)
-	elseif type(mod.get) == "function" then
-		return mod.get(colors, opts)
+	if type(mod) == "table" then
+		if type(mod.setup) == "function" then
+			return mod.setup(colors, opts)
+		elseif type(mod.get) == "function" then
+			return mod.get(colors, opts)
+		end
+		-- Module should export highlight groups directly
+		return mod
 	elseif type(mod) == "function" then
 		return mod(colors, opts)
 	end
 
-	-- Module should export highlight groups directly
-	return mod
+	return nil
 end
 
 ---Setup all highlight groups based on configuration
@@ -106,6 +110,84 @@ function M.setup(colors, opts)
 			end
 			-- Don't show warnings for missing plugin highlights - it's normal
 			-- Most plugins don't need custom highlight groups
+		end
+	end
+
+	-- Apply transparency AFTER all groups (base + plugins) have been loaded
+	-- NOTE: Plugin-specific transparency is now handled by each plugin's setup function
+	-- This section only handles core UI transparency groups
+	if opts.transparent then
+		-- Helper function to make a highlight group transparent
+		local function make_transparent(group)
+			if highlights[group] then
+				highlights[group].bg = colors.none
+				highlights[group].ctermbg = colors.none
+			end
+		end
+
+		-- Core UI elements that should always be transparent when enabled
+		local core_transparent_groups = {
+			"ColorColumn",
+			"CursorColumn",
+			"CursorLine",
+			"CursorLineNr",
+			"DiagnosticSignError",
+			"DiagnosticSignHint",
+			"DiagnosticSignInfo",
+			"DiagnosticSignOk",
+			"DiagnosticSignWarn",
+			"DiagnosticVirtualTextError",
+			"DiagnosticVirtualTextHint",
+			"DiagnosticVirtualTextInfo",
+			"DiagnosticVirtualTextOk",
+			"DiagnosticVirtualTextWarn",
+			"EndOfBuffer",
+			"FloatBorder",
+			"FloatShadow",
+			"FloatShadowThrough",
+			"FloatTitle",
+			"FoldColumn",
+			"Folded",
+			"LineNr",
+			"MsgSeparator",
+			"Normal",
+			"NormalFloat",
+			"NormalNC",
+			"NotifyBackground",
+			"Pmenu",
+			"PmenuSbar",
+			"PmenuSel",
+			"PmenuThumb",
+			"SignColumn",
+			"StatusLine",
+			"StatusLineNC",
+			"StatusLineTerm",
+			"StatusLineTermNC",
+			"TabLine",
+			"TabLineFill",
+			"TabLineSel",
+			"VertSplit",
+			"WhichKeyFloat",
+			"WinBar",
+			"WinBarNC",
+			"WinSeparator",
+			"QuickFixLine",
+			"MatchParen",
+			"MiniSurround",
+
+			-- NvimTree / Neo-tree (these don't have dedicated plugin modules yet)
+			"NvimTreeNormalFloat",
+			"NvimTreeNormalFloatBorder",
+
+			-- Trouble (no dedicated plugin module yet)
+			"TroubleNormal",
+			"TroubleCount",
+		}
+
+		-- Apply transparency to core UI groups only
+		-- Plugin-specific transparency is now handled by each plugin's setup function
+		for _, group in ipairs(core_transparent_groups) do
+			make_transparent(group)
 		end
 	end
 

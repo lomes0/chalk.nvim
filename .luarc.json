@@ -1,5 +1,35 @@
 {
-    "diagnostics.disable": [
-        "trailing-space"
-    ]
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "Lua.runtime.version": "LuaJIT",
+  "Lua.runtime.special": {
+    "vim.notify": "function"
+  },
+  "Lua.workspace.library": [
+    "${3rd}/luv/library",
+    "lua"
+  ],
+  "Lua.workspace.checkThirdParty": false,
+  "Lua.workspace.preloadFileSize": 1000,
+  "Lua.completion.callSnippet": "Both",
+  "Lua.completion.keywordSnippet": "Both",
+  "Lua.diagnostics.disable": [
+    "duplicate-set-field",
+    "trailing-space",
+    "undefined-doc-name",
+        "missing-fields",
+        "undefined-field"
+  ],
+  "Lua.diagnostics.globals": [
+    "vim",
+    "_G"
+  ],
+  "Lua.hint.enable": true,
+  "Lua.hint.arrayIndex": "Auto",
+  "Lua.hint.await": true,
+  "Lua.hint.paramName": "All",
+  "Lua.hint.paramType": true,
+  "Lua.hint.semicolon": "SameLine",
+  "Lua.hint.setType": false,
+  "Lua.format.enable": true,
+  "Lua.telemetry.enable": false
 }

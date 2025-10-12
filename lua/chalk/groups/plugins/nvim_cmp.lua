@@ -1,11 +1,10 @@
 -- nvim-cmp completion plugin highlights for chalk.nvim
 local M = {}
 
----Setup nvim-cmp highlight groups
+---Get base nvim-cmp highlight groups
 ---@param colors chalk.ColorScheme Color scheme
----@param opts chalk.Config Configuration
----@return chalk.Highlights nvim-cmp highlight groups
-function M.setup(colors, opts)
+---@return chalk.Highlights Base nvim-cmp highlight groups
+local function get_base_highlights(colors)
 	local c = colors
 
 	return {
@@ -50,6 +49,40 @@ function M.setup(colors, opts)
 		CmpDocumentation = { bg = c.bg_float, fg = c.fg },
 		CmpDocumentationBorder = { bg = c.bg_float, fg = c.border },
 	}
+end
+
+---Apply transparency to nvim-cmp highlight groups
+---@param highlights chalk.Highlights nvim-cmp highlight groups
+---@param colors chalk.ColorScheme Color scheme
+---@return chalk.Highlights Updated highlights with transparency
+local function apply_transparency(highlights, colors)
+	-- Groups that should become transparent for nvim-cmp
+	local transparent_groups = {
+		"CmpDocumentation",
+		"CmpDocumentationBorder",
+	}
+
+	for _, group in ipairs(transparent_groups) do
+		if highlights[group] then
+			highlights[group].bg = colors.none
+		end
+	end
+
+	return highlights
+end
+---Setup nvim-cmp highlight groups
+---@param colors chalk.ColorScheme Color scheme
+---@param opts chalk.Config Configuration
+---@return chalk.Highlights nvim-cmp highlight groups
+function M.setup(colors, opts)
+	local highlights = get_base_highlights(colors)
+
+	-- Apply transparency if enabled
+	if opts.transparent then
+		highlights = apply_transparency(highlights, colors)
+	end
+
+	return highlights
 end
 
 return M

@@ -76,6 +76,10 @@ function M.setup(opts)
 		opts.on_highlights(highlights, colors)
 	end
 
+	-- Apply dynamic color overrides (final step)
+	local dynamic = require("chalk.utils.dynamic")
+	highlights = dynamic.apply_overrides(highlights, colors)
+
 	-- Set colorscheme name with variant
 	local colorscheme_name = "chalk"
 	if opts.variant ~= "default" then
@@ -93,6 +97,15 @@ function M.setup(opts)
 	-- Apply highlights to Neovim
 	apply_highlights(highlights)
 
+	-- Apply additional Neovim options for optimal theme experience
+	-- Optional: win/popup blends so "shadow" groups aren't needed
+	vim.opt.winblend = 0
+	vim.opt.pumblend = 0
+	-- termguicolors is already set in apply_highlights function
+
+	-- Optional: Clear cached data for development
+	require("chalk.util").cache.clear()
+
 	-- Apply terminal colors if enabled
 	if opts.terminal_colors then
 		apply_terminal_colors(colors)
@@ -100,18 +113,15 @@ function M.setup(opts)
 
 	-- Initialize dynamic color system
 	if opts.enable_dynamic_colors ~= false then -- Default to enabled
-		local dynamic = Util.mod("chalk.dynamic")
-		if dynamic then
-			dynamic.init(colors, highlights, opts)
-			
-			-- Setup keymaps if enabled
-			if opts.dynamic_keymaps ~= false then
-				dynamic.setup_keymaps({ prefix = opts.dynamic_prefix })
-			end
-			
-			-- Setup Ex commands
-			dynamic.setup_commands()
+		dynamic.init(colors, highlights, opts)
+
+		-- Setup keymaps if enabled
+		if opts.dynamic_keymaps ~= false then
+			dynamic.setup_keymaps({ prefix = opts.dynamic_prefix })
 		end
+
+		-- Setup Ex commands
+		dynamic.setup_commands()
 	end
 
 	-- Emit autocmd for theme loaded event
