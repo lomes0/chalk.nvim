@@ -41,7 +41,7 @@ end
 ---@param col? number Column (0-indexed, defaults to cursor col)
 ---@return string|nil capture_name TreeSitter capture name (e.g., "@function", "@variable")
 function M.get_ts_capture_at_cursor(bufnr, row, col)
-	bufnr = bufnr or 0
+	bufnr = bufnr or vim.api.nvim_get_current_buf()
 	local cursor = vim.api.nvim_win_get_cursor(0)
 	row = row or (cursor[1] - 1) -- Convert to 0-indexed
 	col = col or cursor[2]
@@ -363,6 +363,166 @@ function M.inspect_group()
 	vim.notify(table.concat(info, "\n"), vim.log.levels.INFO)
 end
 
+---Dump TreeSitter structure of current buffer to a new buffer
+---Creates a new buffer with TreeSitter group names replacing the actual text
+---@param bufnr? number Source buffer number (0 for current)
+function M.dump_treesitter_structure(bufnr)
+	bufnr = bufnr or vim.api.nvim_get_current_buf()
+	
+	-- Get buffer info for diagnostics
+	local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
+	local bufname = vim.api.nvim_buf_get_name(bufnr)
+	local filename = vim.fn.fnamemodify(bufname, ":t")
+	
+	-- Check if TreeSitter is available for this buffer
+	local ok, parser = pcall(vim.treesitter.get_parser, bufnr)
+	if not ok or not parser then
+		local error_msg = {
+			"TreeSitter parser not available for this buffer.",
+			string.format("Buffer: %s", filename ~= "" and filename or "[No Name]"),
+			string.format("Filetype: %s", filetype ~= "" and filetype or "[No filetype]"),
+			"",
+			"Possible solutions:",
+			"1. Set the correct filetype: :set filetype=<language>",
+			"2. Install TreeSitter parser: :TSInstall <language>",
+			"3. Check available parsers: :TSInstallInfo"
+		}
+		vim.notify(table.concat(error_msg, "\n"), vim.log.levels.WARN)
+		return
+	end
+	
+	-- Check if the parser actually has a tree
+	local trees = parser:parse()
+	if not trees or #trees == 0 then
+		vim.notify(string.format("TreeSitter parser exists but no syntax tree available for %s", filetype), vim.log.levels.WARN)
+		return
+	end
+
+	-- Get buffer content
+	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+	local total_lines = #lines
+	
+	-- Create result lines with same structure but TS group names
+	local result_lines = {}
+	for i = 1, total_lines do
+		result_lines[i] = ""
+	end
+	
+	-- Get the syntax tree
+	local tree = trees[1]
+	if not tree then
+		vim.notify("Failed to get TreeSitter syntax tree", vim.log.levels.ERROR)
+		return
+	end
+	
+	-- Function to recursively process nodes
+	local function process_node(node, depth)
+		depth = depth or 0
+		local start_row, start_col, end_row, end_col = node:range()
+		
+		-- Get captures for this node position
+		local captures = {}
+		local ts_captures = vim.treesitter.get_captures_at_pos(bufnr, start_row, start_col)
+		
+		if ts_captures and #ts_captures > 0 then
+			for _, capture in ipairs(ts_captures) do
+				table.insert(captures, "@" .. capture.capture)
+			end
+		end
+		
+		-- If no captures, use the node type
+		if #captures == 0 then
+			local node_type = node:type()
+			if node_type and node_type ~= "" and not node_type:match("^[%s%p]*$") then
+				table.insert(captures, "@" .. node_type)
+			end
+		end
+		
+		-- If we have captures, mark this range for replacement
+		if #captures > 0 then
+			local capture_text = table.concat(captures, ",")
+			
+			-- Only replace if this is a leaf node or small node to avoid overlaps
+			local is_small_node = (end_row - start_row < 2) or 
+			                     (start_row == end_row and end_col - start_col < 50)
+			
+			if is_small_node then
+				-- Handle single line nodes
+				if start_row == end_row then
+					local line = lines[start_row + 1] or ""
+					local original_text = string.sub(line, start_col + 1, end_col)
+					
+					-- Skip whitespace-only or punctuation-only nodes
+					if original_text:match("^[%s%p]*$") then
+						return
+					end
+					
+					local before = string.sub(line, 1, start_col)
+					local after = string.sub(line, end_col + 1)
+					
+					-- Create replacement text
+					local replacement = "[" .. capture_text .. "]"
+					
+					-- Only replace if we haven't already processed this line position
+					if result_lines[start_row + 1] == "" or 
+					   string.sub(result_lines[start_row + 1], start_col + 1, end_col) == string.sub(lines[start_row + 1], start_col + 1, end_col) then
+						result_lines[start_row + 1] = before .. replacement .. after
+					end
+				else
+					-- Handle small multi-line nodes
+					local replacement = "[" .. capture_text .. "]"
+					for row = start_row, math.min(end_row, start_row + 1) do
+						local line_idx = row + 1
+						if result_lines[line_idx] == "" then
+							result_lines[line_idx] = replacement
+						end
+					end
+				end
+			end
+		end
+		
+		-- Process child nodes
+		for child in node:iter_children() do
+			process_node(child, depth + 1)
+		end
+	end
+	
+	-- Start processing from root
+	process_node(tree:root())
+	
+	-- Fill empty lines with original content (for lines without TS groups)
+	for i = 1, total_lines do
+		if result_lines[i] == "" then
+			result_lines[i] = lines[i]
+		end
+	end
+	
+	-- Create new buffer
+	local new_bufnr = vim.api.nvim_create_buf(false, true)
+	
+	-- Set buffer content
+	vim.api.nvim_buf_set_lines(new_bufnr, 0, -1, false, result_lines)
+	
+	-- Set buffer options
+	local original_name = vim.api.nvim_buf_get_name(bufnr)
+	local base_name = vim.fn.fnamemodify(original_name, ":t")
+	if base_name == "" then
+		base_name = "untitled"
+	end
+	
+	vim.api.nvim_buf_set_name(new_bufnr, base_name .. ".treesitter-dump")
+	vim.api.nvim_buf_set_option(new_bufnr, "buftype", "nofile")
+	vim.api.nvim_buf_set_option(new_bufnr, "bufhidden", "wipe")
+	vim.api.nvim_buf_set_option(new_bufnr, "swapfile", false)
+	vim.api.nvim_buf_set_option(new_bufnr, "filetype", "treesitter-dump")
+	
+	-- Open in a new split
+	vim.cmd("vsplit")
+	vim.api.nvim_win_set_buf(0, new_bufnr)
+	
+	vim.notify(string.format("TreeSitter structure dumped to new buffer: %s", base_name .. ".treesitter-dump"), vim.log.levels.INFO)
+end
+
 ---Setup keymaps for dynamic color adjustment
 ---@param opts? table Keymap options
 function M.setup_keymaps(opts)
@@ -448,6 +608,10 @@ function M.setup_commands()
 	
 	vim.api.nvim_create_user_command("ChalkInspect", M.inspect_group, {
 		desc = "Inspect TreeSitter group under cursor"
+	})
+	
+	vim.api.nvim_create_user_command("DumpTreesitterStructure", M.dump_treesitter_structure, {
+		desc = "Dump TreeSitter structure of current buffer to new buffer"
 	})
 end
 
