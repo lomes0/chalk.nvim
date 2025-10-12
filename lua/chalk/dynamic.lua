@@ -367,14 +367,14 @@ end
 ---@param opts? table Keymap options
 function M.setup_keymaps(opts)
 	opts = opts or {}
-	local prefix = opts.prefix or "<leader>c"
+	local prefix = opts.prefix or ""
 	
 	local keymaps = {
-		{ prefix .. "i", M.increase_brightness, "Increase brightness" },
-		{ prefix .. "d", M.decrease_brightness, "Decrease brightness" },
-		{ prefix .. "c", M.change_color, "Change color" },
-		{ prefix .. "r", M.reset_colors, "Reset colors" },
-		{ prefix .. "?", M.inspect_group, "Inspect group" },
+		{ "!", M.increase_brightness, "Increase brightness" },
+		{ "@", M.decrease_brightness, "Decrease brightness" },
+		{ "#", M.change_color, "Change color" },
+		{ "$", M.reset_colors, "Reset colors" },
+		{ "%", M.inspect_group, "Inspect group" },
 	}
 	
 	for _, keymap in ipairs(keymaps) do
@@ -384,7 +384,7 @@ function M.setup_keymaps(opts)
 		})
 	end
 	
-	vim.notify(string.format("Chalk dynamic color keymaps set with prefix: %s", prefix), vim.log.levels.INFO)
+	vim.notify("Chalk dynamic color keymaps activated: ! (brighter), @ (dimmer), # (change color), $ (reset), % (inspect)", vim.log.levels.INFO)
 end
 
 ---Setup Ex commands for dynamic color adjustment
