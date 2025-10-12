@@ -45,10 +45,6 @@ function M.setup(colors, opts)
 		["@constant.builtin"] = { fg = c.yellow, bold = true },
 		["@constant.macro"] = { fg = c.purple },
 
-		-- Constructors
-		["@constructor"] = { fg = c.yellow },
-		["@constructor.lua"] = { fg = c.light_gray },
-
 		-- Functions
 		["@function"] = { fg = c.blue },
 		["@function.builtin"] = { fg = c.cyan },
@@ -158,6 +154,7 @@ function M.setup(colors, opts)
 
 		-- Language-specific overrides
 		-- Lua
+		["@constructor"] = { fg = c.yellow },
 		["@constructor.lua"] = { fg = c.light_gray },
 		["@function.call.lua"] = { fg = c.blue },
 		["@keyword.function.lua"] = { fg = c.purple },

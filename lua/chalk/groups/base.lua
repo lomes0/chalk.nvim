@@ -152,7 +152,7 @@ function M.setup(colors, opts)
 		EndOfBuffer = { fg = c.bg },
 
 		-- === SYNTAX HIGHLIGHTING ===
-		
+
 		-- Comments
 		Comment = { fg = c.comment, italic = opts.styles.comments and opts.styles.comments.italic },
 
@@ -239,4 +239,3 @@ function M.setup(colors, opts)
 end
 
 return M
-

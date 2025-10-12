@@ -24,7 +24,7 @@
 ---@class chalk.ColorScheme Base color palette
 ---@field bg string Main background color
 ---@field bg_dark string Dark background color
----@field bg_darker string Darker background color  
+---@field bg_darker string Darker background color
 ---@field bg_light string Light background color
 ---@field bg_lighter string Lighter background color
 ---@field fg string Main foreground color
@@ -33,7 +33,7 @@
 ---@field fg_light string Light foreground color
 ---@field none string Transparent color constant
 ---@field primary string Primary accent color
----@field secondary string Secondary accent color  
+---@field secondary string Secondary accent color
 ---@field accent string Accent color
 ---@field error string Error color
 ---@field warning string Warning color
@@ -78,7 +78,7 @@
 ---@field bg_darker string
 ---@field bg_dark string
 ---@field bg string
----@field bg_light string  
+---@field bg_light string
 ---@field bg_lighter string
 ---@field fg_darker string
 ---@field fg string
