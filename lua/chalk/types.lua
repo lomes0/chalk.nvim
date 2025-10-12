@@ -1,0 +1,131 @@
+---@meta
+
+---Type definitions for chalk.nvim colorscheme
+---Provides better development experience and documentation
+
+---@class chalk.Highlight: vim.api.keyset.highlight
+---@field style? vim.api.keyset.highlight Additional style options
+
+---@alias chalk.Highlights table<string,chalk.Highlight|string>
+---@alias chalk.HighlightsFn fun(colors: chalk.ColorScheme, opts: chalk.Config): chalk.Highlights
+
+---@class chalk.Config
+---@field variant string Theme variant: "default", "light", "oled"
+---@field light_variant string Light theme variant when background=light
+---@field transparent boolean Enable transparent backgrounds
+---@field terminal_colors boolean Set terminal colors
+---@field styles table<string, table> Style configurations for syntax elements
+---@field dim_inactive boolean Dim inactive windows
+---@field cache boolean Enable caching for performance
+---@field on_colors fun(colors: chalk.ColorScheme) Callback to modify colors
+---@field on_highlights fun(highlights: chalk.Highlights, colors: chalk.ColorScheme) Callback to modify highlights
+---@field plugins table<string, boolean|{enabled:boolean}> Plugin integration settings
+
+---@class chalk.ColorScheme Base color palette
+---@field bg string Main background color
+---@field bg_dark string Dark background color
+---@field bg_darker string Darker background color  
+---@field bg_light string Light background color
+---@field bg_lighter string Lighter background color
+---@field fg string Main foreground color
+---@field fg_dark string Dark foreground color
+---@field fg_darker string Darker foreground color
+---@field fg_light string Light foreground color
+---@field none string Transparent color constant
+---@field primary string Primary accent color
+---@field secondary string Secondary accent color  
+---@field accent string Accent color
+---@field error string Error color
+---@field warning string Warning color
+---@field info string Info color
+---@field hint string Hint color
+---@field success string Success color
+---@field purple string Purple color
+---@field blue string Blue color
+---@field red string Red color
+---@field green string Green color
+---@field orange string Orange color
+---@field yellow string Yellow color
+---@field cyan string Cyan color
+---@field comment string Comment color
+---@field light_gray string Light gray color
+---@field selection string Selection background
+---@field search string Search highlight color
+---@field match string Matching bracket color
+---@field cursor string Cursor color
+---@field cursor_line string Cursor line background
+---@field line_number string Line number color
+---@field line_number_current string Current line number color
+---@field menu_bg string Menu background color
+---@field menu_sel string Menu selection color
+---@field menu_border string Menu border color
+---@field float_bg string Float window background
+---@field float_border string Float window border
+---@field diagnostic_error string Diagnostic error color
+---@field diagnostic_warning string Diagnostic warning color
+---@field diagnostic_info string Diagnostic info color
+---@field diagnostic_hint string Diagnostic hint color
+---@field git_add string Git addition color
+---@field git_change string Git change color
+---@field git_delete string Git deletion color
+---@field git_text string Git text color
+---@field diff_add string Diff addition color
+---@field diff_delete string Diff deletion color
+---@field diff_change string Diff change color
+---@field diff_text string Diff text color
+
+---@class chalk.Palette Raw color palette before processing
+---@field bg_darker string
+---@field bg_dark string
+---@field bg string
+---@field bg_light string  
+---@field bg_lighter string
+---@field fg_darker string
+---@field fg string
+---@field fg_light string
+---@field primary string
+---@field secondary string
+---@field accent string
+---@field error string
+---@field warning string
+---@field info string
+---@field hint string
+---@field success string
+---@field purple string
+---@field blue string
+---@field red string
+---@field green string
+---@field orange string
+---@field yellow string
+---@field comment string
+---@field cyan string
+---@field light_gray string
+---@field git_add string
+---@field git_change string
+---@field git_delete string
+---@field git_text string
+---@field diff_add string
+---@field diff_delete string
+---@field diff_change string
+---@field diff_text string
+---@field selection string
+---@field search string
+---@field match string
+---@field cursor string
+---@field cursor_line string
+---@field line_number string
+---@field line_number_current string
+---@field menu_bg string
+---@field menu_sel string
+---@field menu_border string
+---@field float_bg string
+---@field float_border string
+---@field diagnostic_error string
+---@field diagnostic_warning string
+---@field diagnostic_info string
+---@field diagnostic_hint string
+
+---@class chalk.Plugin
+---@field enabled boolean Whether the plugin integration is enabled
+
+return {}

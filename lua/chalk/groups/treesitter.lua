@@ -1,7 +1,11 @@
 -- TreeSitter highlight groups for chalk.nvim
 local M = {}
 
-function M.setup(colors, config)
+---Setup TreeSitter highlight groups
+---@param colors chalk.ColorScheme Color scheme
+---@param opts chalk.Config Configuration
+---@return chalk.Highlights TreeSitter highlight groups
+function M.setup(colors, opts)
 	local c = colors
 
 	local highlights = {

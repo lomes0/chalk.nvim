@@ -1,140 +1,97 @@
 -- Main entry point for chalk.nvim colorscheme
+-- Follows TokyoNight.nvim architectural patterns
+
+local Config = require("chalk.config")
+
 local M = {}
 
--- Simple module imports - assume everything works
-local config = require("chalk.config")
-local colors = require("chalk.colors")
+---@type {light?: string, dark?: string}
+M.variants = {}
 
--- Setup options storage
-local opts = {}
-
--- Function to load the colorscheme
-function M.load()
-	-- Get current configuration
-	local user_config = config.get()
-
-	-- Generate color theme
-	local theme_colors = colors.generate_theme(user_config.variant)
-
-	-- Call user's on_colors function if provided
-	if user_config.on_colors and type(user_config.on_colors) == "function" then
-		user_config.on_colors(theme_colors)
-	end
-
-	-- Clear existing highlights
-	vim.cmd("highlight clear")
-	if vim.fn.exists("syntax_on") then
-		vim.cmd("syntax reset")
-	end
-
-	-- Set colorscheme info
-	vim.g.colors_name = "chalk"
-	vim.o.background = user_config.variant == "light" and "light" or "dark"
-
-	-- Load core highlight groups
-	local editor_highlights = require("chalk.groups.editor").setup(theme_colors, user_config)
-	local syntax_highlights = require("chalk.groups.syntax").setup(theme_colors, user_config)
-
-	-- Load TreeSitter highlights if enabled
-	local treesitter_highlights = {}
-	if user_config.integrations.treesitter then
-		local ok, treesitter_module = pcall(require, "chalk.groups.treesitter")
-		if ok then
-			treesitter_highlights = treesitter_module.setup(theme_colors, user_config)
-		end
-	end
-
-	-- Load plugin integrations
-	local integration_highlights = {}
-	for integration_name, enabled in pairs(user_config.integrations) do
-		if enabled and integration_name ~= "treesitter" then
-			local ok, integration_module = pcall(require, "chalk.groups.integrations." .. integration_name)
-			if ok and integration_module.setup then
-				local plugin_highlights = integration_module.setup(theme_colors, user_config)
-				for group, hl in pairs(plugin_highlights) do
-					integration_highlights[group] = hl
-				end
-			end
-		end
-	end
-
-	-- Merge all highlights (simple table merge)
-	local all_highlights = {}
-	for group, hl in pairs(editor_highlights) do
-		all_highlights[group] = hl
-	end
-	for group, hl in pairs(syntax_highlights) do
-		all_highlights[group] = hl
-	end
-	for group, hl in pairs(treesitter_highlights) do
-		all_highlights[group] = hl
-	end
-	for group, hl in pairs(integration_highlights) do
-		all_highlights[group] = hl
-	end
-
-	-- Apply user custom highlights
-	if user_config.custom_highlights and type(user_config.custom_highlights) == "function" then
-		local custom_highlights = user_config.custom_highlights(theme_colors)
-		if custom_highlights then
-			for group, hl in pairs(custom_highlights) do
-				all_highlights[group] = hl
-			end
-		end
-	end
-
-	-- Apply transparency if enabled
-	if user_config.transparent then
-		for group_name, hl_def in pairs(all_highlights) do
-			if hl_def.bg and hl_def.bg ~= "NONE" then
-				hl_def.bg = "NONE"
-			end
-		end
-	end
-
-	-- Call user's on_highlights function if provided
-	if user_config.on_highlights and type(user_config.on_highlights) == "function" then
-		user_config.on_highlights(all_highlights, theme_colors)
-	end
-
-	-- Apply highlights
-	for group, definition in pairs(all_highlights) do
-		vim.api.nvim_set_hl(0, group, definition)
-	end
-
-	-- Set terminal colors if enabled
-	if user_config.terminal_colors then
-		vim.g.terminal_color_0 = theme_colors.bg_dark or theme_colors.bg
-		vim.g.terminal_color_1 = theme_colors.error
-		vim.g.terminal_color_2 = theme_colors.success
-		vim.g.terminal_color_3 = theme_colors.warning
-		vim.g.terminal_color_4 = theme_colors.info
-		vim.g.terminal_color_5 = theme_colors.keyword
-		vim.g.terminal_color_6 = theme_colors.hint
-		vim.g.terminal_color_7 = theme_colors.fg
-		vim.g.terminal_color_8 = theme_colors.comment
-		vim.g.terminal_color_9 = theme_colors.error
-		vim.g.terminal_color_10 = theme_colors.success
-		vim.g.terminal_color_11 = theme_colors.warning
-		vim.g.terminal_color_12 = theme_colors.info
-		vim.g.terminal_color_13 = theme_colors.keyword
-		vim.g.terminal_color_14 = theme_colors.hint
-		vim.g.terminal_color_15 = theme_colors.fg_light or theme_colors.fg
-	end
-
-	return theme_colors
+---Load chalk colorscheme with specified options
+---@param opts? chalk.Config Configuration options
+---@return chalk.ColorScheme, chalk.Highlights, chalk.Config
+function M.load(opts)
+  opts = Config.extend(opts)
+  
+  -- Handle background/variant logic similar to TokyoNight
+  local bg = vim.o.background
+  local variant_bg = opts.variant == "light" and "light" or "dark"
+  
+  -- Auto-switch variant based on background setting
+  if bg ~= variant_bg then
+    -- If chalk is already loaded and background changed, switch variant
+    if vim.g.colors_name and vim.g.colors_name:match("^chalk") then
+      if bg == "light" then
+        opts.variant = M.variants.light or opts.light_variant or "light"
+      else
+        opts.variant = M.variants.dark or "default"
+      end
+    else
+      -- Set background to match variant
+      vim.o.background = variant_bg
+    end
+  end
+  
+  -- Remember variant for background
+  M.variants[vim.o.background] = opts.variant
+  
+  -- Load theme through orchestrator
+  return require("chalk.theme").setup(opts)
 end
 
--- Function to setup the colorscheme with configuration
-function M.setup(user_opts)
-	opts = user_opts or {}
-	config.setup(opts)
+---Setup chalk colorscheme configuration
+---@param opts? chalk.Config Configuration options
+function M.setup(opts)
+  Config.setup(opts)
 end
 
--- Function to get current colors
+---Get current colors for the active or specified variant
+---@param variant? string Variant to get colors for
+---@return chalk.ColorScheme Color scheme
 function M.get_colors(variant)
-	variant = variant or config.get().variant or "default"
-	return colors.generate_theme(variant)
+  return require("chalk.theme").get_colors(variant)
 end
+
+---Get current highlights for the active or specified variant
+---@param variant? string Variant to get highlights for
+---@return chalk.Highlights Highlight groups
+function M.get_highlights(variant)
+  return require("chalk.theme").get_highlights(variant)
+end
+
+---Toggle between light and dark variants
+---@return chalk.ColorScheme, chalk.Highlights, chalk.Config
+function M.toggle()
+  return require("chalk.theme").toggle()
+end
+
+---Reload the colorscheme (useful for development)
+---@return chalk.ColorScheme, chalk.Highlights, chalk.Config
+function M.reload()
+  return require("chalk.theme").reload()
+end
+
+---Preview a variant without applying it
+---@param variant string Variant to preview
+---@return chalk.ColorScheme Color scheme for preview
+function M.preview(variant)
+  return require("chalk.theme").preview(variant)
+end
+
+---Get theme information and status
+---@return table Theme metadata
+function M.info()
+  return require("chalk.theme").info()
+end
+
+---Check if chalk is currently loaded
+---@return boolean Whether chalk is active
+function M.is_loaded()
+  return require("chalk.theme").is_loaded()
+end
+
+-- Backward compatibility aliases
+M.generate_theme = M.get_colors
 
 return M

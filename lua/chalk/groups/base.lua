@@ -1,7 +1,12 @@
--- Editor UI highlight groups for chalk.nvim
+-- Base highlight groups for chalk.nvim
+-- Combines editor UI and syntax highlighting
 local M = {}
 
-function M.setup(colors, config)
+---Setup base highlight groups
+---@param colors chalk.ColorScheme Color scheme
+---@param opts chalk.Config Configuration
+---@return chalk.Highlights Highlight groups
+function M.setup(colors, opts)
 	local c = colors
 
 	local highlights = {
@@ -145,6 +150,89 @@ function M.setup(colors, config)
 
 		-- End of buffer
 		EndOfBuffer = { fg = c.bg },
+
+		-- === SYNTAX HIGHLIGHTING ===
+		
+		-- Comments
+		Comment = { fg = c.comment, italic = opts.styles.comments and opts.styles.comments.italic },
+
+		-- Constants
+		Constant = {
+			fg = c.orange,
+			italic = opts.styles.constants and opts.styles.constants.italic,
+			bold = opts.styles.constants and opts.styles.constants.bold,
+		},
+		String = { fg = c.green, italic = opts.styles.strings and opts.styles.strings.italic },
+		Character = { fg = c.green },
+		Number = { fg = c.orange },
+		Boolean = { fg = c.orange },
+		Float = { fg = c.orange },
+
+		-- Identifiers
+		Identifier = { fg = c.red, italic = opts.styles.variables and opts.styles.variables.italic },
+		Function = {
+			fg = c.blue,
+			italic = opts.styles.functions and opts.styles.functions.italic,
+			bold = opts.styles.functions and opts.styles.functions.bold,
+		},
+
+		-- Statements
+		Statement = {
+			fg = c.purple,
+			italic = opts.styles.keywords and opts.styles.keywords.italic,
+			bold = opts.styles.keywords and opts.styles.keywords.bold,
+		},
+		Conditional = { fg = c.purple },
+		Repeat = { fg = c.purple },
+		Label = { fg = c.red },
+		Operator = {
+			fg = c.cyan,
+			italic = opts.styles.operators and opts.styles.operators.italic,
+			bold = opts.styles.operators and opts.styles.operators.bold,
+		},
+		Keyword = {
+			fg = c.purple,
+			italic = opts.styles.keywords and opts.styles.keywords.italic,
+			bold = opts.styles.keywords and opts.styles.keywords.bold,
+		},
+		Exception = { fg = c.purple },
+
+		-- PreProcessor
+		PreProc = { fg = c.yellow },
+		Include = { fg = c.purple },
+		Define = { fg = c.purple },
+		Macro = { fg = c.purple },
+		PreCondit = { fg = c.yellow },
+
+		-- Types
+		Type = {
+			fg = c.yellow,
+			italic = opts.styles.types and opts.styles.types.italic,
+			bold = opts.styles.types and opts.styles.types.bold,
+		},
+		StorageClass = { fg = c.yellow },
+		Structure = { fg = c.yellow },
+		Typedef = { fg = c.yellow },
+
+		-- Special
+		Special = { fg = c.blue },
+		SpecialChar = { fg = c.orange },
+		Tag = { fg = c.red },
+		Delimiter = { fg = c.light_gray },
+		SpecialComment = { fg = c.comment, bold = true },
+		Debug = { fg = c.red },
+
+		-- Underlined
+		Underlined = { underline = true },
+
+		-- Ignore
+		Ignore = { fg = c.bg },
+
+		-- Error
+		Error = { fg = c.error, bold = true },
+
+		-- Todo
+		Todo = { fg = c.warning, bg = c.bg, bold = true },
 	}
 
 	return highlights
