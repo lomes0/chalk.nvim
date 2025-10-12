@@ -29,6 +29,12 @@ M.defaults = {
 	-- Dimming
 	dim_inactive = false, -- Dim inactive windows
 
+	-- Dynamic color adjustment
+	enable_dynamic_colors = true, -- Enable real-time color adjustments
+	dynamic_keymaps = true, -- Auto-setup keymaps for dynamic colors
+	dynamic_prefix = "<leader>c", -- Key prefix for dynamic color operations
+	dynamic_step = 0.1, -- Brightness adjustment step size (0.0-1.0)
+
 	-- Caching for performance
 	cache = true,
 

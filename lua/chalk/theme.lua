@@ -98,6 +98,22 @@ function M.setup(opts)
 		apply_terminal_colors(colors)
 	end
 
+	-- Initialize dynamic color system
+	if opts.enable_dynamic_colors ~= false then -- Default to enabled
+		local dynamic = Util.mod("chalk.dynamic")
+		if dynamic then
+			dynamic.init(colors, highlights, opts)
+			
+			-- Setup keymaps if enabled
+			if opts.dynamic_keymaps ~= false then
+				dynamic.setup_keymaps({ prefix = opts.dynamic_prefix })
+			end
+			
+			-- Setup Ex commands
+			dynamic.setup_commands()
+		end
+	end
+
 	-- Emit autocmd for theme loaded event
 	vim.api.nvim_exec_autocmds("ColorScheme", {
 		pattern = colorscheme_name,
