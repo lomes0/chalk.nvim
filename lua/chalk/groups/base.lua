@@ -77,10 +77,10 @@ function M.setup(colors, opts)
 		Conceal = { fg = c.comment },
 
 		-- Diff (Standar git diff highlighting)
+		DiffDelete = { bg = c.none, fg = c.diff_delete },
 		DiffAdd = { bg = c.none, fg = c.diff_add },
 		DiffChange = { bg = c.none, },
-		DiffDelete = { bg = c.diff_delete_bg, fg = c.diff_delete },
-		DiffText = { bg = c.diff_text_bg, bold = true },
+		DiffText = { bg = c.diff_text_bg },
 
 		-- Spelling
 		SpellBad = { fg = c.error, undercurl = true, sp = c.error },

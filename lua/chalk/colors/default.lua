@@ -310,16 +310,16 @@ return {
 	git_text = "#65bcff", -- Base royal - sophisticated text changes (from tpm)
 
 	-- === DIFF COLORS (Consistent with git colors) ===
-	diff_add = "#76946A", -- Medium emerald - sophisticated addition (from tpm)
+	diff_add = "#97ca95", -- Medium emerald - sophisticated addition (from tpm)
 	diff_delete = "#ff899d", -- Light rose - refined deletion (from tpm)
 	diff_change = "#f9d791", -- Light amber - elegant modification (from tpm)
-	diff_text = "#2e7de9", -- Medium royal - sophisticated text (from tpm)
+	diff_text = "#4f7ab6", -- Medium royal - sophisticated text (from tpm)
 
 	-- === DIFF BACKGROUND COLORS (Derived from palette) ===
-	diff_add_bg = "#529661", -- emerald_5 - subtle green background for additions
-	diff_change_bg = "#252a3f", -- Standard git diff change background
-	diff_delete_bg = "#914c54", -- ruby_5 - subtle red background for deletions
-	diff_text_bg = "#394b70", -- royal_5 - subtle blue background for text changes
+	diff_add_bg = "#488154", -- emerald_5 - subtle green background for additions
+	diff_change_bg = "#cc9364", -- Standard git diff change background
+	diff_delete_bg = "#ad6069", -- ruby_5 - subtle red background for deletions
+	diff_text_bg = "#444d5e", -- royal_5 - subtle blue background for text changes
 
 	-- === SELECTION AND UI COLORS (Sophisticated interaction) ===
 	-- selection = "#525970", -- Warm sophisticated selection
