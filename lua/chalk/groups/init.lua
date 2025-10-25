@@ -12,6 +12,7 @@ M.plugins = {
 	["which-key.nvim"] = "which_key",
 	["bufferline.nvim"] = "bufferline",
 	["nvim-treesitter-context"] = "treesitter_context",
+	["nvim-tree.lua"] = "nvim_tree",
 }
 
 ---Get a highlight group module
@@ -156,7 +157,6 @@ function M.setup(colors, opts)
 			"NotifyBackground",
 			"Pmenu",
 			"PmenuSbar",
-			"PmenuSel",
 			"PmenuThumb",
 			"SignColumn",
 			"StatusLine",
@@ -171,13 +171,9 @@ function M.setup(colors, opts)
 			"WinBar",
 			"WinBarNC",
 			"WinSeparator",
-			"QuickFixLine",
-			"MatchParen",
-			"MiniSurround",
-
-			-- NvimTree / Neo-tree (these don't have dedicated plugin modules yet)
-			"NvimTreeNormalFloat",
-			"NvimTreeNormalFloatBorder",
+			-- "QuickFixLine",  -- Removed: needs background for visibility
+			-- "MatchParen",    -- Removed: needs background to highlight matching brackets
+			-- "MiniSurround",  -- Removed: should be handled by plugin module
 
 			-- Trouble (no dedicated plugin module yet)
 			"TroubleNormal",

@@ -204,9 +204,9 @@ return {
 	-- === AMBER FAMILY (Warm honey golds) - Primary warm accent ===
 	amber_1 = "#f9d791", -- Light champagne - soft golden glow (from tpm)
 	amber_2 = "#DCA561", -- Base honey - sophisticated gold (from tpm)
-	amber_3 = "#C0A36E", -- Medium brass - warm metallic gold (from tpm)
-	amber_4 = "#a8875b", -- Dark brass - rich metallic (from tpm)
-	amber_5 = "#a27629", -- Darkest bronze - deep earthy gold (from tpm)
+	amber_3 = "#d6974a", -- Medium brass - warm metallic gold (from tpm)
+	amber_4 = "#c48437", -- Dark brass - rich metallic (from tpm)
+	amber_5 = "#af7023", -- Darkest bronze - deep earthy gold (from tpm)
 
 	-- === GOLD FAMILY (Bright metallic yellows) - Luxurious shine ===
 	gold_1 = "#f2ecbc", -- Light gold - gentle metallic glow (from tpm)
@@ -217,10 +217,10 @@ return {
 
 	-- === YELLOW FAMILY (Bright sunshine tones) - Cheerful energy ===
 	yellow_1 = "#ffd8ab", -- Light yellow - bright sunshine (from tpm)
-	yellow_2 = "#f6c177", -- Base yellow - vibrant golden yellow (from tpm)
-	yellow_3 = "#faba4a", -- Medium yellow - energetic sunshine (from tpm)
-	yellow_4 = "#dab484", -- Dark yellow - rich golden warmth (from tpm)
-	yellow_5 = "#8c6c3e", -- Darkest yellow - deep golden shadow (from tpm)
+	yellow_2 = "#f1d088", -- Base yellow - vibrant golden yellow (from tpm)
+	yellow_3 = "#ebd86c", -- Medium yellow - energetic sunshine (from tpm)
+	yellow_4 = "#ffe15e", -- Dark yellow - rich golden warmth (from tpm)
+	yellow_5 = "#fcf947", -- Darkest yellow - deep golden shadow (from tpm)
 
 	-- === BRONZE FAMILY (Muted metallic browns) - Regal depth ===
 	bronze_1 = "#d6c0a5", -- Light bronze - gentle metallic beige

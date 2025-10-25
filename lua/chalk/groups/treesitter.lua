@@ -43,7 +43,7 @@ function M.setup(colors, opts)
 
 		-- Constants - Sophisticated golden hierarchy
 		["@constant"] = { fg = c.coral_2 },
-		["@constant.builtin"] = { fg = "#d3b963" },
+		["@constant.builtin"] = { fg = c.copper_2 },
 		["@constant.macro"] = { fg = c.azure_1 },
 
 		-- Functions - Enhanced azure visibility
@@ -101,7 +101,7 @@ function M.setup(colors, opts)
 		["@namespace"] = { fg = c.azure_1 },
 
 		-- Numbers - Sophisticated coral elegance
-		["@number"] = { fg = c.amber_4 },
+		["@number"] = { fg = c.yellow, bold = false },
 		["@number.float"] = { fg = c.azure_1 },
 
 		-- Operators - Balanced neutrality
@@ -119,7 +119,7 @@ function M.setup(colors, opts)
 		["@punctuation.bracket"] = { fg = c.azure_1 },
 
 		-- Strings - Sophisticated emerald harmony
-		["@string"] = { fg = c.emerald_2 },
+		["@string"] = { fg = c.emerald_1 },
 		["@string.documentation"] = { fg = c.azure_1, italic = true },
 		["@string.escape"] = { fg = c.azure_1 },
 		["@string.regex"] = { fg = c.azure_1 }, -- Base lime - regex patterns vibrant

@@ -53,9 +53,10 @@ M.defaults = {
 		which_key = true,
 		bufferline = true,
 		treesitter_context = true,
+		nvim_tree = true,
 
 		-- Note: Other plugins can still be detected for compatibility but won't have custom highlights
-		-- Available highlight files: bufferline.lua, gitsigns.lua, nvim_cmp.lua, telescope.lua, treesitter_context.lua, which_key.lua
+		-- Available highlight files: bufferline.lua, gitsigns.lua, nvim_cmp.lua, nvim_tree.lua, telescope.lua, treesitter_context.lua, which_key.lua
 	},
 
 	-- Callback functions

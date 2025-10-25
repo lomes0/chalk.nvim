@@ -64,8 +64,7 @@ end
 ---@param colors? table Color scheme
 ---@param highlights? table Highlights
 ---@param config? table Configuration
-function M.init(colors, highlights, config)
-end
+function M.init(colors, highlights, config) end
 
 ---Load overrides from file
 ---@return table overrides Table of highlight group overrides
@@ -96,7 +95,7 @@ end
 ---Get TreeSitter capture at cursor
 ---@param bufnr? number Buffer number
 ---@param row? number Row position
----@param col? number Column position  
+---@param col? number Column position
 ---@return string|nil capture TreeSitter capture name
 function M.get_ts_capture_at_cursor(bufnr, row, col)
 	return M.treesitter().get_ts_capture_at_cursor(bufnr, row, col)

@@ -74,11 +74,7 @@ function M.write_overrides(overrides)
 		file:write(content)
 		file:close()
 	else
-		vim.notify(
-			string.format("Failed to save overrides to %s", file_path),
-			vim.log.levels.ERROR,
-			"Dynamic"
-		)
+		vim.notify(string.format("Failed to save overrides to %s", file_path), vim.log.levels.ERROR, "Dynamic")
 	end
 end
 
@@ -101,14 +97,14 @@ end
 ---@return table Updated highlights with overrides applied
 function M.apply_overrides(highlights, colors)
 	local overrides = M.load_overrides()
-	
+
 	if vim.tbl_count(overrides) == 0 then
 		return highlights
 	end
 
 	-- Create a copy to avoid modifying the original
 	local updated_highlights = vim.deepcopy(highlights)
-	
+
 	-- Apply each override
 	for group_name, color_override in pairs(overrides) do
 		if updated_highlights[group_name] then
@@ -120,11 +116,7 @@ function M.apply_overrides(highlights, colors)
 		end
 	end
 
-	shared.notify(
-		string.format("Applied %d color overrides", vim.tbl_count(overrides)),
-		vim.log.levels.INFO,
-		"Dynamic"
-	)
+	shared.notify(string.format("Applied %d color overrides", vim.tbl_count(overrides)), vim.log.levels.INFO, "Dynamic")
 
 	return updated_highlights
 end

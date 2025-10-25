@@ -8,7 +8,7 @@ local shared = require("chalk.utils.shared")
 function M.increase_brightness()
 	local treesitter = require("chalk.utils.dynamic.treesitter")
 	local adjustment = require("chalk.utils.dynamic.adjustment")
-	
+
 	-- Get TreeSitter capture at cursor
 	local capture = treesitter.get_ts_capture_at_cursor()
 	if not capture then
@@ -31,7 +31,7 @@ end
 function M.decrease_brightness()
 	local treesitter = require("chalk.utils.dynamic.treesitter")
 	local adjustment = require("chalk.utils.dynamic.adjustment")
-	
+
 	local capture = treesitter.get_ts_capture_at_cursor()
 	if not capture then
 		shared.notify("No TreeSitter capture found at cursor", vim.log.levels.WARN, "Dynamic")
@@ -53,7 +53,7 @@ end
 function M.change_color(direction)
 	local treesitter = require("chalk.utils.dynamic.treesitter")
 	local adjustment = require("chalk.utils.dynamic.adjustment")
-	
+
 	local capture = treesitter.get_ts_capture_at_cursor()
 	if not capture then
 		shared.notify("No TreeSitter capture found at cursor", vim.log.levels.WARN, "Dynamic")
@@ -63,7 +63,7 @@ function M.change_color(direction)
 	-- Use hue adjustment for color changing
 	local hue_step = 30 -- 30 degrees
 	local new_color = adjustment.adjust_hue(capture, direction * hue_step)
-	
+
 	if new_color then
 		local direction_text = direction > 0 and "next" or "previous"
 		shared.notify(
@@ -80,7 +80,7 @@ end
 function M.change_color_by_family(family, direction)
 	local treesitter = require("chalk.utils.dynamic.treesitter")
 	local adjustment = require("chalk.utils.dynamic.adjustment")
-	
+
 	local capture = treesitter.get_ts_capture_at_cursor()
 	if not capture then
 		shared.notify("No TreeSitter capture found at cursor", vim.log.levels.WARN, "Dynamic")
@@ -135,10 +135,10 @@ end
 function M.reset_colors()
 	local overrides = require("chalk.utils.dynamic.overrides")
 	overrides.clear_overrides()
-	
+
 	-- Reload colorscheme
 	shared.chalk_integration().reload_colorscheme()
-	
+
 	shared.notify("Reset all colors to original theme", vim.log.levels.INFO, "Dynamic")
 end
 
@@ -147,7 +147,7 @@ function M.inspect_group()
 	local treesitter = require("chalk.utils.dynamic.treesitter")
 	local adjustment = require("chalk.utils.dynamic.adjustment")
 	local overrides = require("chalk.utils.dynamic.overrides")
-	
+
 	local capture = treesitter.get_ts_capture_at_cursor()
 	if not capture then
 		shared.notify("No TreeSitter capture found at cursor", vim.log.levels.WARN, "Dynamic")
@@ -158,29 +158,28 @@ function M.inspect_group()
 	local current_color = adjustment.get_group_color(capture)
 	local has_override = overrides.has_override(capture)
 	local override_color = overrides.get_override(capture)
-	
+
 	-- Build inspection message
 	local info = {
 		string.format("TreeSitter Group: %s", capture),
 		string.format("Current Color: %s", current_color or "not found"),
 	}
-	
+
 	if has_override then
 		table.insert(info, string.format("Override: %s", override_color))
 	else
 		table.insert(info, "Override: none")
 	end
-	
+
 	-- Add HSL breakdown if color exists
 	if current_color then
 		local color_utils = shared.color_utils()
 		local h, s, l = color_utils.hex_to_hsl(current_color)
 		table.insert(info, string.format("HSL: %.0f°, %.0f%%, %.0f%%", h, s, l))
 	end
-	
+
 	-- Show in a popup or notification
 	local message = table.concat(info, "\n")
-	print(message) -- Also print to command line
 	shared.notify(message, vim.log.levels.INFO, "Dynamic")
 end
 
@@ -188,7 +187,7 @@ end
 function M.show_changes()
 	local overrides = require("chalk.utils.dynamic.overrides")
 	local override_data = overrides.load_overrides()
-	
+
 	if vim.tbl_count(override_data) == 0 then
 		shared.notify("No active color overrides", vim.log.levels.INFO, "Dynamic")
 		return
@@ -207,16 +206,16 @@ function M.show_changes()
 	})
 
 	local lines = { "Active Color Overrides:", "" }
-	
+
 	-- Sort overrides for consistent display
 	local sorted_groups = vim.tbl_keys(override_data)
 	table.sort(sorted_groups)
-	
+
 	for _, group_name in ipairs(sorted_groups) do
 		local color = override_data[group_name]
 		table.insert(lines, string.format("%s → %s", group_name, color))
 	end
-	
+
 	table.insert(lines, "")
 	table.insert(lines, "Press 'q' to close, 'c' to clear all overrides")
 
@@ -238,7 +237,7 @@ end
 function M.dump_current_buffer()
 	local treesitter = require("chalk.utils.dynamic.treesitter")
 	local dump = treesitter.dump_treesitter_structure()
-	
+
 	-- Create a buffer to show the dump
 	local buf = vim.api.nvim_create_buf(false, true)
 	local win = vim.api.nvim_open_win(buf, true, {

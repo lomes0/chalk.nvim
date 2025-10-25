@@ -17,7 +17,7 @@ function M.setup(colors, opts)
 
 		-- Cursor
 		Cursor = { fg = c.bg_3, bg = c.fg },
-		CursorLine = { bg = c.bg_2 },
+		CursorLine = { bg = c.bg_5 },
 		CursorColumn = { bg = c.bg_2 },
 		CursorLineNr = { fg = c.fg, bold = true, bg = c.bg_3 },
 
@@ -79,7 +79,7 @@ function M.setup(colors, opts)
 		-- Diff (Standar git diff highlighting)
 		DiffDelete = { bg = c.none, fg = c.diff_delete },
 		DiffAdd = { bg = c.none, fg = c.diff_add },
-		DiffChange = { bg = c.none, },
+		DiffChange = { bg = c.none },
 		DiffText = { bg = c.diff_text_bg },
 
 		-- Spelling
@@ -216,7 +216,7 @@ function M.setup(colors, opts)
 
 		-- Special
 		Special = { fg = c.blue },
-		SpecialChar = { fg = c.orange },
+		SpecialChar = { fg = c.cream_5, bold = true },
 		Tag = { fg = c.red },
 		Delimiter = { fg = c.light_gray },
 		SpecialComment = { fg = c.comment, bold = true },

@@ -11,7 +11,7 @@ local shared = require("chalk.utils.shared")
 ---@return string|nil capture TreeSitter capture name or nil
 function M.get_ts_capture_at_cursor(bufnr, row, col)
 	bufnr = bufnr or vim.api.nvim_get_current_buf()
-	
+
 	if not row or not col then
 		local cursor = vim.api.nvim_win_get_cursor(0)
 		row = cursor[1] - 1 -- Convert to 0-indexed
@@ -31,7 +31,7 @@ function M.get_ts_capture_at_cursor(bufnr, row, col)
 	end
 
 	local root = trees[1]:root()
-	
+
 	-- Find the node at cursor position
 	local node = root:descendant_for_range(row, col, row, col)
 	if not node then
@@ -66,7 +66,7 @@ function M.get_ts_capture_at_cursor(bufnr, row, col)
 			["comment"] = "@comment",
 			["keyword"] = "@keyword",
 		}
-		
+
 		return type_mappings[node_type] or ("@" .. node_type)
 	end
 
@@ -78,7 +78,7 @@ end
 ---@return string dump TreeSitter dump text
 function M.dump_treesitter_structure(bufnr)
 	bufnr = bufnr or vim.api.nvim_get_current_buf()
-	
+
 	local ok, parser = pcall(vim.treesitter.get_parser, bufnr)
 	if not ok or not parser then
 		return "TreeSitter parser not available for this buffer"
@@ -91,10 +91,10 @@ function M.dump_treesitter_structure(bufnr)
 
 	-- Get buffer content
 	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-	
+
 	-- Get highlight query
 	local query_ok, query = pcall(vim.treesitter.query.get, parser:lang(), "highlights")
-	
+
 	local dump_lines = {}
 	local unique_tokens = {}
 
@@ -103,13 +103,13 @@ function M.dump_treesitter_structure(bufnr)
 		for capture_id, node in query:iter_captures(trees[1]:root(), bufnr) do
 			local capture_name = query.captures[capture_id]
 			local semantic_token = "@" .. capture_name
-			
+
 			-- Get node text
 			local start_row, start_col, end_row, end_col = node:range()
 			if start_row == end_row and start_row < #lines then
 				local line_text = lines[start_row + 1] or ""
 				local node_text = string.sub(line_text, start_col + 1, end_col)
-				
+
 				if node_text and node_text:match("%S") then -- Non-whitespace
 					unique_tokens[semantic_token] = true
 					table.insert(dump_lines, string.format("[%s] %s", semantic_token, node_text))
@@ -119,15 +119,17 @@ function M.dump_treesitter_structure(bufnr)
 	else
 		-- Fallback: walk the tree manually
 		local function walk_node(node, depth)
-			if depth > 10 then return end -- Prevent deep recursion
-			
+			if depth > 10 then
+				return
+			end -- Prevent deep recursion
+
 			local node_type = node:type()
 			local start_row, start_col, end_row, end_col = node:range()
-			
+
 			if start_row == end_row and start_row < #lines then
 				local line_text = lines[start_row + 1] or ""
 				local node_text = string.sub(line_text, start_col + 1, end_col)
-				
+
 				if node_text and node_text:match("%S") then
 					-- Enhanced mapping function
 					local semantic_token = M.map_node_type_to_semantic_token(node_type, node_text, node)
@@ -137,12 +139,12 @@ function M.dump_treesitter_structure(bufnr)
 					end
 				end
 			end
-			
+
 			for child in node:iter_children() do
 				walk_node(child, depth + 1)
 			end
 		end
-		
+
 		walk_node(trees[1]:root(), 0)
 	end
 
@@ -152,13 +154,13 @@ function M.dump_treesitter_structure(bufnr)
 		table.insert(token_summary, token)
 	end
 	table.sort(token_summary)
-	
+
 	local summary = string.format(
 		"TreeSitter Analysis (%d unique tokens): %s\n\n",
 		#token_summary,
 		table.concat(token_summary, ", ")
 	)
-	
+
 	return summary .. table.concat(dump_lines, "\n")
 end
 
@@ -183,18 +185,26 @@ function M.map_node_type_to_semantic_token(node_type, node_text, node)
 		["null"] = "@constant.builtin",
 		["nil"] = "@constant.builtin",
 	}
-	
+
 	if direct_mappings[node_type] then
 		return direct_mappings[node_type]
 	end
-	
+
 	-- Keyword detection
-	if node_type:match("keyword") or node_type == "let" or node_type == "const" or 
-	   node_type == "var" or node_type == "if" or node_type == "else" or
-	   node_type == "for" or node_type == "while" or node_type == "return" then
+	if
+		node_type:match("keyword")
+		or node_type == "let"
+		or node_type == "const"
+		or node_type == "var"
+		or node_type == "if"
+		or node_type == "else"
+		or node_type == "for"
+		or node_type == "while"
+		or node_type == "return"
+	then
 		return "@keyword"
 	end
-	
+
 	-- Function detection with context awareness
 	if node_type:match("function") then
 		-- Check if it's a function call vs declaration
@@ -205,59 +215,77 @@ function M.map_node_type_to_semantic_token(node_type, node_text, node)
 			return "@function"
 		end
 	end
-	
+
 	-- Type-related
-	if node_type:match("type") or node_type == "struct" or node_type == "enum" or 
-	   node_type == "class" or node_type == "interface" then
+	if
+		node_type:match("type")
+		or node_type == "struct"
+		or node_type == "enum"
+		or node_type == "class"
+		or node_type == "interface"
+	then
 		return "@type"
 	end
-	
+
 	-- Identifier context analysis
 	if node_type == "identifier" then
 		-- Analyze context to determine semantic meaning
 		local parent = node:parent()
 		if parent then
 			local parent_type = parent:type()
-			
+
 			-- Function contexts
 			if parent_type:match("function") or parent_type:match("call") then
 				return "@function"
 			end
-			
+
 			-- Type contexts
 			if parent_type:match("type") then
 				return "@type"
 			end
-			
+
 			-- Property/field contexts
-			if parent_type:match("field") or parent_type:match("property") or
-			   parent_type:match("member") then
+			if parent_type:match("field") or parent_type:match("property") or parent_type:match("member") then
 				return "@property"
 			end
 		end
-		
+
 		-- Default to variable
 		return "@variable"
 	end
-	
+
 	-- Operator detection
-	if node_type:match("operator") or node_type == "=" or node_type == "+" or
-	   node_type == "-" or node_type == "*" or node_type == "/" then
+	if
+		node_type:match("operator")
+		or node_type == "="
+		or node_type == "+"
+		or node_type == "-"
+		or node_type == "*"
+		or node_type == "/"
+	then
 		return "@operator"
 	end
-	
+
 	-- Punctuation
-	if node_type:match("punctuation") or node_type == "(" or node_type == ")" or
-	   node_type == "{" or node_type == "}" or node_type == "[" or node_type == "]" or
-	   node_type == ";" or node_type == "," then
+	if
+		node_type:match("punctuation")
+		or node_type == "("
+		or node_type == ")"
+		or node_type == "{"
+		or node_type == "}"
+		or node_type == "["
+		or node_type == "]"
+		or node_type == ";"
+		or node_type == ","
+	then
 		return "@punctuation"
 	end
-	
+
 	-- Property/field detection
 	if node_type:match("field") or node_type:match("property") or node_type:match("member") then
 		return "@property"
 	end
-	
+
 	-- Generic fallback for unknown types
 	if node_text and node_text:match("^[A-Z][a-zA-Z0-9_]*$") then
 		-- Looks like a type/constant
@@ -266,7 +294,7 @@ function M.map_node_type_to_semantic_token(node_type, node_text, node)
 		-- Looks like a variable/function
 		return "@variable"
 	end
-	
+
 	return nil
 end
 
@@ -275,7 +303,7 @@ end
 ---@return string|nil color Hex color or nil if not found
 function M.get_capture_color(capture)
 	local hl_group = capture:gsub("^@", "")
-	
+
 	-- Try common TreeSitter highlight group patterns
 	local possible_groups = {
 		capture, -- Direct match (e.g., "@function")
@@ -284,7 +312,7 @@ function M.get_capture_color(capture)
 		"@" .. hl_group .. ".builtin",
 		"@" .. hl_group .. ".call",
 	}
-	
+
 	for _, group_name in ipairs(possible_groups) do
 		local hl = shared.chalk_integration().get_highlight_group(group_name)
 		if hl and hl.fg then
@@ -295,7 +323,7 @@ function M.get_capture_color(capture)
 			end
 		end
 	end
-	
+
 	return nil
 end
 
