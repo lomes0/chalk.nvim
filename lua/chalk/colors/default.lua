@@ -8,9 +8,6 @@ require("chalk.types")
 
 ---@type chalk.Palette
 return {
-
-	-- Normal = "#010e29",
-
 	-- === EMERALD FAMILY (Sophisticated sage greens) - Nature harmony ===
 	-- === EMERALD FAMILY (Sophisticated sage greens) - Nature harmony ===
 	emerald_1 = "#b7d0ae", -- Light sage mist - gentle natural (from tpm)
@@ -26,19 +23,19 @@ return {
 	lime_4 = "#9fe044", -- Dark lime - muted forest green (from tpm)
 	lime_5 = "#8ac537", -- Darkest lime - deep natural green (from tpm)
 
+	-- === SAGE FAMILY (Muted herb greens) - Subtle warmth ===
+	sage_1 = "#cfdac6", -- Light sage - airy herbal tint
+	sage_2 = "#b9cbb0", -- Base sage - muted natural green
+	sage_3 = "#9db495", -- Medium sage - grounded harmony
+	sage_4 = "#7e9b79", -- Dark sage - warm earthy green
+	sage_5 = "#5c7458", -- Darkest sage - deep herbal shadow
+
 	-- === TURQUOISE FAMILY (Vibrant blue-greens) - Ocean elegance ===
 	turquoise_1 = "#b4f9f8", -- Light aqua mist - gentle ocean breeze (from tpm)
 	turquoise_2 = "#93dddc", -- Base turquoise - vibrant ocean sophistication (from tpm)
 	turquoise_3 = "#5cc0b3", -- Medium teal - balanced aquatic depth (from tpm)
 	turquoise_4 = "#1abc9c", -- Dark teal - rich ocean depth (from tpm)
 	turquoise_5 = "#269b84", -- Darkest sea green - deep ocean shadow (from tpm)
-
-	-- === CYAN FAMILY (Bright blue-cyan tones) - Electric ocean ===
-	cyan_1 = "#86e1fc", -- Light cyan - bright electric blue (from tpm)
-	cyan_2 = "#61c4e2", -- Base cyan - vibrant sky blue (from tpm)
-	cyan_3 = "#2ac3de", -- Medium cyan - energetic ocean blue (from tpm)
-	cyan_4 = "#1fb2cc", -- Dark cyan - rich electric blue (from tpm)
-	cyan_5 = "#2595a8", -- Darkest cyan - deep ocean blue (from tpm)
 
 	-- === SEAFOAM FAMILY (Soft green-blue tones) - Ocean breeze elegance ===
 	seafoam_1 = "#A3D4D5", -- Light seafoam - gentle ocean mist (from tpm)
@@ -47,19 +44,19 @@ return {
 	seafoam_4 = "#53b4a7", -- Dark seafoam - rich aqua elegance (from tpm)
 	seafoam_5 = "#449694", -- Darkest seafoam - deep ocean shadow (from tpm)
 
-	-- === VIOLET FAMILY (Soft purple tones) - Creative elegance ===
-	violet_1 = "#c7a9ff", -- Light violet - gentle purple glow (from tpm)
-	violet_2 = "#a689da", -- Base violet - sophisticated purple (from tpm)
-	violet_3 = "#9376c2", -- Medium violet - balanced purple depth (from tpm)
-	violet_4 = "#8356c2", -- Dark violet - rich purple tone (from tpm)
-	violet_5 = "#6d5d97", -- Darkest violet - deep purple shadow (from tpm)
-
 	-- === TEAL FAMILY (Balanced blue-greens) - Calm clarity ===
 	teal_1 = "#b8ebe6", -- Light aqua foam - gentle teal
 	teal_2 = "#8dd7cf", -- Base teal - balanced blue-green
 	teal_3 = "#56c2b8", -- Medium teal - calm clarity
 	teal_4 = "#319e97", -- Dark teal - focused cool depth
 	teal_5 = "#237a74", -- Darkest teal - deep aquatic shadow
+
+	-- === SLATE FAMILY (Neutral gray tones) - Professional balance ===
+	slate_1 = "#8ea4a2", -- Light slate - balanced neutral (from tpm)
+	slate_2 = "#769b98", -- Base slate - sophisticated gray (from tpm)
+	slate_3 = "#618d89", -- Medium slate - balanced gray depth (from tpm)
+	slate_4 = "#46817c", -- Dark slate - rich gray depth (from tpm)
+	slate_5 = "#2e5857", -- Darkest slate - deep shadow (from tpm)
 
 	-- === AMETHYST FAMILY (Rich purple tones) - Luxury elegance ===
 	amethyst_1 = "#b97898", -- Light amethyst - bright purple glow (from tpm)
@@ -75,19 +72,26 @@ return {
 	mauve_4 = "#a284a2", -- Dark mauve - rich purple-gray
 	mauve_5 = "#8f618f", -- Darkest mauve - deep sophisticated purple
 
+	-- === PINK FAMILY (Bright magenta-pinks) - Playful vibrancy ===
+	pink_1 = "#fcade2", -- Light pink - gentle cotton candy
+	pink_2 = "#e478b5", -- Base pink - vibrant bright pink
+	pink_3 = "#eb56a8", -- Medium pink - energetic magenta-pink
+	pink_4 = "#cf369c", -- Dark pink - rich fuchsia depth
+	pink_5 = "#aa3388", -- Darkest pink - deep magenta shadow
+
+	-- === VIOLET FAMILY (Soft purple tones) - Creative elegance ===
+	violet_1 = "#c7a9ff", -- Light violet - gentle purple glow (from tpm)
+	violet_2 = "#a689da", -- Base violet - sophisticated purple (from tpm)
+	violet_3 = "#9376c2", -- Medium violet - balanced purple depth (from tpm)
+	violet_4 = "#8356c2", -- Dark violet - rich purple tone (from tpm)
+	violet_5 = "#6d5d97", -- Darkest violet - deep purple shadow (from tpm)
+
 	-- === INDIGO FAMILY (Deep sophisticated blues) - Rich navy elegance ===
 	indigo_1 = "#9ab8ff", -- Light periwinkle - gentle deep blue (from tpm)
 	indigo_2 = "#89a5e6", -- Base indigo - sophisticated deep blue (from tpm)
 	indigo_3 = "#7687c2", -- Medium midnight - balanced indigo depth (from tpm)
 	indigo_4 = "#5a71ad", -- Dark midnight - rich navy depth (from tpm)
 	indigo_5 = "#425381", -- Darkest navy - profound blue shadow (from tpm)
-
-	-- === SAGE FAMILY (Muted herb greens) - Subtle warmth ===
-	sage_1 = "#cfdac6", -- Light sage - airy herbal tint
-	sage_2 = "#b9cbb0", -- Base sage - muted natural green
-	sage_3 = "#9db495", -- Medium sage - grounded harmony
-	sage_4 = "#7e9b79", -- Dark sage - warm earthy green
-	sage_5 = "#5c7458", -- Darkest sage - deep herbal shadow
 
 	-- === ROYAL FAMILY (Bright electric blues) - Vibrant sophistication ===
 	royal_1 = "#8fd0fc", -- Light royal - bright sky blue (from tpm)
@@ -96,12 +100,12 @@ return {
 	royal_4 = "#4066be", -- Dark royal - rich electric depth (from tpm)
 	royal_5 = "#405f83", -- Darkest royal - deep electric shadow (from tpm)
 
-	-- === EARTH FAMILY (Rich soil browns) - Grounded depth ===
-	earth_1 = "#cdb49e", -- Light clay soil - soft warm tan
-	earth_2 = "#b79780", -- Base earth - natural brown
-	earth_3 = "#9e7c66", -- Medium earth - grounded warmth
-	earth_4 = "#7f624f", -- Dark earth - sturdy soil depth
-	earth_5 = "#5d4738", -- Darkest earth - deep fertile shadow
+	-- === CYAN FAMILY (Bright blue-cyan tones) - Electric ocean ===
+	cyan_1 = "#86e1fc", -- Light cyan - bright electric blue (from tpm)
+	cyan_2 = "#61c4e2", -- Base cyan - vibrant sky blue (from tpm)
+	cyan_3 = "#2ac3de", -- Medium cyan - energetic ocean blue (from tpm)
+	cyan_4 = "#1fb2cc", -- Dark cyan - rich electric blue (from tpm)
+	cyan_5 = "#2595a8", -- Darkest cyan - deep ocean blue (from tpm)
 
 	-- === AZURE FAMILY (Enhanced ocean blues) - Better visibility ===
 	azure_1 = "#92c2dd", -- Light powder blue - gentle sky (from tpm)
@@ -109,27 +113,6 @@ return {
 	azure_3 = "#66a1d1", -- Medium ocean - balanced blue depth (from tpm)
 	azure_4 = "#3a7c96", -- Dark ocean - rich depth with better contrast (from tpm)
 	azure_5 = "#23697c", -- Darkest navy - professional depth (from tpm)
-
-	-- === MIST FAMILY (Cool airy grays) - Morning haze ===
-	mist_1 = "#e8ecf1", -- Light mist - airy cool veil
-	mist_2 = "#d8dee7", -- Base mist - calm soft gray-blue
-	mist_3 = "#c7cfdb", -- Medium mist - gentle clarity
-	mist_4 = "#b1bac8", -- Dark mist - balanced haze
-	mist_5 = "#98a1b0", -- Darkest mist - subdued cool shadow
-
-	-- === CLAY FAMILY (Soft red-browns) - Ceramic warmth ===
-	clay_1 = "#d9b4a3", -- Light clay - soft rosy tan
-	clay_2 = "#c59787", -- Base clay - warm red-brown
-	clay_3 = "#ab7b6d", -- Medium clay - kiln warmth
-	clay_4 = "#8c6257", -- Dark clay - baked earth
-	clay_5 = "#6d4b43", -- Darkest clay - earthen shadow
-
-	-- === POWDER FAMILY (Soft dusty blue tones) - Gentle sophistication ===
-	powder_1 = "#c6d1db", -- Light powder - gentle dusty blue
-	powder_2 = "#b8c8d8", -- Base powder - sophisticated dusty blue
-	powder_3 = "#b1bbc5", -- Medium powder - balanced dusty depth
-	powder_4 = "#a0afbd", -- Dark powder - rich dusty blue
-	powder_5 = "#818b97", -- Darkest powder - deep dusty shadow
 
 	-- === ROSE FAMILY (Warm red-pink tones) - Sophisticated rose elegance ===
 	rose_1 = "#ff899d", -- Light rose mist - gentle warm red-pink (from tpm)
@@ -159,13 +142,6 @@ return {
 	crimson_4 = "#a4364d", -- Dark crimson - rich red (from tpm)
 	crimson_5 = "#a01f3b", -- Darkest crimson - deep red shadow (from tpm)
 
-	-- === PINK FAMILY (Bright magenta-pinks) - Playful vibrancy ===
-	pink_1 = "#fcade2", -- Light pink - gentle cotton candy
-	pink_2 = "#e478b5", -- Base pink - vibrant bright pink
-	pink_3 = "#eb56a8", -- Medium pink - energetic magenta-pink
-	pink_4 = "#cf369c", -- Dark pink - rich fuchsia depth
-	pink_5 = "#aa3388", -- Darkest pink - deep magenta shadow
-
 	-- === CORAL FAMILY (Warm orange-pinks) - Tropical elegance ===
 	coral_1 = "#d38782", -- Light coral blush - gentle tropical warmth (from tpm)
 	coral_2 = "#c4746e", -- Base coral - sophisticated warm pink-orange (from tpm)
@@ -186,6 +162,13 @@ return {
 	copper_3 = "#bd7f5d", -- Medium copper - burnished shine
 	copper_4 = "#9e6647", -- Dark copper - forged depth
 	copper_5 = "#7c4c34", -- Darkest copper - patina shadow
+
+	-- === YELLOW FAMILY (Bright sunshine tones) - Cheerful energy ===
+	yellow_1 = "#ffd8ab", -- Light yellow - bright sunshine (from tpm)
+	yellow_2 = "#f1d088", -- Base yellow - vibrant golden yellow (from tpm)
+	yellow_3 = "#ebd86c", -- Medium yellow - energetic sunshine (from tpm)
+	yellow_4 = "#ffe15e", -- Dark yellow - rich golden warmth (from tpm)
+	yellow_5 = "#fcf947", -- Darkest yellow - deep golden shadow (from tpm)
 
 	-- === ORANGE FAMILY (Vibrant citrus tones) - Energetic warmth ===
 	orange_1 = "#fda751", -- Light peach - gentle citrus glow (from tpm)
@@ -215,13 +198,6 @@ return {
 	gold_4 = "#bfb3a3", -- Dark gold - rich golden depth (from tpm)
 	gold_5 = "#9b967e", -- Darkest gold - deep bronze gold (from tpm)
 
-	-- === YELLOW FAMILY (Bright sunshine tones) - Cheerful energy ===
-	yellow_1 = "#ffd8ab", -- Light yellow - bright sunshine (from tpm)
-	yellow_2 = "#f1d088", -- Base yellow - vibrant golden yellow (from tpm)
-	yellow_3 = "#ebd86c", -- Medium yellow - energetic sunshine (from tpm)
-	yellow_4 = "#ffe15e", -- Dark yellow - rich golden warmth (from tpm)
-	yellow_5 = "#fcf947", -- Darkest yellow - deep golden shadow (from tpm)
-
 	-- === BRONZE FAMILY (Muted metallic browns) - Regal depth ===
 	bronze_1 = "#d6c0a5", -- Light bronze - gentle metallic beige
 	bronze_2 = "#c2a88a", -- Base bronze - muted metal brown
@@ -229,12 +205,19 @@ return {
 	bronze_4 = "#8a7258", -- Dark bronze - rich patina
 	bronze_5 = "#6b5844", -- Darkest bronze - deep antique shadow
 
-	-- === STONE FAMILY (Cool sophisticated grays) - Modern elegance ===
-	stone_1 = "#b3b8d1", -- Light stone - cool elegance (from tpm)
-	stone_2 = "#9ca2bd", -- Base cool stone - sophisticated cool (from tpm)
-	stone_3 = "#74798f", -- Medium pewter - balanced stone depth (from tpm)
-	stone_4 = "#545c7e", -- Dark pewter - refined cool depth (from tpm)
-	stone_5 = "#484f61", -- Darkest steel - deep cool shadow (from tpm)
+	-- === EARTH FAMILY (Rich soil browns) - Grounded depth ===
+	earth_1 = "#cdb49e", -- Light clay soil - soft warm tan
+	earth_2 = "#b79780", -- Base earth - natural brown
+	earth_3 = "#9e7c66", -- Medium earth - grounded warmth
+	earth_4 = "#7f624f", -- Dark earth - sturdy soil depth
+	earth_5 = "#5d4738", -- Darkest earth - deep fertile shadow
+
+	-- === CLAY FAMILY (Soft red-browns) - Ceramic warmth ===
+	clay_1 = "#d9b4a3", -- Light clay - soft rosy tan
+	clay_2 = "#c59787", -- Base clay - warm red-brown
+	clay_3 = "#ab7b6d", -- Medium clay - kiln warmth
+	clay_4 = "#8c6257", -- Dark clay - baked earth
+	clay_5 = "#6d4b43", -- Darkest clay - earthen shadow
 
 	-- === CREAM FAMILY (Warm light neutrals) - Soft highlight ===
 	cream_1 = "#faf4e8", -- Light cream - near-paper warmth
@@ -250,12 +233,26 @@ return {
 	taupe_4 = "#877c75", -- Dark taupe - refined warmth
 	taupe_5 = "#6b635d", -- Darkest taupe - deep neutral shadow
 
-	-- === SLATE FAMILY (Neutral gray tones) - Professional balance ===
-	slate_1 = "#8ea4a2", -- Light slate - balanced neutral (from tpm)
-	slate_2 = "#769b98", -- Base slate - sophisticated gray (from tpm)
-	slate_3 = "#618d89", -- Medium slate - balanced gray depth (from tpm)
-	slate_4 = "#46817c", -- Dark slate - rich gray depth (from tpm)
-	slate_5 = "#2e5857", -- Darkest slate - deep shadow (from tpm)
+	-- === STONE FAMILY (Cool sophisticated grays) - Modern elegance ===
+	stone_1 = "#b3b8d1", -- Light stone - cool elegance (from tpm)
+	stone_2 = "#9ca2bd", -- Base cool stone - sophisticated cool (from tpm)
+	stone_3 = "#74798f", -- Medium pewter - balanced stone depth (from tpm)
+	stone_4 = "#545c7e", -- Dark pewter - refined cool depth (from tpm)
+	stone_5 = "#484f61", -- Darkest steel - deep cool shadow (from tpm)
+
+	-- === MIST FAMILY (Cool airy grays) - Morning haze ===
+	mist_1 = "#e8ecf1", -- Light mist - airy cool veil
+	mist_2 = "#d8dee7", -- Base mist - calm soft gray-blue
+	mist_3 = "#c7cfdb", -- Medium mist - gentle clarity
+	mist_4 = "#b1bac8", -- Dark mist - balanced haze
+	mist_5 = "#98a1b0", -- Darkest mist - subdued cool shadow
+
+	-- === POWDER FAMILY (Soft dusty blue tones) - Gentle sophistication ===
+	powder_1 = "#c6d1db", -- Light powder - gentle dusty blue
+	powder_2 = "#b8c8d8", -- Base powder - sophisticated dusty blue
+	powder_3 = "#b1bbc5", -- Medium powder - balanced dusty depth
+	powder_4 = "#a0afbd", -- Dark powder - rich dusty blue
+	powder_5 = "#818b97", -- Darkest powder - deep dusty shadow
 
 	-- === SHADOW FAMILY (Cool near-neutrals) - Depth and contrast ===
 	shadow_1 = "#c4c7d4", -- Light shadow - misted cool gray

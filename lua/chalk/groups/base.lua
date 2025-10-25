@@ -11,7 +11,7 @@ function M.setup(colors, opts)
 
 	local highlights = {
 		-- Editor colors
-		Normal = { fg = c.fg, bg = c.bg_3 },
+		Normal = { fg = c.fg, bg = "#010e29" },
 		NormalFloat = { fg = c.fg, bg = c.bg_2 },
 		NormalNC = { fg = c.fg_dark, bg = c.bg_3 },
 
