@@ -43,11 +43,11 @@ function M.setup(colors, opts)
 
 		-- Constants - Sophisticated golden hierarchy
 		["@constant"] = { fg = c.coral_2 },
-		["@constant.builtin"] = { fg = c.copper_2, bold = true }, -- Bold for built-in constants (semantic emphasis)
+		["@constant.builtin"] = { fg = c.copper_1, bold = true }, -- Bold for built-in constants (semantic emphasis)
 		["@constant.macro"] = { fg = c.azure_1, italic = true }, -- Italic for macro constants (semantic emphasis)
 
 		-- Functions - Enhanced azure visibility
-		["@function"] = { fg = c.turquoise_2 },
+		["@function"] = { fg = c.indigo_2 },
 		["@function.builtin"] = { fg = c.azure_1, bold = true }, -- Bold for built-in functions (semantic emphasis)
 		["@function.call"] = { fg = c.blue },
 		["@function.macro"] = { fg = c.azure_1, bold = true }, -- Bold for macro functions (semantic emphasis)
@@ -57,19 +57,19 @@ function M.setup(colors, opts)
 		-- Keywords - Pastel softness (only _1 and _2 shades)
 		["@keyword"] = { fg = c.mauve_3 },
 		["@keyword.type"] = { fg = c.turquoise_2 },
-		["@keyword.conditional"] = { fg = c.violet_1, bold = true }, -- Bold for conditional keywords (semantic emphasis)
+		["@keyword.conditional"] = { fg = c.mauve_2 }, -- Bold for conditional keywords (semantic emphasis)
 		["@keyword.conditional.ternary"] = { fg = c.azure_1 },
 		["@keyword.coroutine"] = { fg = c.azure_1, italic = true }, -- Italic for coroutine keywords (semantic emphasis)
 		["@keyword.debug"] = { fg = c.azure_1, bold = true }, -- Bold for debug keywords (semantic emphasis)
 		["@keyword.directive"] = { fg = c.azure_1 },
 		["@keyword.directive.define"] = { fg = c.azure_1 },
 		["@keyword.exception"] = { fg = c.azure_1, bold = true }, -- Bold for exception keywords (semantic emphasis)
-		["@keyword.function"] = { fg = c.indigo_2 },
+		["@keyword.function"] = { fg = c.mauve_1 },
 		["@keyword.import"] = { fg = c.mauve_4, italic = true }, -- Italic for import statements (semantic emphasis)
 		["@keyword.modifier"] = { fg = c.mauve_2 },
 		["@keyword.operator"] = { fg = c.azure_1 },
-		["@keyword.repeat"] = { fg = c.violet_1 },
-		["@keyword.return"] = { fg = c.azure_2, bold = true }, -- Bold for return statements (semantic emphasis)
+		["@keyword.repeat"] = { fg = c.mauve_2 },
+		["@keyword.return"] = { fg = c.mauve_1 }, -- Bold for return statements (semantic emphasis)
 		["@keyword.storage"] = { fg = c.azure_1 },
 
 		-- Labels
@@ -102,7 +102,7 @@ function M.setup(colors, opts)
 		["@namespace"] = { fg = c.azure_1 },
 
 		-- Numbers - Sophisticated coral elegance
-		["@number"] = { fg = c.yellow, bold = false },
+		["@number"] = { fg = "#de8a7c", bold = false },
 		["@number.float"] = { fg = c.azure_1 },
 
 		-- Operators - Balanced neutrality
@@ -140,7 +140,7 @@ function M.setup(colors, opts)
 		-- Variables - Enhanced readability
 		["@variable"] = { fg = c.stone_1 },
 		["@variable.builtin"] = { fg = c.azure_1, italic = true }, -- Italic for built-in variables (semantic emphasis)
-		["@variable.member"] = { fg = "#cc909d" }, -- Base rose - members elegant
+		["@variable.member"] = { fg = c.stone_1 }, -- #babbf1 Base rose - members elegant
 		["@variable.parameter"] = { fg = c.stone_3 },
 
 		-- Additional semantic tokens (disabled to prevent TreeSitter interference)

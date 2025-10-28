@@ -171,11 +171,11 @@ return {
 	yellow_5 = "#fcf947", -- Darkest yellow - deep golden shadow (from tpm)
 
 	-- === ORANGE FAMILY (Vibrant citrus tones) - Energetic warmth ===
-	orange_1 = "#fda751", -- Light peach - gentle citrus glow (from tpm)
-	orange_2 = "#FF9E3B", -- Base orange - vibrant citrus energy (from tpm)
-	orange_3 = "#e98a00", -- Medium tangerine - balanced orange depth (from tpm)
-	orange_4 = "#cc6d00", -- Dark burnt orange - rich citrus depth (from tpm)
-	orange_5 = "#b15c00", -- Darkest rust orange - deep citrus shadow (from tpm)
+	orange_1 = "#ef9f76", -- Darkest rust orange - deep citrus shadow (from tpm)
+	orange_2 = "#fda751", -- Light peach - gentle citrus glow (from tpm)
+	orange_3 = "#FF9E3B", -- Base orange - vibrant citrus energy (from tpm)
+	orange_4 = "#e98a00", -- Medium tangerine - balanced orange depth (from tpm)
+	orange_5 = "#cc6d00", -- Dark burnt orange - rich citrus depth (from tpm)
 
 	-- === TANGERINE FAMILY (Bright orange tones) - Zesty energy ===
 	tangerine_1 = "#f6c177", -- Light tangerine - bright citrus glow (from tpm)
