@@ -3,9 +3,6 @@
 
 local Config = require("chalk.config")
 
--- Import types for LSP support
-require("chalk.types")
-
 local M = {}
 
 ---@type {light?: string, dark?: string}
@@ -75,10 +72,10 @@ function M.info()
 	return require("chalk.theme").info()
 end
 
----Access to chalk utilities (dynamic adjustment, transparency, etc.)
----@return table Utils module
-function M.utils()
-	return require("chalk.utils")
+---Access to chalk dynamic color utilities (dynamic adjustment, transparency, etc.)
+---@return table Dynamic module
+function M.dynamic()
+	return require("chalk.dynamic")
 end
 
 return M

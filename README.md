@@ -73,9 +73,6 @@ vim.cmd.colorscheme("chalk")
 ### Complete Configuration Reference
 
 ```lua
--- Import types for LSP support (optional but recommended)
-require("chalk.types")
-
 require("chalk").setup({
   -- Theme variants
   variant = "default", -- "default", "light", "oled"
@@ -280,8 +277,8 @@ require("chalk").toggle()
 -- Preview variant without applying
 local preview_colors = require("chalk").preview("light")
 
--- Access utilities
-local utils = require("chalk").utils()
+-- Access dynamic features
+local dynamic = require("chalk").dynamic()
 ```
 
 ### Color Utilities

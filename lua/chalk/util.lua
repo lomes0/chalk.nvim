@@ -2,8 +2,31 @@ local M = {}
 
 -- Default chalk colors
 M.bg = "#1e1e2e" -- Default chalk background (main)
-M.bg_3 = "#1e1e2e" -- Default chalk background (main) - alias for compatibility
 M.fg = "#c9c7cd" -- Default chalk foreground
+
+---Standardized notification helper
+---@param message string Notification message
+---@param level? number Notification level (default: INFO)
+---@param prefix? string Message prefix (default: "chalk.nvim")
+function M.notify(message, level, prefix)
+	level = level or vim.log.levels.INFO
+	prefix = prefix or "chalk.nvim"
+	vim.notify(string.format("%s: %s", prefix, message), level)
+end
+
+---Standardized error helper
+---@param message string Error message
+---@param prefix? string Message prefix (default: "chalk.nvim")
+function M.error(message, prefix)
+	M.notify(message, vim.log.levels.ERROR, prefix)
+end
+
+---Standardized warning helper
+---@param message string Warning message
+---@param prefix? string Message prefix (default: "chalk.nvim")
+function M.warn(message, prefix)
+	M.notify(message, vim.log.levels.WARN, prefix)
+end
 
 ---Convert hex color to RGB values
 ---@param hex string Hex color string (e.g., "#ff0000")
@@ -89,7 +112,7 @@ function M.mod(modname, silent)
 	local ok, result = pcall(require, modname)
 	if not ok then
 		if not silent then
-			vim.notify("chalk.nvim: Failed to load module '" .. modname .. "'", vim.log.levels.ERROR)
+			M.error("Failed to load module '" .. modname .. "'")
 		end
 		return nil
 	end
@@ -214,16 +237,40 @@ function M.ensure_contrast(color, background, min_contrast)
 	return bg_lum > 0.5 and "#000000" or "#ffffff"
 end
 
+---Apply transparency to a highlight definition
+---@param hl table Highlight definition
+---@return table Modified highlight
+function M.make_transparent(hl)
+	if type(hl) == "table" then
+		hl.bg = "NONE"
+		hl.ctermbg = "NONE"
+	end
+	return hl
+end
+
+---Apply transparency to multiple highlight groups
+---@param highlights table Highlight groups
+---@param group_names string[] Groups to make transparent
+---@return table Modified highlights
+function M.apply_transparency(highlights, group_names)
+	for _, group in ipairs(group_names) do
+		if highlights[group] then
+			highlights[group] = M.make_transparent(highlights[group])
+		end
+	end
+	return highlights
+end
+
 ---Cache management for chalk theme system
 M.cache = {}
 
 ---Clear all cached data including dynamic overrides
 function M.cache.clear()
-	-- Clear dynamic color system cache
-	local has_dynamic, dynamic = pcall(require, "chalk.utils.dynamic")
-	if has_dynamic then
-		dynamic.clear_overrides()
-		dynamic.clear_change_history()
+	-- Clear dynamic color system cache (safe for theme loading)
+	local has_dynamic, dynamic = pcall(require, "chalk.dynamic.dynamic")
+	if has_dynamic and dynamic.clear_cache then
+		-- Use safe cache clear that doesn't reload colorscheme
+		dynamic.clear_cache()
 	end
 
 	-- Clear module cache for chalk modules
