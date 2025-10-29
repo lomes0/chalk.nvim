@@ -21,52 +21,56 @@ local function process_palette(palette, opts)
 	-- Add transparency constant
 	c.none = "NONE"
 
-	-- Apply transparency settings
+	-- Apply transparency settings (Kanagawa-aware)
 	if opts.transparent then
+		c.bg_m3 = c.none
+		c.bg_m2 = c.none
+		c.bg_m1 = c.none
+		c.bg = c.none
+		c.bg_p1 = Util.blend_bg(c.bg_p1 or palette.bg_p1, 0.5)
+		c.bg_p2 = Util.blend_bg(c.bg_p2 or palette.bg_p2, 0.5)
 		c.bg_1 = Util.blend_bg(c.bg_1 or palette.bg_1, 0.5)
 		c.bg_2 = Util.blend_bg(c.bg_2 or palette.bg_2, 0.5)
-		c.bg_2 = Util.blend_bg(c.bg_2 or palette.bg_2, 0.5)
-		c.bg = Util.blend_bg(c.bg or palette.bg_2, 0.5)
 	end
 
-	-- Generate additional colors through blending
-	c.bg_visual = c.bg_visual or Util.blend_bg(c.primary, 0.1)
-	c.bg_search = c.bg_search or Util.blend_bg(c.warning, 0.15)
-	c.bg_sidebar = c.bg_sidebar or Util.darken(c.bg_2, 0.8)
-	c.bg_float = c.bg_float or c.bg_2
-	c.bg_popup = c.bg_popup or c.bg_2
-	c.bg_statusline = c.bg_statusline or c.bg_2
-	c.border = c.border or c.fg_darker
+	-- Generate additional colors through blending (Kanagawa-style)
+	c.bg_visual = c.bg_visual or c.selection
+	c.bg_search = c.bg_search or c.search
+	c.bg_sidebar = c.bg_sidebar or c.bg_m2
+	c.bg_float = c.bg_float or c.bg
+	c.bg_popup = c.bg_popup or c.bg
+	c.bg_statusline = c.bg_statusline or c.bg
+	c.border = c.border or c.dragon_black6
 
-	-- Ensure contrast for accessibility
-	c.fg = Util.ensure_contrast(c.fg, c.bg_2, 4.5)
-	c.comment = Util.ensure_contrast(c.comment, c.bg_2, 3.0)
+	-- Ensure contrast for accessibility (Kanagawa maintains natural contrast)
+	c.fg_light = Util.ensure_contrast(c.fg_light, c.bg_m1, 4.5)
+	c.fuji_gray = Util.ensure_contrast(c.fuji_gray, c.bg_m1, 3.0)
 
-	-- Generate semantic color variations
-	c.error_dim = Util.blend_bg(c.error, 0.3)
-	c.warning_dim = Util.blend_bg(c.warning, 0.3)
-	c.info_dim = Util.blend_bg(c.info, 0.3)
-	c.hint_dim = Util.blend_bg(c.hint, 0.3)
-	c.success_dim = Util.blend_bg(c.success, 0.3)
+	-- Generate semantic color variations (Kanagawa: blended diagnostics)
+	c.error_dim = Util.blend_bg(c.samurai_red, 0.2)
+	c.warning_dim = Util.blend_bg(c.ronin_yellow, 0.2)
+	c.info_dim = Util.blend_bg(c.crystal_blue, 0.2)
+	c.hint_dim = Util.blend_bg(c.wave_aqua, 0.2)
+	c.success_dim = Util.blend_bg(c.spring_green, 0.2)
 
-	-- Terminal colors (16 color palette)
+	-- Terminal colors (16 color palette - Kanagawa-inspired)
 	c.terminal = {
-		black = c.bg,
-		red = c.red,
-		green = c.green,
-		yellow = c.yellow,
-		blue = c.blue,
-		magenta = c.purple,
-		cyan = c.cyan,
+		black = c.bg_m3,
+		red = c.samurai_red,
+		green = c.spring_green,
+		yellow = c.dragon_yellow,
+		blue = c.crystal_blue,
+		magenta = c.dragon_violet,
+		cyan = c.wave_aqua,
 		white = c.fg,
-		bright_black = c.comment,
-		bright_red = Util.lighten(c.red, 0.1),
-		bright_green = Util.lighten(c.green, 0.1),
-		bright_yellow = Util.lighten(c.yellow, 0.1),
-		bright_blue = Util.lighten(c.blue, 0.1),
-		bright_magenta = Util.lighten(c.purple, 0.1),
-		bright_cyan = Util.lighten(c.cyan, 0.1),
-		bright_white = c.fg_light,
+		bright_black = c.fuji_gray,
+		bright_red = c.dragon_red,
+		bright_green = c.dragon_green,
+		bright_yellow = c.ronin_yellow,
+		bright_blue = c.dragon_blue,
+		bright_magenta = c.spring_violet,
+		bright_cyan = c.dragon_aqua,
+		bright_white = c.fg_lighter,
 	}
 
 	return c

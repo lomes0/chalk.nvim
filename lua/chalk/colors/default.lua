@@ -1,64 +1,87 @@
 ---@type chalk.Palette
 return {
 	-- ============================================================================
-	-- BACKGROUND & FOREGROUND
+	-- BACKGROUND & FOREGROUND (Kanagawa-inspired progressions)
 	-- ============================================================================
-	bg = "#424856",
+	-- Background progression: darker to lighter (sumi ink series)
+	bg_m3 = "#16161D", -- Deepest (kanagawa sumiInk0)
+	bg_m2 = "#1a1a22", -- Very dark (kanagawa sumiInk2)
+	bg_m1 = "#1F1F28", -- Dark (kanagawa sumiInk3)
+	bg = "#2A2A37", -- Main background (kanagawa sumiInk4)
+	bg_p1 = "#363646", -- Light (kanagawa sumiInk5)
+	bg_p2 = "#424856", -- Lighter (original chalk bg)
 	bg_1 = "#959dbd", -- Lightest background
 	bg_2 = "#7d84a1", -- Light background
 
+	-- Foreground progression: darker to lighter
 	fg_darker = "#424140", -- Darkest foreground - improved contrast
-	fg_light = "#f0ebe4", -- Light foreground - crisp sophisticated chalk
+	fg_dim = "#727169", -- Dimmed foreground (kanagawa fujiGray)
 	fg = "#b3b0ac", -- Main foreground - refined chalk white
+	fg_light = "#DCD7BA", -- Light foreground (kanagawa fujiWhite)
+	fg_lighter = "#f0ebe4", -- Lightest foreground - crisp sophisticated chalk
 
 	-- ============================================================================
-	-- REDS
+	-- REDS (Kanagawa dragon series integration)
 	-- ============================================================================
 	crimson = "#ff5d62", -- Light crimson - bright red glow
 	ruby = "#ff757f", -- Light ruby - gentle red glow
 	cherry = "#ec6788", -- Light cherry - bright pink glow
 	rose = "#eb6f92", -- Base rose - sophisticated warm red
+	dragon_red = "#c4746e", -- Kanagawa dragonRed - muted sophisticated red
+	samurai_red = "#E82424", -- Kanagawa samuraiRed - error/urgent
 
 	-- ============================================================================
-	-- PINKS
+	-- PINKS (Kanagawa integration)
 	-- ============================================================================
 	pink = "#fcade2", -- Light pink - gentle cotton candy
+	dragon_pink = "#a292a3", -- Kanagawa dragonPink - muted sophisticated pink
+	sakura_pink = "#D27E99", -- Kanagawa sakuraPink - special highlight
 	coral = "#c4746e", -- Base coral - sophisticated warm pink-orange
 	peach = "#c56e6e", -- Dark peach - rich coral depth
 
 	-- ============================================================================
-	-- ORANGES
+	-- ORANGES (Kanagawa integration)
 	-- ============================================================================
 	copper = "#e7b493", -- Light copper - soft metal glow
+	dragon_orange = "#b6927b", -- Kanagawa dragonOrange - muted warm
 	orange = "#fda751", -- Light peach - gentle citrus glow
 	tangerine = "#f6c177", -- Light tangerine - bright citrus glow
+	ronin_yellow = "#FF9E3B", -- Kanagawa roninYellow - warning
 
 	-- ============================================================================
-	-- YELLOWS
+	-- YELLOWS (Kanagawa integration)
 	-- ============================================================================
 	yellow = "#ffd8ab", -- Light yellow - bright sunshine
+	dragon_yellow = "#c4b28a", -- Kanagawa dragonYellow - muted gold
 	amber = "#f9d791", -- Light champagne - soft golden glow
 	gold = "#f2ecbc", -- Light gold - gentle metallic glow
+	old_white = "#C8C093", -- Kanagawa oldWhite - warm muted
 
 	-- ============================================================================
-	-- GREENS
+	-- GREENS (Kanagawa integration)
 	-- ============================================================================
 	lime = "#c3e88d", -- Light lime - fresh bright green
+	spring_green = "#98BB6C", -- Kanagawa springGreen - nature inspired
+	dragon_green = "#699469", -- Kanagawa dragonGreen - muted sophisticated
 	emerald = "#b7d0ae", -- Light sage mist - gentle natural
 	sage = "#cfdac6", -- Light sage - airy herbal tint
 
 	-- ============================================================================
-	-- CYANS/TEALS
+	-- CYANS/TEALS (Kanagawa integration)
 	-- ============================================================================
 	turquoise = "#93dddc", -- Base turquoise - vibrant ocean sophistication
+	wave_aqua = "#6A9589", -- Kanagawa waveAqua1 - info diagnostic
+	dragon_aqua = "#8ea49e", -- Kanagawa dragonAqua - muted teal
 	seafoam = "#A3D4D5", -- Light seafoam - gentle ocean mist
 	teal = "#b8ebe6", -- Light aqua foam - gentle teal
 	cyan = "#86e1fc", -- Light cyan - bright electric blue
 
 	-- ============================================================================
-	-- BLUES
+	-- BLUES (Kanagawa integration)
 	-- ============================================================================
 	azure = "#92c2dd", -- Light powder blue - gentle sky
+	crystal_blue = "#7E9CD8", -- Kanagawa crystalBlue - clear accent
+	dragon_blue = "#658594", -- Kanagawa dragonBlue - muted sophisticated
 	steel_blue = "#76bbc9", -- Base steel blue - enhanced visibility
 	ocean_blue = "#5aa8b5", -- Medium ocean - balanced blue depth
 	royal = "#8fd0fc", -- Light royal - bright sky blue
@@ -66,9 +89,11 @@ return {
 	periwinkle = "#89a5e6", -- Periwinkle blue - soft blue-violet
 
 	-- ============================================================================
-	-- PURPLES/VIOLETS
+	-- PURPLES/VIOLETS (Kanagawa integration)
 	-- ============================================================================
 	violet = "#c7a9ff", -- Light violet - gentle purple glow
+	dragon_violet = "#8992a7", -- Kanagawa dragonViolet - muted sophisticated
+	spring_violet = "#9CABCA", -- Kanagawa springViolet1 - soft purple
 	amethyst = "#b97898", -- Light amethyst - bright purple glow
 	mauve_light = "#f0c0f0", -- Light mauve mist - gentle purple-gray
 	mauve = "#c4a4c4", -- Base mauve - sophisticated purple-gray
@@ -76,13 +101,24 @@ return {
 	mauve_dark = "#a284a2", -- Dark mauve - rich purple-gray
 
 	-- ============================================================================
-	-- NEUTRALS/BROWNS/GRAYS
+	-- NEUTRALS/BROWNS/GRAYS (Kanagawa integration)
 	-- ============================================================================
 	bronze = "#d6c0a5", -- Light bronze - gentle metallic beige
 	earth = "#cdb49e", -- Light clay soil - soft warm tan
 	clay = "#d9b4a3", -- Light clay - soft rosy tan
 	cream = "#cbbca4", -- Darkest cream - warm muted sand
 	taupe = "#cfc6be", -- Light taupe - soft warm gray
+	
+	-- Kanagawa dragon black series (borders, UI elements)
+	dragon_black0 = "#0d0c0c", -- Deepest
+	dragon_black1 = "#12120f", -- Very dark
+	dragon_black2 = "#1D1C19", -- Dark
+	dragon_black3 = "#181616", -- Medium dark
+	dragon_black4 = "#282727", -- Medium
+	dragon_black5 = "#393836", -- Light
+	dragon_black6 = "#625e5a", -- Lightest (borders)
+	
+	-- Stone/gray series
 	slate = "#8ea4a2", -- Light slate - balanced neutral
 	stone_1 = "#b3b8d1", -- Light stone - cool elegance
 	stone_2 = "#9ca2bd", -- Base cool stone - sophisticated cool
@@ -92,42 +128,43 @@ return {
 	shadow = "#c4c7d4", -- Light shadow - misted cool gray
 	mist = "#e8ecf1", -- Light mist - airy cool veil
 	ash = "#a6a69c", -- Ash gray - neutral warm gray
+	fuji_gray = "#727169", -- Kanagawa fujiGray - comments
 
 	-- ============================================================================
-	-- SEMANTIC COLORS
+	-- SEMANTIC COLORS (Kanagawa-inspired)
 	-- ============================================================================
 	purple = "#9d7cd8", -- Base violet - sophisticated purple
-	blue = "#7E9CD8", -- Base indigo - better visibility
+	blue = "#7E9CD8", -- Kanagawa crystalBlue - clear visibility
 	red = "#E46876", -- Base ruby - elegant red
 	green = "#9ece6a", -- Base emerald - sophisticated green
-	orange = "#FF9E3B", -- Base orange - refined orange
+	orange = "#FF9E3B", -- Kanagawa roninYellow - refined orange
 	yellow = "#f6c177", -- Base yellow - sophisticated gold
 	cyan = "#73daca", -- Base turquoise - elegant cyan
-	comment = "#8087a9", -- Enhanced stone - better comment visibility
+	comment = "#727169", -- Kanagawa fujiGray - muted natural comments
 
 	-- ============================================================================
-	-- PRIMARY COLORS
+	-- PRIMARY COLORS (Kanagawa-inspired mode colors)
 	-- ============================================================================
-	primary = "#7E9CD8", -- Base indigo - sophisticated primary
+	primary = "#7E9CD8", -- Kanagawa crystalBlue - sophisticated primary
 	secondary = "#6CAF95", -- Base seafoam - elegant secondary
-	accent = "#9ece6a", -- Base emerald - refined accent
+	accent = "#98BB6C", -- Kanagawa springGreen - refined accent
 
 	-- ============================================================================
-	-- STATUS COLORS
+	-- STATUS COLORS (Kanagawa semantic colors)
 	-- ============================================================================
-	error = "#E46876", -- Base ruby - sophisticated error
-	warning = "#DCA561", -- Base amber - elegant warning
-	info = "#7E9CD8", -- Base indigo - sophisticated info
-	hint = "#6CAF95", -- Base seafoam - elegant hints
-	success = "#9ece6a", -- Base emerald - refined success
+	error = "#E82424", -- Kanagawa samuraiRed - urgent error
+	warning = "#FF9E3B", -- Kanagawa roninYellow - warning
+	info = "#7E9CD8", -- Kanagawa crystalBlue - info
+	hint = "#6A9589", -- Kanagawa waveAqua1 - subtle hints
+	success = "#98BB6C", -- Kanagawa springGreen - success
 
 	-- ============================================================================
-	-- DIAGNOSTIC COLORS
+	-- DIAGNOSTIC COLORS (Kanagawa diagnostic system)
 	-- ============================================================================
-	diagnostic_error = "#E46876", -- Base ruby - refined error indication
-	diagnostic_warning = "#DCA561", -- Base amber - sophisticated warning
-	diagnostic_info = "#7E9CD8", -- Base indigo - elegant information
-	diagnostic_hint = "#6CAF95", -- Base seafoam - sophisticated hints
+	diagnostic_error = "#c4746e", -- Kanagawa dragonRed - muted error
+	diagnostic_warning = "#c4b28a", -- Kanagawa dragonYellow - muted warning
+	diagnostic_info = "#658594", -- Kanagawa dragonBlue - muted info
+	diagnostic_hint = "#8ea49e", -- Kanagawa dragonAqua - muted hint
 
 	-- ============================================================================
 	-- GIT COLORS
@@ -150,15 +187,16 @@ return {
 	diff_text_bg = "#444d5e", -- Subtle blue background for text changes
 
 	-- ============================================================================
-	-- UI COLORS
+	-- UI COLORS (Kanagawa-inspired UI elements)
 	-- ============================================================================
-	selection = "#464b5f", -- Warm sophisticated selection
-	search = "#f9d791", -- Light amber - elegant search highlight
+	selection = "#363646", -- Kanagawa sumiInk5 - muted selection
+	search = "#9CABCA", -- Kanagawa springViolet1 - soft search
 	match = "#9d7cd8", -- Base violet - sophisticated matching
-	cursor = "#65bcff", -- Base royal - better cursor visibility
-	cursor_line = "#332f2b", -- Elegant warm cursor line
-	line_number = "#8087a9", -- Enhanced stone - better line number visibility
-	line_number_current = "#b3b8d1", -- Light stone - current line emphasis
+	cursor = "#DCD7BA", -- Kanagawa fujiWhite - clear cursor
+	cursor_line = "#2A2A37", -- Kanagawa sumiInk4 - subtle line
+	line_number = "#54546D", -- Kanagawa sumiInk6 - muted line numbers
+	line_number_current = "#DCD7BA", -- Kanagawa fujiWhite - current line emphasis
+	border = "#625e5a", -- Kanagawa dragonBlack6 - subtle borders
 
 	-- ============================================================================
 	-- SPECIAL COLORS

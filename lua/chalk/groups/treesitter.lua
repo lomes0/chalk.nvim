@@ -11,128 +11,128 @@ function M.setup(colors, opts)
 
 	local highlights = {
 		-- Annotations
-		["@annotation"] = { fg = c.azure },
-		["@annotation.builtin"] = { fg = c.azure, bold = true },
+		["@annotation"] = { fg = c.dragon_yellow },
+		["@annotation.builtin"] = { fg = c.dragon_yellow, bold = true },
 
 		-- Attributes
-		["@attribute"] = { fg = c.azure },
-		["@attribute.builtin"] = { fg = c.azure, bold = true },
+		["@attribute"] = { fg = c.dragon_yellow },
+		["@attribute.builtin"] = { fg = c.dragon_yellow, bold = true },
 
-		-- Booleans
-		["@boolean"] = { fg = c.azure },
+		-- Booleans (Kanagawa: pink/violet for constants)
+		["@boolean"] = { fg = c.dragon_pink },
 
 		-- Characters
-		["@character"] = { fg = c.emerald },
+		["@character"] = { fg = c.spring_green },
 
-		-- Comments
-		["@comment"] = {},
-		["@comment.documentation"] = { fg = c.azure, italic = true },
-		["@comment.error"] = { fg = c.azure, bold = true },
-		["@comment.warning"] = { fg = c.azure, bold = true },
-		["@comment.todo"] = { fg = c.azure, bg = c.bg_2, bold = true },
-		["@comment.note"] = { fg = c.azure, bg = c.bg_2, bold = true },
+		-- Comments (Kanagawa: fujiGray - muted natural)
+		["@comment"] = { fg = c.fuji_gray },
+		["@comment.documentation"] = { fg = c.fuji_gray, italic = true },
+		["@comment.error"] = { fg = c.samurai_red, bold = true },
+		["@comment.warning"] = { fg = c.ronin_yellow, bold = true },
+		["@comment.todo"] = { fg = c.dragon_violet, bg = c.bg_p1, bold = true },
+		["@comment.note"] = { fg = c.wave_aqua, bg = c.bg_p1, bold = true },
 
-		-- Constants
-		["@constant"] = { fg = c.coral },
-		["@constant.builtin"] = { fg = c.copper, bold = true },
-		["@constant.macro"] = { fg = c.azure, italic = true },
+		-- Constants (Kanagawa: pink/violet family)
+		["@constant"] = { fg = c.dragon_pink },
+		["@constant.builtin"] = { fg = c.dragon_orange, bold = true },
+		["@constant.macro"] = { fg = c.dragon_violet, italic = true },
 
-		-- Functions
-		["@function"] = { fg = c.indigo },
-		["@function.builtin"] = { fg = c.azure, bold = true },
-		["@function.call"] = { fg = c.blue },
-		["@function.macro"] = { fg = c.azure, bold = true },
-		["@function.method"] = { fg = c.azure },
-		["@function.method.call"] = { fg = c.azure },
+		-- Functions (Kanagawa: blue tones for trust/reliability)
+		["@function"] = { fg = c.crystal_blue },
+		["@function.builtin"] = { fg = c.dragon_blue, bold = true },
+		["@function.call"] = { fg = c.crystal_blue },
+		["@function.macro"] = { fg = c.dragon_aqua, bold = true },
+		["@function.method"] = { fg = c.crystal_blue },
+		["@function.method.call"] = { fg = c.crystal_blue },
 
-		-- Keywords
-		["@keyword"] = { fg = c.mauve_medium },
-		["@keyword.type"] = { fg = c.turquoise },
-		["@keyword.conditional"] = { fg = c.mauve },
-		["@keyword.conditional.ternary"] = { fg = c.azure },
-		["@keyword.coroutine"] = { fg = c.azure, italic = true },
-		["@keyword.debug"] = { fg = c.azure, bold = true },
-		["@keyword.directive"] = { fg = c.azure },
-		["@keyword.directive.define"] = { fg = c.azure },
-		["@keyword.exception"] = { fg = c.azure, bold = true },
-		["@keyword.function"] = { fg = c.mauve_light },
-		["@keyword.import"] = { fg = c.mauve_dark, italic = true },
-		["@keyword.modifier"] = { fg = c.mauve },
-		["@keyword.operator"] = { fg = c.azure },
-		["@keyword.repeat"] = { fg = c.mauve },
-		["@keyword.return"] = { fg = c.mauve_light },
-		["@keyword.storage"] = { fg = c.azure },
+		-- Keywords (Kanagawa: pink/violet tones for structure)
+		["@keyword"] = { fg = c.dragon_violet },
+		["@keyword.type"] = { fg = c.dragon_aqua },
+		["@keyword.conditional"] = { fg = c.dragon_violet },
+		["@keyword.conditional.ternary"] = { fg = c.dragon_violet },
+		["@keyword.coroutine"] = { fg = c.dragon_violet, italic = true },
+		["@keyword.debug"] = { fg = c.samurai_red, bold = true },
+		["@keyword.directive"] = { fg = c.dragon_pink },
+		["@keyword.directive.define"] = { fg = c.dragon_pink },
+		["@keyword.exception"] = { fg = c.dragon_red, bold = true },
+		["@keyword.function"] = { fg = c.dragon_violet },
+		["@keyword.import"] = { fg = c.dragon_pink, italic = true },
+		["@keyword.modifier"] = { fg = c.dragon_violet },
+		["@keyword.operator"] = { fg = c.dragon_violet },
+		["@keyword.repeat"] = { fg = c.dragon_violet },
+		["@keyword.return"] = { fg = c.dragon_violet },
+		["@keyword.storage"] = { fg = c.dragon_violet },
 
 		-- Labels
-		["@label"] = { fg = c.azure },
+		["@label"] = { fg = c.dragon_pink },
 		["@spell"] = { fg = c.stone_3 },
 
-		-- Literals
-		["@markup"] = { fg = c.azure },
+		-- Literals (Kanagawa: various accent colors)
+		["@markup"] = { fg = c.fg_light },
 		["@markup.emphasis"] = { italic = true },
 		["@markup.strong"] = { bold = true },
-		["@markup.environment"] = { fg = c.azure },
-		["@markup.link"] = { fg = c.azure, underline = true },
-		["@markup.link.label"] = { fg = c.azure },
-		["@markup.list"] = { fg = c.azure },
-		["@markup.list.checked"] = { fg = c.azure },
-		["@markup.list.unchecked"] = { fg = c.azure },
-		["@markup.math"] = { fg = c.azure },
-		["@markup.quote"] = { fg = c.azure, italic = true },
-		["@markup.raw"] = { fg = c.azure },
+		["@markup.environment"] = { fg = c.dragon_yellow },
+		["@markup.link"] = { fg = c.crystal_blue, underline = true },
+		["@markup.link.label"] = { fg = c.dragon_aqua },
+		["@markup.list"] = { fg = c.dragon_pink },
+		["@markup.list.checked"] = { fg = c.spring_green },
+		["@markup.list.unchecked"] = { fg = c.fuji_gray },
+		["@markup.math"] = { fg = c.dragon_violet },
+		["@markup.quote"] = { fg = c.fuji_gray, italic = true },
+		["@markup.raw"] = { fg = c.spring_green },
 		["@markup.underline"] = { underline = true },
 
 		-- Math
-		["@math"] = { fg = c.azure },
+		["@math"] = { fg = c.dragon_violet },
 
-		-- Modules
-		["@module"] = { fg = c.steel_blue },
-		["@module.builtin"] = { fg = c.azure, bold = true },
+		-- Modules (Kanagawa: aqua/teal for structure)
+		["@module"] = { fg = c.dragon_aqua },
+		["@module.builtin"] = { fg = c.wave_aqua, bold = true },
 
 		-- Namespace
-		["@namespace"] = { fg = c.azure },
+		["@namespace"] = { fg = c.dragon_aqua },
 
-		-- Numbers
-		["@number"] = { fg = "#de8a7c", bold = false },
-		["@number.float"] = { fg = c.azure },
+		-- Numbers (Kanagawa: pink/violet for constants)
+		["@number"] = { fg = c.sakura_pink, bold = false },
+		["@number.float"] = { fg = c.sakura_pink },
 
-		-- Operators
-		["@operator"] = { fg = c.stone_2 },
+		-- Operators (Kanagawa: muted foreground)
+		["@operator"] = { fg = c.dragon_violet },
 
-		-- Parameters
-		["@parameter"] = { fg = c.stone_2 },
-		["@parameter.builtin"] = { fg = c.azure, italic = true },
-		["@parameter.reference"] = { fg = c.azure },
+		-- Parameters (Kanagawa: neutral foreground)
+		["@parameter"] = { fg = c.fg },
+		["@parameter.builtin"] = { fg = c.dragon_red, italic = true },
+		["@parameter.reference"] = { fg = c.dragon_red },
 
-		-- Properties
-		["@property"] = { fg = c.rose },
+		-- Properties (Kanagawa: rose/coral for members)
+		["@property"] = { fg = c.dragon_red },
 
 		-- Punctuation
-		["@punctuation.bracket"] = { fg = c.azure },
+		["@punctuation.bracket"] = { fg = c.fg_dim },
 
-		-- Strings
-		["@string"] = { fg = c.emerald },
-		["@string.documentation"] = { fg = c.azure, italic = true },
-		["@string.escape"] = { fg = c.azure },
-		["@string.regex"] = { fg = c.azure },
-		["@string.special"] = { fg = c.azure },
-		["@string.special.path"] = { fg = c.azure, underline = true },
-		["@string.special.url"] = { fg = c.azure, underline = true },
+		-- Strings (Kanagawa: green tones for growth/content)
+		["@string"] = { fg = c.spring_green },
+		["@string.documentation"] = { fg = c.fuji_gray, italic = true },
+		["@string.escape"] = { fg = c.dragon_red },
+		["@string.regex"] = { fg = c.dragon_orange },
+		["@string.special"] = { fg = c.dragon_red },
+		["@string.special.path"] = { fg = c.wave_aqua, underline = true },
+		["@string.special.url"] = { fg = c.crystal_blue, underline = true },
 
-		-- Tags
-		["@tag"] = { fg = c.azure },
+		-- Tags (Kanagawa: pink for markup)
+		["@tag"] = { fg = c.dragon_pink },
 
-		-- Types
-		["@type"] = { fg = c.indigo },
-		["@type.builtin"] = { fg = c.azure, bold = true },
-		["@type.definition"] = { fg = c.azure, bold = true },
-		["@type.qualifier"] = { fg = c.azure },
+		-- Types (Kanagawa: aqua/teal for definitions)
+		["@type"] = { fg = c.dragon_aqua },
+		["@type.builtin"] = { fg = c.dragon_blue, bold = true },
+		["@type.definition"] = { fg = c.dragon_aqua, bold = true },
+		["@type.qualifier"] = { fg = c.dragon_violet },
 
-		-- Variables
-		["@variable"] = { fg = c.stone_1 },
-		["@variable.builtin"] = { fg = c.azure, italic = true },
-		["@variable.member"] = { fg = c.stone_1 },
-		["@variable.parameter"] = { fg = c.stone_3 },
+		-- Variables (Kanagawa: neutral foreground tones)
+		["@variable"] = { fg = c.fg_light },
+		["@variable.builtin"] = { fg = c.dragon_red, italic = true },
+		["@variable.member"] = { fg = c.fg },
+		["@variable.parameter"] = { fg = c.old_white },
 
 		-- LSP semantic tokens
 		["@lsp.type.class"] = {},
@@ -164,10 +164,10 @@ function M.setup(colors, opts)
 		LspSignatureActiveParameter = { link = "Visual" },
 
 		-- LSP reference highlighting
-		LspReferenceRead = { bg = c.bg_2 },
-		LspReferenceText = { bg = c.bg_2 },
-		LspReferenceWrite = { bg = c.bg_2 },
-		LspReferenceTarget = { bg = c.bg_2 },
+		LspReferenceRead = { bg = c.bg_p2 },
+		LspReferenceText = { bg = c.bg_p2 },
+		LspReferenceWrite = { bg = c.bg_p2 },
+		LspReferenceTarget = { bg = c.bg_p2 },
 	}
 
 	-- Load language-specific highlights and merge them

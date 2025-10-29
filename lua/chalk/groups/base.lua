@@ -10,229 +10,229 @@ function M.setup(colors, opts)
 	local c = colors
 
 	local highlights = {
-		-- Editor colors
-		Normal = { fg = c.fg, bg = c.bg },
-		NormalFloat = { fg = c.fg, bg = c.bg },
-		NormalNC = { fg = c.fg_dark, bg = c.bg },
+		-- Editor colors (Kanagawa-inspired backgrounds)
+		Normal = { fg = c.fg_light, bg = c.bg_m1 },
+		NormalFloat = { fg = c.fg_light, bg = c.bg },
+		NormalNC = { fg = c.fg_dim, bg = c.bg_m2 },
 
-		-- Cursor
-		Cursor = { fg = c.bg_2, bg = c.fg },
-		CursorLine = { bg = c.bg },
-		CursorColumn = { bg = c.bg_2 },
-		CursorLineNr = { fg = c.fg, bold = true, bg = c.bg_2 },
+		-- Cursor (Kanagawa: clear contrast)
+		Cursor = { fg = c.bg_m1, bg = c.cursor },
+		CursorLine = { bg = c.cursor_line },
+		CursorColumn = { bg = c.bg },
+		CursorLineNr = { fg = c.line_number_current, bold = true, bg = c.bg },
 
-		-- Line numbers
-		LineNr = { fg = c.comment, bg = c.bg_2 },
-		SignColumn = { fg = c.comment, bg = c.bg_2 },
+		-- Line numbers (Kanagawa: muted but visible)
+		LineNr = { fg = c.line_number, bg = c.bg },
+		SignColumn = { fg = c.line_number, bg = c.bg },
 
-		-- Folds
-		Folded = { fg = c.comment, bg = c.bg_2, italic = true },
-		FoldColumn = { fg = c.comment, bg = c.bg_2 },
+		-- Folds (Kanagawa: subtle with comment color)
+		Folded = { fg = c.fuji_gray, bg = c.bg, italic = true },
+		FoldColumn = { fg = c.fuji_gray, bg = c.bg },
 
-		-- Selection and search
+		-- Selection and search (Kanagawa: muted backgrounds)
 		Visual = { bg = c.selection },
 		VisualNOS = { bg = c.selection },
-		Search = { fg = c.none, bg = c.bg_2 },
-		IncSearch = { fg = c.none, bg = c.bg_2, bold = true },
-		CurSearch = { fg = c.none, bg = c.bg_2, bold = true },
+		Search = { fg = c.bg_m1, bg = c.search },
+		IncSearch = { fg = c.bg_m1, bg = c.dragon_orange, bold = true },
+		CurSearch = { fg = c.bg_m1, bg = c.dragon_orange, bold = true },
 
-		-- Messages and command line
-		MsgArea = { fg = c.fg },
-		MsgSeparator = { fg = c.comment },
-		MoreMsg = { fg = c.success, bold = true },
-		Question = { fg = c.info, bold = true },
-		WarningMsg = { fg = c.warning, bold = true },
-		ErrorMsg = { fg = c.error, bold = true },
+		-- Messages and command line (Kanagawa semantic colors)
+		MsgArea = { fg = c.fg_light },
+		MsgSeparator = { fg = c.border },
+		MoreMsg = { fg = c.spring_green, bold = true },
+		Question = { fg = c.crystal_blue, bold = true },
+		WarningMsg = { fg = c.ronin_yellow, bold = true },
+		ErrorMsg = { fg = c.samurai_red, bold = true },
 
-		-- Status line
-		StatusLine = { fg = c.fg, bg = c.bg_2 },
-		StatusLineNC = { fg = c.comment, bg = c.bg },
+		-- Status line (Kanagawa: subtle backgrounds)
+		StatusLine = { fg = c.fg_light, bg = c.bg },
+		StatusLineNC = { fg = c.fuji_gray, bg = c.bg_m2 },
 
-		-- Tab line
-		TabLine = { fg = c.comment, bg = c.bg },
-		TabLineFill = { bg = c.bg },
-		TabLineSel = { fg = c.fg, bg = c.bg_2, bold = true },
+		-- Tab line (Kanagawa: muted progression)
+		TabLine = { fg = c.fuji_gray, bg = c.bg_m2 },
+		TabLineFill = { bg = c.bg_m3 },
+		TabLineSel = { fg = c.fg_light, bg = c.bg, bold = true },
 
-		-- Windows and splits
-		WinBar = { fg = c.fg_light, bg = c.bg_2 },
-		WinBarNC = { fg = c.comment, bg = c.bg_2 },
-		WinSeparator = { fg = c.bg_1 },
-		VertSplit = { fg = c.bg_1 }, -- Legacy
+		-- Windows and splits (Kanagawa: subtle borders)
+		WinBar = { fg = c.fg_light, bg = c.bg },
+		WinBarNC = { fg = c.fuji_gray, bg = c.bg_m2 },
+		WinSeparator = { fg = c.border },
+		VertSplit = { fg = c.border }, -- Legacy
 
-		-- Popup menus
-		Pmenu = { fg = c.fg, bg = c.bg_2 },
-		PmenuSel = { fg = c.fg, bg = c.bg_1, bold = true },
-		PmenuSbar = { bg = c.bg_1 },
-		PmenuThumb = { bg = c.fg },
+		-- Popup menus (Kanagawa: floating UI)
+		Pmenu = { fg = c.fg_light, bg = c.bg },
+		PmenuSel = { fg = c.bg_m1, bg = c.crystal_blue, bold = true },
+		PmenuSbar = { bg = c.bg_p1 },
+		PmenuThumb = { bg = c.border },
 
 		-- Wild menu
-		WildMenu = { fg = c.fg, bg = c.bg_2, bold = true },
+		WildMenu = { fg = c.bg_m1, bg = c.crystal_blue, bold = true },
 
-		-- Floating windows
-		FloatBorder = { fg = c.comment, bg = c.bg_2 },
-		FloatTitle = { fg = c.fg, bg = c.bg_2, bold = true },
+		-- Floating windows (Kanagawa: consistent float style)
+		FloatBorder = { fg = c.border, bg = c.bg },
+		FloatTitle = { fg = c.fg_light, bg = c.bg, bold = true },
 
 		-- Columns and guides
-		ColorColumn = { bg = c.bg_2 },
-		Conceal = { fg = c.comment },
+		ColorColumn = { bg = c.bg },
+		Conceal = { fg = c.fuji_gray },
 
-		-- Diff (Standar git diff highlighting)
-		DiffDelete = { bg = c.none, fg = c.diff_delete },
-		DiffAdd = { bg = c.none, fg = c.diff_add },
+		-- Diff (Kanagawa: muted git colors)
+		DiffDelete = { bg = c.none, fg = c.dragon_red },
+		DiffAdd = { bg = c.none, fg = c.spring_green },
 		DiffChange = { bg = c.none },
 		DiffText = { bg = c.diff_text_bg },
 
-		-- Spelling
-		SpellBad = { fg = c.error, undercurl = true, sp = c.error },
-		SpellCap = { fg = c.warning, undercurl = true, sp = c.warning },
-		SpellLocal = { fg = c.info, undercurl = true, sp = c.info },
-		SpellRare = { fg = c.hint, undercurl = true, sp = c.hint },
+		-- Spelling (Kanagawa semantic colors)
+		SpellBad = { fg = c.samurai_red, undercurl = true, sp = c.samurai_red },
+		SpellCap = { fg = c.ronin_yellow, undercurl = true, sp = c.ronin_yellow },
+		SpellLocal = { fg = c.crystal_blue, undercurl = true, sp = c.crystal_blue },
+		SpellRare = { fg = c.wave_aqua, undercurl = true, sp = c.wave_aqua },
 
-		-- Diagnostics
-		DiagnosticError = { fg = c.error },
-		DiagnosticWarn = { fg = c.warning },
-		DiagnosticInfo = { fg = c.info },
-		DiagnosticHint = { fg = c.hint },
-		DiagnosticOk = { fg = c.success },
+		-- Diagnostics (Kanagawa diagnostic system)
+		DiagnosticError = { fg = c.samurai_red },
+		DiagnosticWarn = { fg = c.ronin_yellow },
+		DiagnosticInfo = { fg = c.crystal_blue },
+		DiagnosticHint = { fg = c.wave_aqua },
+		DiagnosticOk = { fg = c.spring_green },
 
-		-- Diagnostic virtual text
-		DiagnosticVirtualTextError = { fg = c.error, bg = c.bg_2 },
-		DiagnosticVirtualTextWarn = { fg = c.warning, bg = c.bg_2 },
-		DiagnosticVirtualTextInfo = { fg = c.info, bg = c.bg_2 },
-		DiagnosticVirtualTextHint = { fg = c.hint, bg = c.bg_2 },
-		DiagnosticVirtualTextOk = { fg = c.success, bg = c.bg_2 },
+		-- Diagnostic virtual text (Kanagawa: muted diagnostics)
+		DiagnosticVirtualTextError = { fg = c.diagnostic_error, bg = c.bg },
+		DiagnosticVirtualTextWarn = { fg = c.diagnostic_warning, bg = c.bg },
+		DiagnosticVirtualTextInfo = { fg = c.diagnostic_info, bg = c.bg },
+		DiagnosticVirtualTextHint = { fg = c.diagnostic_hint, bg = c.bg },
+		DiagnosticVirtualTextOk = { fg = c.spring_green, bg = c.bg },
 
-		-- Diagnostic underlines
-		DiagnosticUnderlineError = { undercurl = true, sp = c.error },
-		DiagnosticUnderlineWarn = { undercurl = true, sp = c.warning },
-		DiagnosticUnderlineInfo = { undercurl = true, sp = c.info },
-		DiagnosticUnderlineHint = { undercurl = true, sp = c.hint },
-		DiagnosticUnderlineOk = { undercurl = true, sp = c.success },
+		-- Diagnostic underlines (Kanagawa: bright semantic colors)
+		DiagnosticUnderlineError = { undercurl = true, sp = c.samurai_red },
+		DiagnosticUnderlineWarn = { undercurl = true, sp = c.ronin_yellow },
+		DiagnosticUnderlineInfo = { undercurl = true, sp = c.crystal_blue },
+		DiagnosticUnderlineHint = { undercurl = true, sp = c.wave_aqua },
+		DiagnosticUnderlineOk = { undercurl = true, sp = c.spring_green },
 
-		-- Diagnostic signs
-		DiagnosticSignError = { fg = c.error, bg = c.bg_2 },
-		DiagnosticSignWarn = { fg = c.warning, bg = c.bg_2 },
-		DiagnosticSignHint = { fg = c.hint, bg = c.bg_2 },
-		DiagnosticSignOk = { fg = c.success, bg = c.bg_2 },
-		DiagnosticSignInfo = { fg = c.info, bg = c.bg_2 },
+		-- Diagnostic signs (Kanagawa: bright for visibility)
+		DiagnosticSignError = { fg = c.samurai_red, bg = c.bg },
+		DiagnosticSignWarn = { fg = c.ronin_yellow, bg = c.bg },
+		DiagnosticSignHint = { fg = c.wave_aqua, bg = c.bg },
+		DiagnosticSignOk = { fg = c.spring_green, bg = c.bg },
+		DiagnosticSignInfo = { fg = c.crystal_blue, bg = c.bg },
 
 		-- Directory
-		Directory = { fg = c.info, bold = true },
+		Directory = { fg = c.crystal_blue, bold = true },
 
-		-- Special keys
-		SpecialKey = { fg = c.comment },
-		NonText = { fg = c.comment },
-		Whitespace = { fg = c.comment },
+		-- Special keys (Kanagawa: subtle grays)
+		SpecialKey = { fg = c.fuji_gray },
+		NonText = { fg = c.fuji_gray },
+		Whitespace = { fg = c.line_number },
 
-		-- Match and parentheses
-		MatchParen = { fg = c.secondary, bold = true, underline = true },
+		-- Match and parentheses (Kanagawa: accent highlight)
+		MatchParen = { fg = c.dragon_orange, bold = true, underline = true },
 
-		-- Title
-		Title = { fg = c.primary, bold = true },
+		-- Title (Kanagawa: prominent foreground)
+		Title = { fg = c.crystal_blue, bold = true },
 
 		-- Health check
-		healthError = { fg = c.error },
-		healthSuccess = { fg = c.success },
-		healthWarning = { fg = c.warning },
+		healthError = { fg = c.samurai_red },
+		healthSuccess = { fg = c.spring_green },
+		healthWarning = { fg = c.ronin_yellow },
 
 		-- Terminal
-		TermCursor = { fg = c.bg_2, bg = c.fg },
-		TermCursorNC = { fg = c.bg_2, bg = c.fg },
+		TermCursor = { fg = c.bg_m1, bg = c.cursor },
+		TermCursorNC = { fg = c.bg_m1, bg = c.fg_dim },
 
 		-- Quickfix
-		QuickFixLine = { bg = c.bg_2, bold = true },
+		QuickFixLine = { bg = c.bg, bold = true },
 
-		-- Substitute
-		Substitute = { fg = c.bg_2, bg = c.secondary, bold = true },
+		-- Substitute (Kanagawa: accent highlight)
+		Substitute = { fg = c.bg_m1, bg = c.dragon_orange, bold = true },
 
 		-- Modes
 		ModeMsg = { fg = c.fg_light, bold = true },
 
 		-- End of buffer
-		EndOfBuffer = { fg = c.bg_2, bg = c.bg_2 },
+		EndOfBuffer = { fg = c.bg_m1 },
 
-		-- === SYNTAX HIGHLIGHTING ===
+		-- === SYNTAX HIGHLIGHTING (Kanagawa-inspired) ===
 
-		-- Comments
-		Comment = { fg = c.comment, italic = opts.styles.comments and opts.styles.comments.italic },
+		-- Comments (Kanagawa: fujiGray - muted natural)
+		Comment = { fg = c.fuji_gray, italic = opts.styles.comments and opts.styles.comments.italic },
 
-		-- Constants
+		-- Constants (Kanagawa: pink/violet for constants)
 		Constant = {
-			fg = c.orange,
+			fg = c.dragon_pink,
 			italic = opts.styles.constants and opts.styles.constants.italic,
 			bold = opts.styles.constants and opts.styles.constants.bold,
 		},
-		String = { fg = c.green, italic = opts.styles.strings and opts.styles.strings.italic },
-		Character = { fg = c.green },
-		Number = { fg = c.orange },
-		Boolean = { fg = c.orange },
-		Float = { fg = c.orange },
+		String = { fg = c.spring_green, italic = opts.styles.strings and opts.styles.strings.italic },
+		Character = { fg = c.spring_green },
+		Number = { fg = c.sakura_pink },
+		Boolean = { fg = c.dragon_pink },
+		Float = { fg = c.sakura_pink },
 
-		-- Identifiers
-		Identifier = { fg = c.red, italic = opts.styles.variables and opts.styles.variables.italic },
+		-- Identifiers (Kanagawa: coral/red for variables)
+		Identifier = { fg = c.fg_light, italic = opts.styles.variables and opts.styles.variables.italic },
 		Function = {
-			fg = c.blue,
+			fg = c.crystal_blue,
 			italic = opts.styles.functions and opts.styles.functions.italic,
 			bold = opts.styles.functions and opts.styles.functions.bold,
 		},
 
-		-- Statements
+		-- Statements (Kanagawa: violet for keywords)
 		Statement = {
-			fg = c.purple,
+			fg = c.dragon_violet,
 			italic = opts.styles.keywords and opts.styles.keywords.italic,
 			bold = opts.styles.keywords and opts.styles.keywords.bold,
 		},
-		Conditional = { fg = c.purple },
-		Repeat = { fg = c.purple },
-		Label = { fg = c.red },
+		Conditional = { fg = c.dragon_violet },
+		Repeat = { fg = c.dragon_violet },
+		Label = { fg = c.dragon_pink },
 		Operator = {
-			fg = c.cyan,
+			fg = c.dragon_violet,
 			italic = opts.styles.operators and opts.styles.operators.italic,
 			bold = opts.styles.operators and opts.styles.operators.bold,
 		},
 		Keyword = {
-			fg = c.purple,
+			fg = c.dragon_violet,
 			italic = opts.styles.keywords and opts.styles.keywords.italic,
 			bold = opts.styles.keywords and opts.styles.keywords.bold,
 		},
-		Exception = { fg = c.purple },
+		Exception = { fg = c.dragon_red },
 
-		-- PreProcessor
-		PreProc = { fg = c.yellow },
-		Include = { fg = c.purple },
-		Define = { fg = c.purple },
-		Macro = { fg = c.purple },
-		PreCondit = { fg = c.yellow },
+		-- PreProcessor (Kanagawa: pink/yellow for macros)
+		PreProc = { fg = c.dragon_pink },
+		Include = { fg = c.dragon_pink },
+		Define = { fg = c.dragon_pink },
+		Macro = { fg = c.dragon_violet },
+		PreCondit = { fg = c.dragon_yellow },
 
-		-- Types
+		-- Types (Kanagawa: aqua/teal for definitions)
 		Type = {
-			fg = c.yellow,
+			fg = c.dragon_aqua,
 			italic = opts.styles.types and opts.styles.types.italic,
 			bold = opts.styles.types and opts.styles.types.bold,
 		},
-		StorageClass = { fg = c.yellow },
-		Structure = { fg = c.yellow },
-		Typedef = { fg = c.yellow },
+		StorageClass = { fg = c.dragon_violet },
+		Structure = { fg = c.dragon_aqua },
+		Typedef = { fg = c.dragon_aqua },
 
-		-- Special
-		Special = { fg = c.blue },
-		SpecialChar = { fg = c.cream, bold = true },
-		Tag = { fg = c.red },
-		Delimiter = { fg = c.light_gray },
-		SpecialComment = { fg = c.comment, bold = true },
-		Debug = { fg = c.red },
+		-- Special (Kanagawa: various accents)
+		Special = { fg = c.dragon_red },
+		SpecialChar = { fg = c.dragon_red, bold = true },
+		Tag = { fg = c.dragon_pink },
+		Delimiter = { fg = c.fg_dim },
+		SpecialComment = { fg = c.fuji_gray, bold = true },
+		Debug = { fg = c.samurai_red },
 
 		-- Underlined
 		Underlined = { underline = true },
 
 		-- Ignore
-		Ignore = { fg = c.bg_2 },
+		Ignore = { fg = c.bg },
 
 		-- Error
-		Error = { fg = c.error, bold = true },
+		Error = { fg = c.samurai_red, bold = true },
 
 		-- Todo
-		Todo = { fg = c.warning, bg = c.bg_2, bold = true },
+		Todo = { fg = c.dragon_violet, bg = c.bg_p1, bold = true },
 	}
 
 	return highlights
