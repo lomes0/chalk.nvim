@@ -3,11 +3,9 @@ return {
 	-- ============================================================================
 	-- BACKGROUND & FOREGROUND
 	-- ============================================================================
+	bg = "#424856",
 	bg_1 = "#959dbd", -- Lightest background
 	bg_2 = "#7d84a1", -- Light background
-	bg_3 = "#697088", -- Medium background
-	bg_4 = "#565c6f", -- Dark background
-	bg_5 = "#424856", -- Darkest background
 
 	fg_darker = "#424140", -- Darkest foreground - improved contrast
 	fg_light = "#f0ebe4", -- Light foreground - crisp sophisticated chalk

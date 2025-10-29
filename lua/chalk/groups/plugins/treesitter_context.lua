@@ -11,11 +11,11 @@ function M.setup(colors, opts)
 
 	return {
 		-- TreeSitter context highlights
-		["TreesitterContext"] = { bg = c.bg_5, italic = true },
-		["TreesitterContextBottom"] = { bg = c.bg_5, italic = true },
-		["TreesitterContextSeparator"] = { bg = c.bg_5, italic = true },
-		["TreesitterContextLineNumber"] = { bg = c.bg_5, italic = true, fg = "white" },
-		["TreesitterContextLineNumberBottom"] = { bg = c.bg_5, italic = true },
+		["TreesitterContext"] = { bg = c.bg, italic = true },
+		["TreesitterContextBottom"] = { bg = c.bg, italic = true },
+		["TreesitterContextSeparator"] = { bg = c.bg, italic = true },
+		["TreesitterContextLineNumber"] = { bg = c.bg, italic = true, fg = "white" },
+		["TreesitterContextLineNumberBottom"] = { bg = c.bg, italic = true },
 	}
 end
 

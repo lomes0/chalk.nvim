@@ -29,8 +29,8 @@ function M.setup(colors, opts)
 		["@comment.documentation"] = { fg = c.azure, italic = true },
 		["@comment.error"] = { fg = c.azure, bold = true },
 		["@comment.warning"] = { fg = c.azure, bold = true },
-		["@comment.todo"] = { fg = c.azure, bg = c.bg_3, bold = true },
-		["@comment.note"] = { fg = c.azure, bg = c.bg_3, bold = true },
+		["@comment.todo"] = { fg = c.azure, bg = c.bg_2, bold = true },
+		["@comment.note"] = { fg = c.azure, bg = c.bg_2, bold = true },
 
 		-- Constants
 		["@constant"] = { fg = c.coral },
@@ -164,10 +164,10 @@ function M.setup(colors, opts)
 		LspSignatureActiveParameter = { link = "Visual" },
 
 		-- LSP reference highlighting
-		LspReferenceRead = { bg = c.bg_3 },
-		LspReferenceText = { bg = c.bg_3 },
-		LspReferenceWrite = { bg = c.bg_3 },
-		LspReferenceTarget = { bg = c.bg_3 },
+		LspReferenceRead = { bg = c.bg_2 },
+		LspReferenceText = { bg = c.bg_2 },
+		LspReferenceWrite = { bg = c.bg_2 },
+		LspReferenceTarget = { bg = c.bg_2 },
 	}
 
 	-- Load language-specific highlights and merge them

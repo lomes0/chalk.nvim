@@ -14,10 +14,10 @@ local function get_base_highlights(colors)
 		TelescopeTitle = { fg = c.fg, bold = true },
 
 		-- Telescope prompts
-		TelescopePromptNormal = { bg = c.bg_4 },
-		TelescopePromptBorder = { bg = c.bg_4, fg = c.bg_4 },
+		TelescopePromptNormal = { bg = c.bg },
+		TelescopePromptBorder = { bg = c.bg, fg = c.bg },
 		TelescopePromptTitle = { bg = c.peach, fg = c.fg_darker, bold = true },
-		TelescopePromptPrefix = { bg = c.bg_4, fg = c.red },
+		TelescopePromptPrefix = { bg = c.bg, fg = c.red },
 		TelescopePromptCounter = { fg = c.comment },
 
 		-- Telescope results
@@ -26,8 +26,8 @@ local function get_base_highlights(colors)
 		TelescopeResultsTitle = { bg = c.bg_float, fg = c.fg },
 
 		-- Telescope preview
-		TelescopePreviewNormal = { bg = c.bg_4, fg = c.fg },
-		TelescopePreviewBorder = { bg = c.bg_4, fg = c.bg_4 },
+		TelescopePreviewNormal = { bg = c.bg, fg = c.fg },
+		TelescopePreviewBorder = { bg = c.bg, fg = c.bg },
 		TelescopePreviewTitle = { bg = c.green, fg = c.fg_darker, bold = true },
 
 		-- Telescope selections

@@ -25,22 +25,22 @@ local function process_palette(palette, opts)
 	if opts.transparent then
 		c.bg_1 = Util.blend_bg(c.bg_1 or palette.bg_1, 0.5)
 		c.bg_2 = Util.blend_bg(c.bg_2 or palette.bg_2, 0.5)
-		c.bg_3 = Util.blend_bg(c.bg_3 or palette.bg_2, 0.5)
-		c.bg_4 = Util.blend_bg(c.bg_4 or palette.bg_2, 0.5)
+		c.bg_2 = Util.blend_bg(c.bg_2 or palette.bg_2, 0.5)
+		c.bg = Util.blend_bg(c.bg or palette.bg_2, 0.5)
 	end
 
 	-- Generate additional colors through blending
 	c.bg_visual = c.bg_visual or Util.blend_bg(c.primary, 0.1)
 	c.bg_search = c.bg_search or Util.blend_bg(c.warning, 0.15)
-	c.bg_sidebar = c.bg_sidebar or Util.darken(c.bg_3, 0.8)
+	c.bg_sidebar = c.bg_sidebar or Util.darken(c.bg_2, 0.8)
 	c.bg_float = c.bg_float or c.bg_2
 	c.bg_popup = c.bg_popup or c.bg_2
 	c.bg_statusline = c.bg_statusline or c.bg_2
 	c.border = c.border or c.fg_darker
 
 	-- Ensure contrast for accessibility
-	c.fg = Util.ensure_contrast(c.fg, c.bg_3, 4.5)
-	c.comment = Util.ensure_contrast(c.comment, c.bg_3, 3.0)
+	c.fg = Util.ensure_contrast(c.fg, c.bg_2, 4.5)
+	c.comment = Util.ensure_contrast(c.comment, c.bg_2, 3.0)
 
 	-- Generate semantic color variations
 	c.error_dim = Util.blend_bg(c.error, 0.3)
@@ -51,7 +51,7 @@ local function process_palette(palette, opts)
 
 	-- Terminal colors (16 color palette)
 	c.terminal = {
-		black = c.bg_5,
+		black = c.bg,
 		red = c.red,
 		green = c.green,
 		yellow = c.yellow,

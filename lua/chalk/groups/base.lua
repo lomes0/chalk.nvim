@@ -11,30 +11,30 @@ function M.setup(colors, opts)
 
 	local highlights = {
 		-- Editor colors
-		Normal = { fg = c.fg, bg = "#010e29" },
-		NormalFloat = { fg = c.fg, bg = c.bg_2 },
-		NormalNC = { fg = c.fg_dark, bg = c.bg_3 },
+		Normal = { fg = c.fg, bg = c.bg },
+		NormalFloat = { fg = c.fg, bg = c.bg },
+		NormalNC = { fg = c.fg_dark, bg = c.bg },
 
 		-- Cursor
-		Cursor = { fg = c.bg_3, bg = c.fg },
-		CursorLine = { bg = c.bg_5 },
+		Cursor = { fg = c.bg_2, bg = c.fg },
+		CursorLine = { bg = c.bg },
 		CursorColumn = { bg = c.bg_2 },
-		CursorLineNr = { fg = c.fg, bold = true, bg = c.bg_3 },
+		CursorLineNr = { fg = c.fg, bold = true, bg = c.bg_2 },
 
 		-- Line numbers
-		LineNr = { fg = c.comment, bg = c.bg_3 },
-		SignColumn = { fg = c.comment, bg = c.bg_3 },
+		LineNr = { fg = c.comment, bg = c.bg_2 },
+		SignColumn = { fg = c.comment, bg = c.bg_2 },
 
 		-- Folds
 		Folded = { fg = c.comment, bg = c.bg_2, italic = true },
-		FoldColumn = { fg = c.comment, bg = c.bg_3 },
+		FoldColumn = { fg = c.comment, bg = c.bg_2 },
 
 		-- Selection and search
 		Visual = { bg = c.selection },
 		VisualNOS = { bg = c.selection },
-		Search = { fg = c.none, bg = c.bg_3 },
-		IncSearch = { fg = c.none, bg = c.bg_3, bold = true },
-		CurSearch = { fg = c.none, bg = c.bg_3, bold = true },
+		Search = { fg = c.none, bg = c.bg_2 },
+		IncSearch = { fg = c.none, bg = c.bg_2, bold = true },
+		CurSearch = { fg = c.none, bg = c.bg_2, bold = true },
 
 		-- Messages and command line
 		MsgArea = { fg = c.fg },
@@ -46,16 +46,16 @@ function M.setup(colors, opts)
 
 		-- Status line
 		StatusLine = { fg = c.fg, bg = c.bg_2 },
-		StatusLineNC = { fg = c.comment, bg = c.bg_4 },
+		StatusLineNC = { fg = c.comment, bg = c.bg },
 
 		-- Tab line
-		TabLine = { fg = c.comment, bg = c.bg_4 },
-		TabLineFill = { bg = c.bg_4 },
-		TabLineSel = { fg = c.fg, bg = c.bg_3, bold = true },
+		TabLine = { fg = c.comment, bg = c.bg },
+		TabLineFill = { bg = c.bg },
+		TabLineSel = { fg = c.fg, bg = c.bg_2, bold = true },
 
 		-- Windows and splits
-		WinBar = { fg = c.fg_light, bg = c.bg_3 },
-		WinBarNC = { fg = c.comment, bg = c.bg_3 },
+		WinBar = { fg = c.fg_light, bg = c.bg_2 },
+		WinBarNC = { fg = c.comment, bg = c.bg_2 },
 		WinSeparator = { fg = c.bg_1 },
 		VertSplit = { fg = c.bg_1 }, -- Legacy
 
@@ -110,11 +110,11 @@ function M.setup(colors, opts)
 		DiagnosticUnderlineOk = { undercurl = true, sp = c.success },
 
 		-- Diagnostic signs
-		DiagnosticSignError = { fg = c.error, bg = c.bg_3 },
-		DiagnosticSignWarn = { fg = c.warning, bg = c.bg_3 },
-		DiagnosticSignHint = { fg = c.hint, bg = c.bg_3 },
-		DiagnosticSignOk = { fg = c.success, bg = c.bg_3 },
-		DiagnosticSignInfo = { fg = c.info, bg = c.bg_3 },
+		DiagnosticSignError = { fg = c.error, bg = c.bg_2 },
+		DiagnosticSignWarn = { fg = c.warning, bg = c.bg_2 },
+		DiagnosticSignHint = { fg = c.hint, bg = c.bg_2 },
+		DiagnosticSignOk = { fg = c.success, bg = c.bg_2 },
+		DiagnosticSignInfo = { fg = c.info, bg = c.bg_2 },
 
 		-- Directory
 		Directory = { fg = c.info, bold = true },
@@ -136,20 +136,20 @@ function M.setup(colors, opts)
 		healthWarning = { fg = c.warning },
 
 		-- Terminal
-		TermCursor = { fg = c.bg_3, bg = c.fg },
-		TermCursorNC = { fg = c.bg_3, bg = c.fg },
+		TermCursor = { fg = c.bg_2, bg = c.fg },
+		TermCursorNC = { fg = c.bg_2, bg = c.fg },
 
 		-- Quickfix
 		QuickFixLine = { bg = c.bg_2, bold = true },
 
 		-- Substitute
-		Substitute = { fg = c.bg_3, bg = c.secondary, bold = true },
+		Substitute = { fg = c.bg_2, bg = c.secondary, bold = true },
 
 		-- Modes
 		ModeMsg = { fg = c.fg_light, bold = true },
 
 		-- End of buffer
-		EndOfBuffer = { fg = c.bg_3, bg = c.bg_3 },
+		EndOfBuffer = { fg = c.bg_2, bg = c.bg_2 },
 
 		-- === SYNTAX HIGHLIGHTING ===
 
@@ -226,13 +226,13 @@ function M.setup(colors, opts)
 		Underlined = { underline = true },
 
 		-- Ignore
-		Ignore = { fg = c.bg_3 },
+		Ignore = { fg = c.bg_2 },
 
 		-- Error
 		Error = { fg = c.error, bold = true },
 
 		-- Todo
-		Todo = { fg = c.warning, bg = c.bg_3, bold = true },
+		Todo = { fg = c.warning, bg = c.bg_2, bold = true },
 	}
 
 	return highlights

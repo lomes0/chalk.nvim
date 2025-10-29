@@ -89,8 +89,8 @@ local function get_base_highlights(colors)
 		NoicePopupBorder = { fg = c.border, bg = c.bg_float },
 
 		-- Split view
-		NoiceSplit = { fg = c.fg, bg = c.bg_4 },
-		NoiceSplitBorder = { fg = c.border, bg = c.bg_4 },
+		NoiceSplit = { fg = c.fg, bg = c.bg },
+		NoiceSplitBorder = { fg = c.border, bg = c.bg },
 
 		-- Virtual text (for search count, etc.)
 		NoiceVirtualText = { fg = c.comment, italic = true },
@@ -123,7 +123,7 @@ local function get_base_highlights(colors)
 		NoiceTitle = { fg = c.blue, bold = true },
 
 		-- Scrollbar
-		NoiceScrollbar = { fg = c.comment, bg = c.bg_4 },
+		NoiceScrollbar = { fg = c.comment, bg = c.bg },
 		NoiceScrollbarThumb = { fg = c.fg_darker, bg = c.bg_2 },
 
 		-- Cmdline input dialog
@@ -136,8 +136,8 @@ local function get_base_highlights(colors)
 		NoiceHoverBorder = { fg = c.border, bg = c.bg_float },
 
 		-- Message routing and history
-		NoiceHistory = { fg = c.fg, bg = c.bg_4 },
-		NoiceHistoryBorder = { fg = c.border, bg = c.bg_4 },
+		NoiceHistory = { fg = c.fg, bg = c.bg },
+		NoiceHistoryBorder = { fg = c.border, bg = c.bg },
 
 		-- Status line components
 		NoiceStatusline = { fg = c.fg, bg = c.bg_statusline },
