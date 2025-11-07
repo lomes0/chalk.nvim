@@ -10,30 +10,30 @@ local function get_base_highlights(colors)
 	return {
 		-- Telescope window
 		TelescopeNormal = { bg = c.bg_float, fg = c.fg },
-		TelescopeBorder = { bg = c.bg_float, fg = c.border },
+		TelescopeBorder = { bg = c.bg_float, fg = c.fg_darker },
 		TelescopeTitle = { fg = c.fg, bold = true },
 
 		-- Telescope prompts
 		TelescopePromptNormal = { bg = c.bg },
-		TelescopePromptBorder = { bg = c.bg, fg = c.bg },
+		TelescopePromptBorder = { bg = c.bg, fg = c.fg_darker },
 		TelescopePromptTitle = { bg = c.peach, fg = c.fg_darker, bold = true },
 		TelescopePromptPrefix = { bg = c.bg, fg = c.red },
 		TelescopePromptCounter = { fg = c.comment },
 
 		-- Telescope results
 		TelescopeResultsNormal = { bg = c.bg_float, fg = c.fg },
-		TelescopeResultsBorder = { bg = c.bg_float, fg = c.bg_float },
+		TelescopeResultsBorder = { bg = c.bg_float, fg = c.fg_darker },
 		TelescopeResultsTitle = { bg = c.bg_float, fg = c.fg },
 
 		-- Telescope preview
 		TelescopePreviewNormal = { bg = c.bg, fg = c.fg },
-		TelescopePreviewBorder = { bg = c.bg, fg = c.bg },
+		TelescopePreviewBorder = { bg = c.bg, fg = c.fg_darker },
 		TelescopePreviewTitle = { bg = c.green, fg = c.fg_darker, bold = true },
 
 		-- Telescope selections
-		TelescopeSelection = { bg = c.bg_2, fg = c.fg },
-		TelescopeSelectionCaret = { bg = c.bg_2, fg = c.red },
-		TelescopeMultiSelection = { bg = c.bg_2er, fg = c.fg },
+		TelescopeSelection = { bg = c.bg_p2, fg = c.fg },
+		TelescopeSelectionCaret = { bg = c.bg_p2, fg = c.red },
+		TelescopeMultiSelection = { bg = c.bg_p2, fg = c.fg },
 		TelescopeMultiIcon = { fg = c.blue },
 
 		-- Telescope matching

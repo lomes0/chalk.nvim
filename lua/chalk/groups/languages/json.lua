@@ -6,7 +6,7 @@ function M.setup(colors, opts)
 
 	return {
 		["@label.json"] = { fg = c.purple },
-		["@string.json"] = { fg = c.green },
+		["@string.json"] = { fg = c.dim_green },
 		["@number.json"] = { fg = c.orange },
 		["@boolean.json"] = { fg = c.orange },
 		["@constant.json"] = { fg = c.yellow },

@@ -12,8 +12,8 @@ function M.setup(colors, opts)
 	local highlights = {
 		-- Editor colors (Kanagawa-inspired backgrounds)
 		Normal = { fg = c.fg_light, bg = c.bg_m1 },
-		NormalFloat = { fg = c.fg_light, bg = c.bg },
-		NormalNC = { fg = c.fg_dim, bg = c.bg_m2 },
+		NormalFloat = { fg = c.fg_light, bg = c.bg_m1 },
+		NormalNC = { fg = c.fg_dim, bg = c.bg_m1 },
 
 		-- Cursor (Kanagawa: clear contrast)
 		Cursor = { fg = c.bg_m1, bg = c.cursor },
@@ -22,8 +22,8 @@ function M.setup(colors, opts)
 		CursorLineNr = { fg = c.line_number_current, bold = true, bg = c.bg },
 
 		-- Line numbers (Kanagawa: muted but visible)
-		LineNr = { fg = c.line_number, bg = c.bg },
-		SignColumn = { fg = c.line_number, bg = c.bg },
+		LineNr = { fg = c.line_number, bg = c.bg_m1 },
+		SignColumn = { fg = c.line_number, bg = c.bg_m1 },
 
 		-- Folds (Kanagawa: subtle with comment color)
 		Folded = { fg = c.fuji_gray, bg = c.bg, italic = true },
@@ -32,9 +32,9 @@ function M.setup(colors, opts)
 		-- Selection and search (Kanagawa: muted backgrounds)
 		Visual = { bg = c.selection },
 		VisualNOS = { bg = c.selection },
-		Search = { fg = c.bg_m1, bg = c.search },
-		IncSearch = { fg = c.bg_m1, bg = c.dragon_orange, bold = true },
-		CurSearch = { fg = c.bg_m1, bg = c.dragon_orange, bold = true },
+		Search = { bg = c.search },
+		IncSearch = { fg = c.fg_light, bg = c.search, bold = true },
+		CurSearch = { fg = c.fg_light, bg = c.search, bold = true },
 
 		-- Messages and command line (Kanagawa semantic colors)
 		MsgArea = { fg = c.fg_light },
@@ -78,7 +78,7 @@ function M.setup(colors, opts)
 
 		-- Diff (Kanagawa: muted git colors)
 		DiffDelete = { bg = c.none, fg = c.dragon_red },
-		DiffAdd = { bg = c.none, fg = c.spring_green },
+		DiffAdd = { bg = c.none },
 		DiffChange = { bg = c.none },
 		DiffText = { bg = c.diff_text_bg },
 

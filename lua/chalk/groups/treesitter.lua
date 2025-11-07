@@ -38,30 +38,30 @@ function M.setup(colors, opts)
 		["@constant.macro"] = { fg = c.dragon_violet, italic = true },
 
 		-- Functions (Kanagawa: blue tones for trust/reliability)
-		["@function"] = { fg = c.crystal_blue },
+		["@function"] = { fg = c.vvv },
 		["@function.builtin"] = { fg = c.dragon_blue, bold = true },
-		["@function.call"] = { fg = c.crystal_blue },
+		["@function.call"] = { fg = c.vvv },
 		["@function.macro"] = { fg = c.dragon_aqua, bold = true },
 		["@function.method"] = { fg = c.crystal_blue },
 		["@function.method.call"] = { fg = c.crystal_blue },
 
-		-- Keywords (Kanagawa: pink/violet tones for structure)
-		["@keyword"] = { fg = c.dragon_violet },
-		["@keyword.type"] = { fg = c.dragon_aqua },
-		["@keyword.conditional"] = { fg = c.dragon_violet },
-		["@keyword.conditional.ternary"] = { fg = c.dragon_violet },
-		["@keyword.coroutine"] = { fg = c.dragon_violet, italic = true },
+		-- Keywords
+		["@keyword"] = { fg = c.dragon_violet }, -- spring_violet
+		["@keyword.type"] = { fg = c.sakura_pink }, -- sakura_pink
+		["@keyword.conditional"] = { fg = c.dragon_violet }, -- spring_violet
+		["@keyword.conditional.ternary"] = { fg = c.dragon_violet }, -- spring_violet
+		["@keyword.coroutine"] = { fg = c.dragon_violet, italic = true }, -- dragon_pink
 		["@keyword.debug"] = { fg = c.samurai_red, bold = true },
-		["@keyword.directive"] = { fg = c.dragon_pink },
-		["@keyword.directive.define"] = { fg = c.dragon_pink },
-		["@keyword.exception"] = { fg = c.dragon_red, bold = true },
-		["@keyword.function"] = { fg = c.dragon_violet },
-		["@keyword.import"] = { fg = c.dragon_pink, italic = true },
-		["@keyword.modifier"] = { fg = c.dragon_violet },
-		["@keyword.operator"] = { fg = c.dragon_violet },
-		["@keyword.repeat"] = { fg = c.dragon_violet },
-		["@keyword.return"] = { fg = c.dragon_violet },
-		["@keyword.storage"] = { fg = c.dragon_violet },
+		["@keyword.directive"] = { fg = c.dragon_pink }, -- coral
+		["@keyword.directive.define"] = { fg = c.dragon_pink }, -- coral
+		["@keyword.exception"] = { fg = c.dragon_pink, bold = true },
+		["@keyword.function"] = { fg = c.dragon_pink, italic = true, bold = true }, -- coral
+		["@keyword.import"] = { fg = c.dragon_pink, italic = true }, -- coral
+		["@keyword.modifier"] = { fg = c.amethyst }, -- spring_violet
+		["@keyword.operator"] = { fg = c.spring_violet }, -- spring_violet
+		["@keyword.repeat"] = { fg = c.spring_violet }, -- spring_violet
+		["@keyword.return"] = { fg = c.spring_violet }, -- spring_violet
+		["@keyword.storage"] = { fg = c.spring_violet }, -- spring_violet
 
 		-- Labels
 		["@label"] = { fg = c.dragon_pink },
@@ -93,7 +93,7 @@ function M.setup(colors, opts)
 		["@namespace"] = { fg = c.dragon_aqua },
 
 		-- Numbers (Kanagawa: pink/violet for constants)
-		["@number"] = { fg = c.sakura_pink, bold = false },
+		["@number"] = { fg = c.dim_orange, bold = true },
 		["@number.float"] = { fg = c.sakura_pink },
 
 		-- Operators (Kanagawa: muted foreground)
@@ -111,7 +111,8 @@ function M.setup(colors, opts)
 		["@punctuation.bracket"] = { fg = c.fg_dim },
 
 		-- Strings (Kanagawa: green tones for growth/content)
-		["@string"] = { fg = c.spring_green },
+		["@string"] = { fg = c.dim_green },
+		["@string.json"] = { fg = c.dim_green },
 		["@string.documentation"] = { fg = c.fuji_gray, italic = true },
 		["@string.escape"] = { fg = c.dragon_red },
 		["@string.regex"] = { fg = c.dragon_orange },
@@ -129,10 +130,10 @@ function M.setup(colors, opts)
 		["@type.qualifier"] = { fg = c.dragon_violet },
 
 		-- Variables (Kanagawa: neutral foreground tones)
-		["@variable"] = { fg = c.fg_light },
+		["@variable"] = { fg = c.fg, bold = false }, -- c.fg_light
+		["@variable.parameter"] = { fg = c.fg },
+		["@variable.member"] = { fg = c.copper },
 		["@variable.builtin"] = { fg = c.dragon_red, italic = true },
-		["@variable.member"] = { fg = c.fg },
-		["@variable.parameter"] = { fg = c.old_white },
 
 		-- LSP semantic tokens
 		["@lsp.type.class"] = {},
@@ -150,7 +151,7 @@ function M.setup(colors, opts)
 		["@lsp.type.typeParameter"] = {},
 		["@lsp.type.variable"] = {},
 		["@lsp.type.keyword"] = {},
-		["@lsp.type.parameter"] = { fg = c.stone_1 },
+		["@lsp.type.parameter"] = { link = "@variable.parameter" },
 
 		-- LSP semantic token modifiers
 		["@lsp.mod.deprecated"] = {},
