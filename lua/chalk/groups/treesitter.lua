@@ -55,7 +55,7 @@ function M.setup(colors, opts)
 		["@keyword.directive"] = { fg = c.dragon_pink }, -- coral
 		["@keyword.directive.define"] = { fg = c.dragon_pink }, -- coral
 		["@keyword.exception"] = { fg = c.dragon_pink, bold = true },
-		["@keyword.function"] = { fg = c.dragon_pink, italic = true, bold = true }, -- coral
+		["@keyword.function"] = { fg = c.dragon_pink, bold = true }, -- coral
 		["@keyword.import"] = { fg = c.dragon_pink, italic = true }, -- coral
 		["@keyword.modifier"] = { fg = c.amethyst }, -- spring_violet
 		["@keyword.operator"] = { fg = c.spring_violet }, -- spring_violet
