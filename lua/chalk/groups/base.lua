@@ -12,8 +12,8 @@ function M.setup(colors, opts)
 	local highlights = {
 		-- Editor colors (Kanagawa-inspired backgrounds)
 		Normal = { fg = c.fg_light, bg = c.bg_m1 },
-		NormalFloat = { fg = c.fg_light, bg = c.bg_m1 },
-		NormalNC = { fg = c.fg_dim, bg = c.bg_m1 },
+		NormalFloat = { fg = c.fg_light, bg = c.bg },
+		NormalNC = { fg = c.fg_dim, bg = c.bg_m2 },
 
 		-- Cursor (Kanagawa: clear contrast)
 		Cursor = { fg = c.bg_m1, bg = c.cursor },
@@ -22,8 +22,8 @@ function M.setup(colors, opts)
 		CursorLineNr = { fg = c.line_number_current, bold = true, bg = c.bg },
 
 		-- Line numbers (Kanagawa: muted but visible)
-		LineNr = { fg = c.line_number, bg = c.bg_m1 },
-		SignColumn = { fg = c.line_number, bg = c.bg_m1 },
+		LineNr = { fg = c.line_number, bg = c.bg },
+		SignColumn = { fg = c.line_number, bg = c.bg },
 
 		-- Folds (Kanagawa: subtle with comment color)
 		Folded = { fg = c.fuji_gray, bg = c.bg, italic = true },
