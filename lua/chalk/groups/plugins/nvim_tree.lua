@@ -27,23 +27,23 @@ local function get_base_highlights(colors)
 		NvimTreeStatusLineNC = { link = "StatusLineNC" },
 
 		-- === FOLDER AND FILE ICONS ===
-		-- Main folder icon - using azure family for sophisticated blue folder appearance
-		NvimTreeFolderIcon = { fg = c.steel_blue }, -- Base steel blue for folder icons
-		NvimTreeFileIcon = { link = "NvimTreeNormal" },
+		-- Folders as structural elements (matching @module, @namespace philosophy)
+		NvimTreeFolderIcon = { fg = c.dragon_aqua }, -- Aqua for structure (like @module, @type)
+		NvimTreeFileIcon = { fg = c.fg }, -- Neutral foreground for regular files (like @variable)
 		NvimTreeSymlinkIcon = { link = "NvimTreeNormal" },
-		NvimTreeOpenedFolderIcon = { link = "NvimTreeFolderIcon" },
+		NvimTreeOpenedFolderIcon = { fg = c.wave_aqua }, -- Brighter aqua when opened
 		NvimTreeClosedFolderIcon = { link = "NvimTreeFolderIcon" },
 
-		-- Folder arrows and indent markers
+		-- Folder arrows and indent markers - muted for secondary UI
+		NvimTreeIndentMarker = { fg = c.dragon_black6 }, -- Very muted (like visual guides)
 		NvimTreeFolderArrowClosed = { link = "NvimTreeIndentMarker" },
-		NvimTreeIndentMarker = { link = "NvimTreeFolderIcon" },
 		NvimTreeFolderArrowOpen = { link = "NvimTreeIndentMarker" },
 
 		-- === FILE AND FOLDER NAMES ===
-		-- File types
-		NvimTreeExecFile = { link = "Question" },
-		NvimTreeImageFile = { link = "Question" },
-		NvimTreeSpecialFile = { link = "Title" },
+		-- File types - matching TreeSitter semantic colors
+		NvimTreeExecFile = { fg = c.crystal_blue }, -- Blue for executables (like @function)
+		NvimTreeImageFile = { fg = c.sakura_pink }, -- Pink for media files (like @constant)
+		NvimTreeSpecialFile = { fg = c.dragon_violet }, -- Violet for special files (like @keyword)
 		NvimTreeSymlink = { link = "Underlined" },
 
 		-- Folder names
@@ -54,8 +54,8 @@ local function get_base_highlights(colors)
 		NvimTreeSymlinkFolderName = { link = "Directory" },
 
 		-- === WINDOW PICKER ===
-		-- Sophisticated window picker with enhanced contrast
-		NvimTreeWindowPicker = { fg = c.fg_light, bg = c.ocean_blue, bold = true },
+		-- Window picker with attention accent (matching warning/action philosophy)
+		NvimTreeWindowPicker = { fg = c.bg, bg = c.ronin_yellow, bold = true },
 
 		-- === DIAGNOSTIC HIGHLIGHTS ===
 		-- Diagnostic folder highlights - link to corresponding file highlights
@@ -109,14 +109,14 @@ local function get_base_highlights(colors)
 		NvimTreeGitFileDirtyHL = { link = "NvimTreeGitDirtyIcon" },
 		NvimTreeGitFileDeletedHL = { link = "NvimTreeGitDeletedIcon" },
 
-		-- Git status icons - using semantic highlight group mappings
-		NvimTreeGitStagedIcon = { link = "Constant" }, -- Orange for staged files
-		NvimTreeGitRenamedIcon = { link = "PreProc" }, -- Yellow for renamed files
-		NvimTreeGitNewIcon = { link = "PreProc" }, -- Yellow for new files
-		NvimTreeGitMergeIcon = { link = "Constant" }, -- Orange for merge conflicts
-		NvimTreeGitIgnoredIcon = { link = "Comment" }, -- Muted for ignored files
-		NvimTreeGitDeletedIcon = { link = "Statement" }, -- Purple for deleted files
-		NvimTreeGitDirtyIcon = { link = "Statement" }, -- Purple for modified files
+		-- Git status icons - matching TreeSitter git color philosophy
+		NvimTreeGitStagedIcon = { fg = c.wave_aqua }, -- Aqua for staged (structured/ready)
+		NvimTreeGitRenamedIcon = { fg = c.ronin_yellow }, -- Yellow for renamed (change)
+		NvimTreeGitNewIcon = { fg = c.spring_green }, -- Green for new files (growth)
+		NvimTreeGitMergeIcon = { fg = c.dragon_orange }, -- Orange for merge conflicts (attention)
+		NvimTreeGitIgnoredIcon = { fg = c.fuji_gray }, -- Gray for ignored (muted)
+		NvimTreeGitDeletedIcon = { fg = c.samurai_red }, -- Red for deleted (removal)
+		NvimTreeGitDirtyIcon = { fg = c.ronin_yellow }, -- Yellow for modified (change)
 
 		-- Legacy git status groups (cleared as per original spec)
 		NvimTreeFolderStaged = {},
@@ -142,10 +142,10 @@ local function get_base_highlights(colors)
 		NvimTreeGitDirty = {},
 
 		-- === FILE STATE INDICATORS ===
-		-- Special file states
+		-- Special file states - matching TreeSitter semantic colors
 		NvimTreeOpenedHL = { link = "Special" },
-		NvimTreeModifiedIcon = { link = "Type" },
-		NvimTreeBookmarkIcon = { link = "NvimTreeFolderIcon" },
+		NvimTreeModifiedIcon = { fg = c.ronin_yellow }, -- Yellow for changes (like warnings)
+		NvimTreeBookmarkIcon = { fg = c.wave_aqua }, -- Aqua for bookmarks (structural reference)
 
 		-- File state highlights
 		NvimTreeModifiedFileHL = { link = "NvimTreeModifiedIcon" },
@@ -158,11 +158,11 @@ local function get_base_highlights(colors)
 		NvimTreeBookmark = {},
 
 		-- === HIDDEN FILES ===
-		-- Hidden file handling
-		NvimTreeHiddenIcon = { link = "Conceal" },
-		NvimTreeHiddenFileHL = { link = "NvimTreeHiddenIcon" },
+		-- Hidden file handling - muted like @comment
+		NvimTreeHiddenIcon = { fg = c.fuji_gray }, -- Gray for hidden (like comments)
+		NvimTreeHiddenFileHL = { fg = c.fg_dim }, -- Dimmed foreground
 		NvimTreeHiddenFolderHL = { link = "NvimTreeHiddenFileHL" },
-		NvimTreeHiddenDisplay = { link = "Conceal" },
+		NvimTreeHiddenDisplay = { fg = c.fuji_gray },
 
 		-- === FILTER AND SEARCH ===
 		-- Live filter functionality

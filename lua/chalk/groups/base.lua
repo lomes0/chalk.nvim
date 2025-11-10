@@ -110,11 +110,11 @@ function M.setup(colors, opts)
 		DiagnosticUnderlineOk = { undercurl = true, sp = c.spring_green },
 
 		-- Diagnostic signs (Kanagawa: bright for visibility)
-		DiagnosticSignError = { fg = c.samurai_red, bg = c.bg },
-		DiagnosticSignWarn = { fg = c.ronin_yellow, bg = c.bg },
-		DiagnosticSignHint = { fg = c.wave_aqua, bg = c.bg },
-		DiagnosticSignOk = { fg = c.spring_green, bg = c.bg },
-		DiagnosticSignInfo = { fg = c.crystal_blue, bg = c.bg },
+		DiagnosticSignError = { fg = c.samurai_red, bg = c.none },
+		DiagnosticSignWarn = { fg = c.ronin_yellow, bg = c.none },
+		DiagnosticSignHint = { fg = c.wave_aqua, bg = c.none },
+		DiagnosticSignOk = { fg = c.spring_green, bg = c.none },
+		DiagnosticSignInfo = { fg = c.crystal_blue, bg = c.none },
 
 		-- Directory
 		Directory = { fg = c.crystal_blue, bold = true },
