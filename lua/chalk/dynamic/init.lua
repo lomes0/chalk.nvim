@@ -94,13 +94,13 @@ function M.setup_keymaps(opts)
 
 	-- Define keymaps for dynamic color commands
 	local keymaps = {
-		-- Brightness adjustments
-		{ "H", ":ChalkIncreaseBrightness<CR>", "Increase brightness" },
-		{ "J", ":ChalkDecreaseBrightness<CR>", "Decrease brightness" },
-
-		-- Color wheel navigation
-		{ "K", ":ChalkNextColor<CR>", "Next color" },
-		{ "L", ":ChalkPrevColor<CR>", "Previous color" },
+		-- -- Brightness adjustments
+		-- { "H", ":ChalkIncreaseBrightness<CR>", "Increase brightness" },
+		-- { "J", ":ChalkDecreaseBrightness<CR>", "Decrease brightness" },
+		--
+		-- -- Color wheel navigation
+		-- { "K", ":ChalkNextColor<CR>", "Next color" },
+		-- { "L", ":ChalkPrevColor<CR>", "Previous color" },
 
 		-- -- Color families
 		-- { "cw", ":ChalkWarmColor<CR>", "Warm color" },
