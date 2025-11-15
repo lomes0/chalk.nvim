@@ -97,6 +97,17 @@ function M.setup(opts)
 	vim.opt.pumblend = 0
 	-- termguicolors is already set in apply_highlights function
 
+	-- Set global statusline
+	vim.opt.laststatus = 3
+
+	-- Ensure laststatus stays at 3 when entering windows
+	vim.api.nvim_create_autocmd({ "WinEnter" }, {
+		callback = function()
+			vim.opt.laststatus = 3
+		end,
+		pattern = "*",
+	})
+
 	-- Apply terminal colors if enabled
 	if opts.terminal_colors then
 		apply_terminal_colors(colors)
