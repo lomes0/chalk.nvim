@@ -123,6 +123,9 @@ function M.setup(opts)
 		modeline = false,
 	})
 
+	-- Setup theme commands
+	M.setup_commands()
+
 	return colors, highlights, opts
 end
 
@@ -161,6 +164,15 @@ function M.toggle()
 	local config = Config.get()
 	config.transparent = not config.transparent
 	return M.setup(config)
+end
+
+---Setup commands for theme functionality
+function M.setup_commands()
+	vim.api.nvim_create_user_command("ChalkToggleTransparency", function()
+		M.toggle()
+	end, {
+		desc = "Toggle chalk.nvim transparency on/off",
+	})
 end
 
 ---Check if chalk theme is currently loaded
