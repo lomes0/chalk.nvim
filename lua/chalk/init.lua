@@ -1,5 +1,4 @@
 -- Main entry point for chalk.nvim colorscheme
--- Follows TokyoNight.nvim architectural patterns
 
 local Config = require("chalk.config")
 

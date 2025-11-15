@@ -52,8 +52,6 @@ For production:
 - **Or remove the option** and document it as a future feature
 - **Don't ship with non-functional config options** - confusing for users
 
-**Suggested approach:** Look at how TokyoNight implements caching via compiled Lua files.
-
 **Rationale:** Non-functional configuration options confuse users and create support burden.
 
 ---
