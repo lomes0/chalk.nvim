@@ -6,10 +6,6 @@ local M = {}
 ---Default configuration
 ---@type chalk.Config
 M.defaults = {
-	-- Theme variants
-	variant = "default", -- "default", "light", "oled"
-	light_variant = "light", -- Light variant when vim.o.background = "light"
-
 	-- Visual options
 	transparent = false,
 	terminal_colors = true,

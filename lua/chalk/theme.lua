@@ -77,19 +77,11 @@ function M.setup(opts)
 		opts.on_highlights(highlights, colors)
 	end
 
-	-- Set colorscheme name with variant
-	local colorscheme_name = "chalk"
-	if opts.variant ~= "default" then
-		colorscheme_name = colorscheme_name .. "-" .. opts.variant
-	end
-	vim.g.colors_name = colorscheme_name
+	-- Set colorscheme name
+	vim.g.colors_name = "chalk"
 
-	-- Set background option based on variant
-	if opts.variant == "light" then
-		vim.o.background = "light"
-	else
-		vim.o.background = "dark"
-	end
+	-- Set background option
+	vim.o.background = "dark"
 
 	-- Apply highlights to Neovim
 	apply_highlights(highlights)
@@ -147,56 +139,19 @@ function M.reload()
 end
 
 ---Get current theme colors without applying
----@param variant? string Specific variant to get colors for
 ---@return chalk.ColorScheme Current color scheme
-function M.get_colors(variant)
+function M.get_colors()
 	local opts = Config.get()
-	if variant then
-		opts = vim.deepcopy(opts)
-		opts.variant = variant
-	end
-
 	return require("chalk.colors").setup(opts)
 end
 
 ---Get current theme highlights without applying
----@param variant? string Specific variant to get highlights for
 ---@return chalk.Highlights Current highlights
-function M.get_highlights(variant)
+function M.get_highlights()
 	local opts = Config.get()
-	if variant then
-		opts = vim.deepcopy(opts)
-		opts.variant = variant
-	end
-
 	local colors = require("chalk.colors").setup(opts)
 	local groups = require("chalk.groups").setup(colors, opts)
 	return Util.resolve(groups)
-end
-
----Toggle between light and dark variants
-function M.toggle()
-	local config = Config.get()
-	local current_bg = vim.o.background
-
-	if current_bg == "light" then
-		-- Switch to dark
-		vim.o.background = "dark"
-		config.variant = "default" -- or could use a config option for preferred dark variant
-	else
-		-- Switch to light
-		vim.o.background = "light"
-		config.variant = config.light_variant or "light"
-	end
-
-	return M.setup(config)
-end
-
----Preview a variant without applying it (returns colors only)
----@param variant string Variant to preview
----@return chalk.ColorScheme Color scheme for preview
-function M.preview(variant)
-	return require("chalk.colors").preview(variant)
 end
 
 ---Check if chalk theme is currently loaded
@@ -212,9 +167,7 @@ function M.info()
 
 	return {
 		name = "chalk.nvim",
-		current_variant = config.variant,
 		background = vim.o.background,
-		available_variants = { "default", "light", "oled" },
 		colors_name = vim.g.colors_name,
 		terminal_colors = config.terminal_colors,
 		transparent = config.transparent,

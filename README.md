@@ -10,7 +10,6 @@ A sophisticated Neovim colorscheme with dynamic color adjustment capabilities. D
 
 - **Sophisticated Color Palette**: Earth tones with refined jewel accents designed for visual harmony
 - **Dynamic Color Adjustment**: Real-time color modification with TreeSitter integration
-- **Multiple Variants**: Default, light, and OLED-optimized themes
 - **Smart Plugin Integration**: Auto-detection and custom highlights for popular plugins
 - **High Performance**: Optimized caching system and lazy loading
 - **Full Customization**: Extensive configuration options and callback system
@@ -31,7 +30,6 @@ A sophisticated Neovim colorscheme with dynamic color adjustment capabilities. D
   priority = 1000, -- Load before other plugins
   config = function()
     require("chalk").setup({
-      variant = "default",
       transparent = false,
     })
     vim.cmd.colorscheme("chalk")
@@ -63,7 +61,6 @@ Plug 'your-username/chalk.nvim'
 
 ```lua
 require("chalk").setup({
-  variant = "default", -- "default", "light", "oled"
   transparent = false,
   terminal_colors = true,
 })
@@ -74,10 +71,6 @@ vim.cmd.colorscheme("chalk")
 
 ```lua
 require("chalk").setup({
-  -- Theme variants
-  variant = "default", -- "default", "light", "oled"
-  light_variant = "light", -- variant to use when vim.o.background = "light"
-
   -- Visual options
   transparent = false,
   terminal_colors = true,
@@ -163,7 +156,6 @@ vim.cmd.colorscheme("chalk")
   priority = 1000,
   config = function()
     require("chalk").setup({
-      variant = "default",
       transparent = false,
       styles = {
         comments = { italic = true },
@@ -182,37 +174,10 @@ vim.cmd.colorscheme("chalk")
 
 ```lua
 require("chalk").setup({
-  variant = "oled", -- for OLED displays
   transparent = true,
 })
 vim.cmd.colorscheme("chalk")
 ```
-
-#### Useful Keymaps
-
-```lua
--- Toggle between light and dark variants
-vim.keymap.set("n", "<leader>tt", function() 
-  require("chalk").toggle() 
-end, { desc = "Toggle theme variant" })
-
--- Preview different variants without applying
-vim.keymap.set("n", "<leader>tp", function()
-  local colors = require("chalk").preview("light")
-  print(vim.inspect(colors))
-end, { desc = "Preview light variant" })
-```
-
-## Variants
-
-### Default
-Earth-toned palette with sophisticated jewel accents, perfect for extended coding sessions.
-
-### Light
-Optimized light theme with proper contrast ratios and reduced eye strain.
-
-### OLED
-Deep blacks and vibrant colors designed specifically for OLED displays.
 
 ## Dynamic Color Adjustment
 
@@ -269,13 +234,7 @@ require("chalk").setup(opts)
 require("chalk").load(opts)
 
 -- Get color palette
-local colors = require("chalk").get_colors("default")
-
--- Toggle between variants
-require("chalk").toggle()
-
--- Preview variant without applying
-local preview_colors = require("chalk").preview("light")
+local colors = require("chalk").get_colors()
 
 -- Access dynamic features
 local dynamic = require("chalk").dynamic()
@@ -354,7 +313,7 @@ Contributions are welcome! Please feel free to submit issues, feature requests, 
 
 1. Clone the repository
 2. Create a symbolic link to your Neovim config
-3. Test changes with different variants and plugins
+3. Test changes with different plugins
 
 ### Adding Plugin Support
 

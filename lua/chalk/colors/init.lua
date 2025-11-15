@@ -2,14 +2,6 @@ local Util = require("chalk.util")
 
 local M = {}
 
----@type table<string, chalk.Palette>
-M.variants = setmetatable({}, {
-	__index = function(_, variant)
-		local mod = Util.mod("chalk.colors." .. variant)
-		return mod and vim.deepcopy(mod) or nil
-	end,
-})
-
 ---Process base palette into complete color scheme
 ---@param palette chalk.Palette Base color palette
 ---@param opts chalk.Config Configuration options
@@ -82,15 +74,11 @@ end
 function M.setup(opts)
 	opts = require("chalk.config").extend(opts)
 
-	-- Get the appropriate variant
-	local variant = opts.variant
-	local palette_source = M.variants[variant]
-
-	-- Get palette (static)
-	local palette = palette_source or M.variants.default
+	-- Get default palette
+	local palette = require("chalk.colors.default")
 
 	if not palette then
-		error("chalk.nvim: Failed to load palette for variant: " .. variant)
+		error("chalk.nvim: Failed to load default palette")
 	end
 
 	-- Process palette into complete color scheme
@@ -102,19 +90,6 @@ function M.setup(opts)
 	end
 
 	return colors
-end
-
----Preview color scheme without applying it
----@param variant? string Variant to preview (defaults to current config)
----@return chalk.ColorScheme Color scheme for preview
-function M.preview(variant)
-	local opts = require("chalk.config").get()
-	if variant then
-		opts = vim.deepcopy(opts)
-		opts.variant = variant
-	end
-
-	return M.setup(opts)
 end
 
 return M
