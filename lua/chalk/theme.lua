@@ -154,6 +154,13 @@ function M.get_highlights()
 	return Util.resolve(groups)
 end
 
+---Toggle transparency on and off
+function M.toggle()
+	local config = Config.get()
+	config.transparent = not config.transparent
+	return M.setup(config)
+end
+
 ---Check if chalk theme is currently loaded
 ---@return boolean Whether chalk is the current colorscheme
 function M.is_loaded()
