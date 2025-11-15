@@ -87,8 +87,9 @@ function M.setup(opts)
 	apply_highlights(highlights)
 
 	-- Apply dynamic color overrides (after highlights are set)
-	local dynamic = require("chalk.dynamic.dynamic")
-	dynamic.apply_overrides()
+	-- TODO: Temporarily disabled
+	-- local dynamic = require("chalk.dynamic.dynamic")
+	-- dynamic.apply_overrides()
 
 	-- Apply additional Neovim options for optimal theme experience
 	-- Optional: win/popup blends so "shadow" groups aren't needed
@@ -102,18 +103,19 @@ function M.setup(opts)
 	end
 
 	-- Setup dynamic color system if enabled
-	if opts.enable_dynamic_colors ~= false then -- Default to enabled
-		-- Setup Ex commands
-		dynamic.setup_commands()
-
-		-- Setup keymaps if enabled
-		if opts.dynamic_keymaps then
-			local dynamic_module = require("chalk.dynamic")
-			dynamic_module.setup_keymaps({
-				prefix = opts.dynamic_prefix or "<leader>c",
-			})
-		end
-	end
+	-- TODO: Temporarily disabled
+	-- if opts.enable_dynamic_colors ~= false then -- Default to enabled
+	-- 	-- Setup Ex commands
+	-- 	dynamic.setup_commands()
+	--
+	-- 	-- Setup keymaps if enabled
+	-- 	if opts.dynamic_keymaps then
+	-- 		local dynamic_module = require("chalk.dynamic")
+	-- 		dynamic_module.setup_keymaps({
+	-- 			prefix = opts.dynamic_prefix or "<leader>c",
+	-- 		})
+	-- 	end
+	-- end
 
 	-- Emit autocmd for theme loaded event
 	vim.api.nvim_exec_autocmds("ColorScheme", {
