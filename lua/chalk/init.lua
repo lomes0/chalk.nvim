@@ -72,10 +72,10 @@ function M.info()
 	return require("chalk.theme").info()
 end
 
----Access to chalk dynamic color utilities (dynamic adjustment, transparency, etc.)
----@return table Dynamic module
-function M.dynamic()
-	return require("chalk.dynamic")
-end
+-- ---Access to chalk dynamic color utilities (dynamic adjustment, transparency, etc.)
+-- ---@return table Dynamic module
+-- function M.dynamic()
+-- 	return require("chalk.dynamic")
+-- end
 
 return M
