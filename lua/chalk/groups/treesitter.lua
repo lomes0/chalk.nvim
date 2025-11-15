@@ -161,7 +161,7 @@ function M.setup(colors, opts)
 		-- LSP UI elements
 		LspCodeLens = { link = "NonText" },
 		LspCodeLensSeparator = { link = "LspCodeLens" },
-		LspInlayHint = { bg = "none" },
+		LspInlayHint = { link = "NonText" },
 		LspSignatureActiveParameter = { link = "Visual" },
 
 		-- LSP reference highlighting

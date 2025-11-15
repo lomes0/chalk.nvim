@@ -56,7 +56,7 @@ function M.setup(colors, opts)
 		-- Windows and splits (Kanagawa: subtle borders)
 		WinBar = { fg = c.fg_light, bg = c.bg },
 		WinBarNC = { fg = c.fuji_gray, bg = c.bg_m2 },
-		WinSeparator = { bg = "none", fg = "#6e6a86", sp = "none" },
+		WinSeparator = { fg = c.border },
 		VertSplit = { fg = c.border }, -- Legacy
 
 		-- Popup menus (Kanagawa: floating UI)
